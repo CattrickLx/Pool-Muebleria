@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pool Muebleria | Diseño a tu medida</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        pool: {
+                            bg: '#F5F5F7',      
+                            cafe: '#3E2723',    
+                            dark: '#1D1D1F',    
+                            card: '#FFFFFF'     
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Oculta la barra de desplazamiento en el configurador pero permite scroll fluido */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-pool-bg text-pool-dark font-sans antialiased overflow-x-hidden relative">
+
+    <div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-40 w-full max-w-5xl px-4">
+        <header class="bg-white/50 backdrop-blur-2xl rounded-full shadow-sm border border-white/50 flex justify-center items-center py-3 px-8 text-sm font-medium transition-all duration-300">
+            <div class="flex items-center space-x-6 md:space-x-8">
+                
+                <a href="index.html" class="text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
+                    <span>Pool <span class="font-light text-gray-500">Muebleria</span></span>
+                </a>
+
+                <div class="h-4 w-px bg-gray-300/50 hidden md:block"></div>
+
+                <nav class="hidden md:flex space-x-6">
+                    <a href="producto.html" class="hover:text-gray-700 transition-colors">Productos</a>
+                    <a href="#" class="hover:text-gray-700 transition-colors">Contactanos</a>
+                    <a href="#" class="hover:text-gray-700 transition-colors">Ayuda</a>
+                </nav>
+
+                <div class="h-4 w-px bg-gray-300/50 hidden md:block"></div>
+
+                <div class="flex items-center space-x-5">
+                    
+                    <div class="relative flex items-center">
+                        <button onclick="toggleSearchMenu()" id="search-btn" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+                        </button>
+                        <div id="search-dropdown" class="hidden absolute right-[-120px] md:right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top">
+                            <div class="absolute -top-2 right-[124px] md:right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                <div class="relative mb-6 pb-2 border-b border-gray-400/30 flex items-center">
+                                    <svg class="w-5 h-5 text-gray-500 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+                                    <input type="text" placeholder="Buscar en Pool Muebleria" class="w-full bg-transparent text-base font-medium outline-none placeholder-gray-500 text-black">
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 mb-3 px-2 font-medium tracking-wide">Filtros rápidos</p>
+                                    <ul class="space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Sofás (3 plazas)</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Sillones (1 plaza)</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Mesas de Centro</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Material: Piel Natural</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Entrega inmediata</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Menos de $5,000 MXN</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative flex items-center">
+                        <button onclick="toggleCartMenu()" id="cart-btn" title="Carrito" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></path></svg>
+                        </button>
+                        <div id="cart-dropdown" class="hidden absolute right-[-80px] md:right-[-20px] top-full mt-6 w-80 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top">
+                            <div class="absolute -top-2 right-[84px] md:right-[24px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-lg font-semibold mb-2 pb-4 text-center tracking-tight border-b border-gray-400/20">Mi Carrito</h3>
+                                <div class="flex flex-col items-center justify-center py-6">
+                                    <svg class="w-16 h-16 text-gray-400/50 mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                    </svg>
+                                    <p class="text-gray-500 text-sm font-light">Tu bolsa está vacía.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative hidden md:block pl-2">
+                        
+                        <div id="logged-out-state" class="block">
+                            <button onclick="toggleLoginMenu()" id="login-btn" class="text-gray-700 hover:text-black transition-colors whitespace-nowrap focus:outline-none flex items-center gap-2">
+                                Iniciar / Crear sesión
+                            </button>
+
+                            <div id="login-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right">
+                                <div class="absolute -top-2 right-16 w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                                <div class="relative z-10">
+                                    <h3 class="text-lg font-semibold mb-4 text-center tracking-tight">Mi Cuenta</h3>
+                                    <form onsubmit="handleLogin(event)">
+                                        <input type="text" id="login-email" placeholder="Correo (1234 o admin)" class="w-full mb-3 px-4 py-2.5 bg-white/60 border border-white/50 rounded-xl text-sm font-light focus:outline-none focus:ring-2 focus:ring-pool-cafe/40 focus:bg-white/80 transition">
+                                        <input type="password" id="login-password" placeholder="Contraseña" class="w-full mb-5 px-4 py-2.5 bg-white/60 border border-white/50 rounded-xl text-sm font-light focus:outline-none focus:ring-2 focus:ring-pool-cafe/40 focus:bg-white/80 transition">
+                                        <button type="submit" class="w-full bg-pool-cafe text-white font-medium text-sm py-2.5 rounded-full hover:opacity-90 transition shadow-md">Ingresar</button>
+                                    </form>
+                                    <div class="flex items-center my-5">
+                                        <div class="flex-grow border-t border-gray-400/20"></div>
+                                        <span class="mx-3 text-xs text-gray-500 font-light">o</span>
+                                        <div class="flex-grow border-t border-gray-400/20"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="#" class="text-sm font-medium text-gray-700 hover:text-black transition">Crear cuenta</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="logged-in-state" class="hidden">
+                            <button onclick="toggleProfileMenu()" id="profile-btn" class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:text-black hover:bg-gray-300 transition-colors focus:outline-none">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path></svg>
+                            </button>
+
+                            <div id="profile-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right">
+                                <div class="absolute -top-2 right-4 w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                                <div class="relative z-10">
+                                    <h3 id="user-greeting" class="text-lg font-semibold mb-4 tracking-tight px-3 border-b border-gray-400/20 pb-3">Hola</h3>
+                                    
+                                    <ul id="user-menu-list" class="hidden space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"></path></svg> Pedidos</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 3h-11a2 2 0 00-2 2v16l7.5-3.5L19 21V5a2 2 0 00-2-2z"></path></svg> Tus selecciones</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Cuenta</a></li>
+                                    </ul>
+
+                                    <ul id="admin-menu-list" class="hidden space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg> Gestión de inventario</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"></path></svg> Cola de producción</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Control de anticipos</a></li>
+                                    </ul>
+                                    
+                                    <div class="border-t border-gray-400/20 my-2"></div>
+                                    
+                                    <ul>
+                                        <li><button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors text-red-600"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path></svg> Cerrar sesión</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <section class="max-w-[1400px] mx-auto px-4 md:px-6 pt-28 pb-12">
+        
+        <div class="text-center mb-10 mt-8">
+            <h1 class="text-4xl md:text-5xl font-semibold tracking-tight mb-3">Colección Pool.</h1>
+            <p class="text-lg text-gray-500 font-light">Diseño a tu medida. Confort absoluto.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 relative z-10">
+            
+            <div class="relative bg-pool-cafe text-white h-[500px] md:h-[550px] rounded-[2rem] overflow-hidden flex flex-col items-center text-center pt-14 px-6 hover:shadow-lg transition duration-500 group cursor-pointer">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-2 tracking-tight z-10">Sofá Premium</h2>
+                <p class="text-base text-gray-300 mb-6 font-light z-10">Elegancia profunda en cada detalle.</p>
+                <div class="flex space-x-3 z-10">
+                    <button onclick="openPurchaseModal()" class="bg-white text-pool-cafe px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition">Comprar</button>
+                    <button class="border border-white text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition">Más info</button>
+                </div>
+                <img src="https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&q=80&w=800" alt="Sofá Oscuro" class="absolute bottom-0 w-full md:w-[85%] object-cover h-[60%] mask-image-bottom opacity-90 mix-blend-luminosity">
+            </div>
+
+            <div class="relative bg-gray-900 text-white h-[500px] md:h-[550px] rounded-[2rem] overflow-hidden flex flex-col justify-start items-center text-center pt-14 px-6 hover:shadow-lg transition duration-500 group cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1618220179428-22790b46a0eb?auto=format&fit=crop&q=80&w=1000" alt="Taller" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-4xl font-semibold mb-2 tracking-tight">Hecho en Querétaro</h2>
+                    <p class="text-base text-gray-200 mb-6 font-light">Fabricación directa y artesanal.</p>
+                    <a href="#" class="bg-white text-black px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition">Conoce el taller</a>
+                </div>
+            </div>
+
+            <div class="relative bg-white border border-gray-200 text-pool-dark h-[500px] md:h-[550px] rounded-[2rem] overflow-hidden flex flex-col justify-center items-center text-center px-10 hover:shadow-lg transition duration-500 group">
+                <div class="mb-6 bg-gray-50 p-4 rounded-full">
+                    <svg class="w-10 h-10 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"></path></svg>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3 tracking-tight">Transparencia Total.</h2>
+                <p class="text-base text-gray-500 mb-8 max-w-md font-light">Trabajamos bajo un modelo <strong>80/20</strong>. Asegura tu pedido con el 80% de anticipo y liquida el resto el día que lo recibes en tu hogar.</p>
+                <a href="#" class="bg-pool-cafe text-white px-6 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition">Ver políticas de pago</a>
+            </div>
+
+            <div class="relative bg-pool-bg border border-gray-100 text-pool-dark h-[500px] md:h-[550px] rounded-[2rem] overflow-hidden flex flex-col items-center text-center pt-14 px-6 hover:shadow-lg transition duration-500 group cursor-pointer">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-2 tracking-tight z-10">Sillones Individuales</h2>
+                <p class="text-base text-gray-500 mb-6 font-light z-10">Tu nuevo rincón favorito.</p>
+                <div class="flex space-x-3 z-10">
+                    <button onclick="openPurchaseModal()" class="bg-pool-cafe text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition">Comprar</button>
+                    <button class="border border-pool-cafe text-pool-cafe px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-50 transition">Más info</button>
+                </div>
+                <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=800" alt="Sillón Claro" class="absolute bottom-0 w-full object-cover h-[55%] origin-bottom">
+            </div>
+
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 pb-24 relative z-0">
+        
+        <button id="prev-btn" class="absolute left-0 md:left-2 top-[175px] transform -translate-y-1/2 bg-white/90 backdrop-blur-md shadow-lg text-pool-cafe p-3.5 rounded-full hover:bg-white hover:scale-110 transition-all z-10 hidden md:flex items-center justify-center cursor-pointer border border-gray-100">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path></svg>
+        </button>
+
+        <div id="product-carousel" class="flex space-x-6 overflow-x-auto pb-16 pt-8 snap-x scrollbar-hide no-scrollbar" style="scrollbar-width: none;">
+            
+            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-1 hover:border-gray-200 hover:z-10 relative z-0">
+                <div class="w-full h-48 relative mb-5 z-20">
+                    <div class="absolute inset-0 bg-[#E8E8ED] rounded-2xl border border-gray-100 z-0"></div>
+                    <div class="w-full h-48 absolute inset-0 z-20 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out hover:scale-125 hover:-translate-y-6 hover:shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600" alt="Sofá Modular Oslo" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="relative z-0 mt-2">
+                    <h3 class="font-semibold text-base">Sofá Modular Oslo</h3>
+                    <p class="text-sm text-gray-500 mt-1">Lino blanco • 3 Plazas</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 12,500</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal()" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition relative z-10 cursor-pointer">Comprar</button>
+                        <button class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition relative z-10 cursor-pointer">Más info</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-1 hover:border-gray-200 hover:z-10 relative z-0">
+                <div class="w-full h-48 relative mb-5 z-20">
+                    <div class="absolute inset-0 bg-[#E8E8ED] rounded-2xl border border-gray-100 z-0"></div>
+                    <div class="w-full h-48 absolute inset-0 z-20 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out hover:scale-125 hover:-translate-y-6 hover:shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600" alt="Sillón Nórdico" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="relative z-0 mt-2">
+                    <h3 class="font-semibold text-base">Sillón Nórdico</h3>
+                    <p class="text-sm text-gray-500 mt-1">Terciopelo Café • 1 Plaza</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 4,200</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal()" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition relative z-10 cursor-pointer">Comprar</button>
+                        <button class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition relative z-10 cursor-pointer">Más info</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-1 hover:border-gray-200 hover:z-10 relative z-0">
+                <div class="w-full h-48 relative mb-5 z-20">
+                    <div class="absolute inset-0 bg-[#E8E8ED] rounded-2xl border border-gray-100 z-0"></div>
+                    <div class="w-full h-48 absolute inset-0 z-20 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out hover:scale-125 hover:-translate-y-6 hover:shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=600" alt="Sofá Cama Piel" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="relative z-0 mt-2">
+                    <h3 class="font-semibold text-base">Sofá Cama Piel</h3>
+                    <p class="text-sm text-gray-500 mt-1">Piel Sintética • 2 Plazas</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 8,700</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal()" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition relative z-10 cursor-pointer">Comprar</button>
+                        <button class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition relative z-10 cursor-pointer">Más info</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-1 hover:border-gray-200 hover:z-10 relative z-0">
+                <div class="w-full h-48 relative mb-5 z-20">
+                    <div class="absolute inset-0 bg-[#E8E8ED] rounded-2xl border border-gray-100 z-0"></div>
+                    <div class="w-full h-48 absolute inset-0 z-20 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out hover:scale-125 hover:-translate-y-6 hover:shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=600" alt="Sillón Velvet" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="relative z-0 mt-2">
+                    <h3 class="font-semibold text-base">Sillón Velvet</h3>
+                    <p class="text-sm text-gray-500 mt-1">Terciopelo Esmeralda • 1 Plaza</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 5,200</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal()" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition relative z-10 cursor-pointer">Comprar</button>
+                        <button class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition relative z-10 cursor-pointer">Más info</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-1 hover:border-gray-200 hover:z-10 relative z-0">
+                <div class="w-full h-48 relative mb-5 z-20">
+                    <div class="absolute inset-0 bg-[#E8E8ED] rounded-2xl border border-gray-100 z-0"></div>
+                    <div class="w-full h-48 absolute inset-0 z-20 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out hover:scale-125 hover:-translate-y-6 hover:shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1533090368676-1fd25485d282?auto=format&fit=crop&q=80&w=600" alt="Mesita Café Pool" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="relative z-0 mt-2">
+                    <h3 class="font-semibold text-base">Mesita Café Pool</h3>
+                    <p class="text-sm text-gray-500 mt-1">Madera de Roble</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 2,500</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal()" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition relative z-10 cursor-pointer">Comprar</button>
+                        <button class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition relative z-10 cursor-pointer">Más info</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <button id="next-btn" class="absolute right-0 md:right-2 top-[175px] transform -translate-y-1/2 bg-white/90 backdrop-blur-md shadow-lg text-pool-cafe p-3.5 rounded-full hover:bg-white hover:scale-110 transition-all z-10 hidden md:flex items-center justify-center cursor-pointer border border-gray-100">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path></svg>
+        </button>
+
+    </section>
+
+    <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="#" class="hover:text-black transition">Acerca de Pool Muebleria</a>
+            <a href="#" class="hover:text-black transition">Soporte</a>
+            <a href="#" class="hover:text-black transition">Cotizaciones</a>
+            <a href="#" class="hover:text-black transition">Contact us</a>
+        </div>
+        <p>&copy; 2026 Pool Muebleria. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="purchase-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-white/60 backdrop-blur-md hidden transition-opacity duration-300">
+        <div class="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 w-[95vw] md:w-[90vw] max-w-6xl h-[90vh] md:h-[85vh] flex flex-col relative overflow-hidden transform scale-95 transition-transform duration-300" id="purchase-modal-content">
+            
+            <button onclick="closePurchaseModal()" class="absolute top-6 right-6 md:top-8 md:right-8 bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-black rounded-full p-2.5 transition-colors z-50">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="flex-shrink-0 px-8 md:px-12 pt-10 pb-6 border-b border-gray-100 pr-20">
+                <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-pool-dark">Compra el Sofá Modular Oslo</h2>
+                <p class="text-gray-500 mt-2 text-sm md:text-base">$12,500.00 de contado o inicia con $10,000.00 (Política 80/20).</p>
+            </div>
+
+            <div class="flex-1 flex flex-col md:flex-row bg-white overflow-hidden min-h-0">
+                
+                <div class="hidden md:flex w-full md:w-1/2 p-8 md:p-12 items-center justify-center bg-white">
+                    <div class="bg-pool-bg rounded-[2.5rem] overflow-hidden flex items-center justify-center p-8 w-full aspect-square max-h-[550px]">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800" alt="Sofá Oslo Grande" class="w-full h-full object-cover rounded-2xl mix-blend-multiply shadow-sm">
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 overflow-y-auto no-scrollbar p-8 md:p-12 space-y-12">
+                    
+                    <div class="md:hidden bg-pool-bg rounded-[2.5rem] overflow-hidden flex items-center justify-center p-8 aspect-square mb-8">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800" alt="Sofá Oslo Grande" class="w-full h-full object-cover rounded-2xl mix-blend-multiply shadow-sm">
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pool-dark"><span class="font-bold">Tamaño.</span> ¿Cuántas plazas necesitas?</h3>
+                        <div class="space-y-4">
+                            <div class="border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex justify-between items-center bg-white transition shadow-sm" onclick="selectOption(this, 'size')">
+                                <div>
+                                    <h4 class="font-semibold text-pool-dark">3 Plazas (Estándar)</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Largo: 2.10m • Profundidad: 0.90m</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm text-gray-500">Desde $12,500</p>
+                                </div>
+                            </div>
+                            <div class="border border-gray-300 rounded-2xl p-5 cursor-pointer flex justify-between items-center hover:border-gray-400 transition" onclick="selectOption(this, 'size')">
+                                <div>
+                                    <h4 class="font-semibold text-pool-dark">Modular en L</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Largo: 2.80m • Chaise longue: 1.60m</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm text-gray-500">Desde $16,500</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pool-dark"><span class="font-bold">Acabado.</span> Elige tu favorito.</h3>
+                        <div class="space-y-4">
+                            <div class="border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex justify-between items-center bg-white transition shadow-sm" onclick="selectOption(this, 'material')">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-full bg-gray-100 border border-gray-300"></div>
+                                    <div>
+                                        <h4 class="font-semibold text-pool-dark">Lino Blanco</h4>
+                                        <p class="text-xs text-gray-500 mt-1">Fresco, transpirable y elegante.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-300 rounded-2xl p-5 cursor-pointer flex justify-between items-center hover:border-gray-400 transition" onclick="selectOption(this, 'material')">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-full bg-emerald-800 border border-emerald-900"></div>
+                                    <div>
+                                        <h4 class="font-semibold text-pool-dark">Terciopelo Esmeralda</h4>
+                                        <p class="text-xs text-gray-500 mt-1">Toque suave y aspecto lujoso. +$800</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-300 rounded-2xl p-5 cursor-pointer flex justify-between items-center hover:border-gray-400 transition" onclick="selectOption(this, 'material')">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-full bg-[#8B5A2B] border border-[#6b421a]"></div>
+                                    <div>
+                                        <h4 class="font-semibold text-pool-dark">Piel Sintética Premium</h4>
+                                        <p class="text-xs text-gray-500 mt-1">Fácil limpieza y máxima durabilidad. +$1,200</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-pool-dark"><span class="font-bold">Plan de Pago.</span> Transparencia total.</h3>
+                        <div class="flex flex-col xl:flex-row gap-4">
+                            <div class="flex-1 border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex flex-col justify-center bg-white transition shadow-sm" onclick="selectOption(this, 'payment')">
+                                <h4 class="font-semibold text-pool-dark">Política 80/20</h4>
+                                <p class="text-xs text-gray-500 mt-2">Inicia fabricación con $10,000. Líquida $2,500 a la entrega.</p>
+                            </div>
+                            <div class="flex-1 border border-gray-300 rounded-2xl p-5 cursor-pointer flex flex-col justify-center hover:border-gray-400 transition" onclick="selectOption(this, 'payment')">
+                                <h4 class="font-semibold text-pool-dark">Pago Completo</h4>
+                                <p class="text-xs text-gray-500 mt-2">Paga hoy $12,500. Envío a Querétaro gratuito garantizado.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="flex-shrink-0 w-full bg-white/90 backdrop-blur-xl border-t border-gray-200 p-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-4 z-30">
+                <div class="w-full md:w-auto">
+                    <h3 class="text-lg font-semibold text-pool-dark">Sofá Modular Oslo de 3 Plazas, Lino Blanco</h3>
+                    <p class="text-sm text-gray-500 flex items-center gap-2 mt-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Taller Querétaro: Listo en aprox. 14 a 21 días.
+                    </p>
+                </div>
+                
+                <div class="flex items-center gap-4 w-full md:w-auto justify-end">
+                    <div class="text-right hidden md:block mr-2">
+                        <p class="text-xl font-semibold text-pool-dark">$12,500.00</p>
+                    </div>
+                    
+                    <button class="border border-pool-dark text-pool-dark px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-gray-50 transition-colors w-full md:w-auto">
+                        Agregar a la bolsa
+                    </button>
+                    
+                    <button class="bg-pool-dark text-white px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-black transition-colors shadow-lg w-full md:w-auto">
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // LÓGICA DEL CARRUSEL
+        const carousel = document.getElementById('product-carousel');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let autoScrollInterval;
+        const scrollAmount = 344; 
+
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 3000);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+
+        function manualScroll(direction) {
+            stopAutoScroll(); 
+            if (direction === 'prev') {
+                carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }
+            startAutoScroll(); 
+        }
+
+        prevBtn.addEventListener('click', () => manualScroll('prev'));
+        nextBtn.addEventListener('click', () => manualScroll('next'));
+
+        carousel.addEventListener('mouseenter', stopAutoScroll);
+        carousel.addEventListener('mouseleave', startAutoScroll);
+        carousel.addEventListener('touchstart', stopAutoScroll);
+        carousel.addEventListener('touchend', startAutoScroll);
+
+        startAutoScroll();
+
+        // LÓGICA DE MENÚS DESPLEGABLES Y SESIÓN
+        const searchMenu = document.getElementById('search-dropdown');
+        const searchBtn = document.getElementById('search-btn');
+        const cartMenu = document.getElementById('cart-dropdown');
+        const cartBtn = document.getElementById('cart-btn');
+        const loginMenu = document.getElementById('login-dropdown');
+        const loginBtn = document.getElementById('login-btn');
+        const loggedOutState = document.getElementById('logged-out-state');
+        const profileMenu = document.getElementById('profile-dropdown');
+        const profileBtn = document.getElementById('profile-btn');
+        const loggedInState = document.getElementById('logged-in-state');
+
+        function toggleSearchMenu() {
+            searchMenu.classList.toggle('hidden');
+            cartMenu.classList.add('hidden');
+            if (loginMenu) loginMenu.classList.add('hidden');
+            if (profileMenu) profileMenu.classList.add('hidden');
+        }
+
+        function toggleCartMenu() {
+            cartMenu.classList.toggle('hidden');
+            searchMenu.classList.add('hidden');
+            if (loginMenu) loginMenu.classList.add('hidden');
+            if (profileMenu) profileMenu.classList.add('hidden');
+        }
+
+        function toggleLoginMenu() {
+            loginMenu.classList.toggle('hidden');
+            searchMenu.classList.add('hidden');
+            cartMenu.classList.add('hidden');
+        }
+
+        function toggleProfileMenu() {
+            profileMenu.classList.toggle('hidden');
+            searchMenu.classList.add('hidden');
+            cartMenu.classList.add('hidden');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault(); 
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const userGreeting = document.getElementById('user-greeting');
+            const userMenuList = document.getElementById('user-menu-list');
+            const adminMenuList = document.getElementById('admin-menu-list');
+
+            if (email === '1234' && password === '1234') {
+                userGreeting.textContent = 'Hola, Usuario';
+                userMenuList.classList.remove('hidden');
+                adminMenuList.classList.add('hidden');
+                loggedOutState.classList.replace('block', 'hidden');
+                loggedInState.classList.replace('hidden', 'block');
+                document.getElementById('login-email').value = '';
+                document.getElementById('login-password').value = '';
+                loginMenu.classList.add('hidden');
+            } else if (email === 'admin' && password === 'admin') {
+                userGreeting.textContent = 'Panel de Control';
+                userMenuList.classList.add('hidden');
+                adminMenuList.classList.remove('hidden'); 
+                loggedOutState.classList.replace('block', 'hidden');
+                loggedInState.classList.replace('hidden', 'block');
+                document.getElementById('login-email').value = '';
+                document.getElementById('login-password').value = '';
+                loginMenu.classList.add('hidden');
+            } else {
+                alert('Credenciales incorrectas. Intenta usar "1234" o "admin".');
+            }
+        }
+
+        function handleLogout() {
+            loggedInState.classList.replace('block', 'hidden');
+            loggedOutState.classList.replace('hidden', 'block');
+            profileMenu.classList.add('hidden');
+        }
+
+        window.addEventListener('click', function(e) {
+            if (!searchBtn.contains(e.target) && !searchMenu.contains(e.target)) searchMenu.classList.add('hidden');
+            if (!cartBtn.contains(e.target) && !cartMenu.contains(e.target)) cartMenu.classList.add('hidden');
+            if (loginBtn && !loginBtn.contains(e.target) && !loginMenu.contains(e.target)) loginMenu.classList.add('hidden');
+            if (profileBtn && !profileBtn.contains(e.target) && !profileMenu.contains(e.target)) profileMenu.classList.add('hidden');
+        });
+
+        // LÓGICA DEL MODAL DE COMPRA PREMIUM
+        const modal = document.getElementById('purchase-modal');
+        const modalContent = document.getElementById('purchase-modal-content');
+
+        function openPurchaseModal() {
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Bloquea el fondo
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closePurchaseModal() {
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Regresa el scroll al fondo
+            }, 300);
+        }
+
+        function selectOption(clickedElement, category) {
+            const siblings = clickedElement.parentElement.children;
+            for (let card of siblings) {
+                card.className = "border border-gray-300 rounded-2xl p-5 cursor-pointer flex justify-between items-center hover:border-gray-400 transition";
+                if (category === 'payment') {
+                    card.className = "flex-1 border border-gray-300 rounded-2xl p-5 cursor-pointer flex flex-col justify-center hover:border-gray-400 transition";
+                }
+            }
+            if (category === 'payment') {
+                clickedElement.className = "flex-1 border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex flex-col justify-center bg-white transition shadow-sm";
+            } else {
+                clickedElement.className = "border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex justify-between items-center bg-white transition shadow-sm";
+            }
+        }
+    </script>
+</body>
+</html>
