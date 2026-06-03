@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactanos | Pool Muebleria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        'pool-dark': '#1C1C1E',
+                        'pool-cafe': '#3E2723',
+                        'pool-accent': '#8D6E63'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+        body { background-color: #F5F5F7; }
+    </style>
+</head>
+<body class="text-pool-dark font-sans antialiased">
+
+    <div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-40 w-full max-w-5xl px-4">
+        <header class="bg-white/50 backdrop-blur-2xl rounded-full shadow-sm border border-white/50 flex justify-center items-center py-3 px-8 text-sm font-medium transition-all duration-300">
+            <div class="flex items-center space-x-6 md:space-x-8">
+                
+                <a href="index.html" class="text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
+                    <span>Pool <span class="font-light text-gray-500">Muebleria</span></span>
+                </a>
+
+                <div class="h-4 w-px bg-gray-300/50 hidden md:block"></div>
+
+                <nav class="hidden md:flex space-x-6">
+                    <a href="producto.html" class="hover:text-gray-700 transition-colors">Productos</a>
+                    <a href="contacto.html" class="hover:text-gray-700 transition-colors">Contactanos</a>
+                    <a href="ayuda.html" class="hover:text-gray-700 transition-colors">Ayuda</a>
+                </nav>
+
+                <div class="h-4 w-px bg-gray-300/50 hidden md:block"></div>
+
+                <div class="flex items-center space-x-5">
+                    
+                    <div class="relative flex items-center">
+                        <button onclick="toggleSearchMenu()" id="search-btn" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+                        </button>
+                        <div id="search-dropdown" class="hidden absolute right-[-120px] md:right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top">
+                            <div class="absolute -top-2 right-[124px] md:right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                <div class="relative mb-6 pb-2 border-b border-gray-400/30 flex items-center">
+                                    <svg class="w-5 h-5 text-gray-500 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+                                    <input type="text" placeholder="Buscar en Pool Muebleria" class="w-full bg-transparent text-base font-medium outline-none placeholder-gray-500 text-black">
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 mb-3 px-2 font-medium tracking-wide">Filtros rápidos</p>
+                                    <ul class="space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Sofás (3 plazas)</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Sillones (1 plaza)</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Mesas de Centro</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Material: Piel Natural</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Entrega inmediata</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Menos de $5,000 MXN</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative flex items-center">
+                        <button onclick="toggleCartMenu()" id="cart-btn" title="Carrito" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></path></svg>
+                        </button>
+                        <div id="cart-dropdown" class="hidden absolute right-[-80px] md:right-[-20px] top-full mt-6 w-80 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top">
+                            <div class="absolute -top-2 right-[84px] md:right-[24px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-lg font-semibold mb-2 pb-4 text-center tracking-tight border-b border-gray-400/20">Mi Carrito</h3>
+                                <div class="flex flex-col items-center justify-center py-6">
+                                    <svg class="w-16 h-16 text-gray-400/50 mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                    </svg>
+                                    <p class="text-gray-500 text-sm font-light">Tu bolsa está vacía.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative hidden md:block pl-2">
+                        
+                        <div id="logged-out-state" class="block">
+                            <button onclick="toggleLoginMenu()" id="login-btn" class="text-gray-700 hover:text-black transition-colors whitespace-nowrap focus:outline-none flex items-center gap-2">
+                                Iniciar / Crear sesión
+                            </button>
+
+                            <div id="login-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right">
+                                <div class="absolute -top-2 right-16 w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                                <div class="relative z-10">
+                                    <h3 class="text-lg font-semibold mb-4 text-center tracking-tight">Mi Cuenta</h3>
+                                    <form onsubmit="handleLogin(event)">
+                                        <input type="text" id="login-email" placeholder="Correo (1234 o admin)" class="w-full mb-3 px-4 py-2.5 bg-white/60 border border-white/50 rounded-xl text-sm font-light focus:outline-none focus:ring-2 focus:ring-pool-cafe/40 focus:bg-white/80 transition">
+                                        <input type="password" id="login-password" placeholder="Contraseña" class="w-full mb-5 px-4 py-2.5 bg-white/60 border border-white/50 rounded-xl text-sm font-light focus:outline-none focus:ring-2 focus:ring-pool-cafe/40 focus:bg-white/80 transition">
+                                        <button type="submit" class="w-full bg-pool-cafe text-white font-medium text-sm py-2.5 rounded-full hover:opacity-90 transition shadow-md">Ingresar</button>
+                                    </form>
+                                    <div class="flex items-center my-5">
+                                        <div class="flex-grow border-t border-gray-400/20"></div>
+                                        <span class="mx-3 text-xs text-gray-500 font-light">o</span>
+                                        <div class="flex-grow border-t border-gray-400/20"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="#" class="text-sm font-medium text-gray-700 hover:text-black transition">Crear cuenta</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="logged-in-state" class="hidden">
+                            <button onclick="toggleProfileMenu()" id="profile-btn" class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:text-black hover:bg-gray-300 transition-colors focus:outline-none">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path></svg>
+                            </button>
+
+                            <div id="profile-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right">
+                                <div class="absolute -top-2 right-4 w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                                <div class="relative z-10">
+                                    <h3 id="user-greeting" class="text-lg font-semibold mb-4 tracking-tight px-3 border-b border-gray-400/20 pb-3">Hola</h3>
+                                    
+                                    <ul id="user-menu-list" class="hidden space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"></path></svg> Pedidos</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 3h-11a2 2 0 00-2 2v16l7.5-3.5L19 21V5a2 2 0 00-2-2z"></path></svg> Tus selecciones</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Cuenta</a></li>
+                                    </ul>
+
+                                    <ul id="admin-menu-list" class="hidden space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg> Gestión de inventario</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"></path></svg> Cola de producción</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Control de anticipos</a></li>
+                                    </ul>
+                                    
+                                    <div class="border-t border-gray-400/20 my-2"></div>
+                                    
+                                    <ul>
+                                        <li><button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors text-red-600"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path></svg> Cerrar sesión</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <section class="pt-32 pb-12 px-6 max-w-5xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-pool-dark tracking-tight mb-4">Estamos conectados.</h1>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">Selecciona tu canal favorito. Nuestro equipo está listo para ayudarte con tus proyectos a medida.</p>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+
+            <a href="#" class="aspect-square bg-white/60 backdrop-blur-xl border border-white/60 rounded-3xl p-6 flex flex-col items-center justify-center text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-16 h-16 rounded-full bg-[#25D366]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-pool-dark text-lg mb-1">WhatsApp</h3>
+                <p class="text-sm text-gray-500">Asistencia inmediata</p>
+            </a>
+
+            <a href="#" class="aspect-square bg-white/60 backdrop-blur-xl border border-white/60 rounded-3xl p-6 flex flex-col items-center justify-center text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-16 h-16 rounded-full bg-[#E1306C]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8 text-[#E1306C]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-pool-dark text-lg mb-1">Instagram</h3>
+                <p class="text-sm text-gray-500">Inspiración visual</p>
+            </a>
+
+            <a href="#" class="aspect-square bg-white/60 backdrop-blur-xl border border-white/60 rounded-3xl p-6 flex flex-col items-center justify-center text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-16 h-16 rounded-full bg-black/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-black" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 4.15H5.078z"/>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-pool-dark text-lg mb-1">X</h3>
+                <p class="text-sm text-gray-500">Actualizaciones</p>
+            </a>
+
+            <a href="#" class="aspect-square bg-white/60 backdrop-blur-xl border border-white/60 rounded-3xl p-6 flex flex-col items-center justify-center text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-16 h-16 rounded-full bg-[#1877F2]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-pool-dark text-lg mb-1">Facebook</h3>
+                <p class="text-sm text-gray-500">Comunidad</p>
+            </a>
+
+            <a href="#" class="aspect-square bg-white/60 backdrop-blur-xl border border-white/60 rounded-3xl p-6 flex flex-col items-center justify-center text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-16 h-16 rounded-full bg-pool-cafe/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-pool-dark text-lg mb-1">Correo</h3>
+                <p class="text-sm text-gray-500">hola@poolmuebleria.com</p>
+            </a>
+
+            <a href="#" class="aspect-square bg-white/60 backdrop-blur-xl border border-white/60 rounded-3xl p-6 flex flex-col items-center justify-center text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-16 h-16 rounded-full bg-pool-dark/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8 text-pool-dark" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-pool-dark text-lg mb-1">Teléfono</h3>
+                <p class="text-sm text-gray-500">442 123 4567</p>
+            </a>
+
+        </div>
+    </section>
+
+    <script>
+        const searchMenu = document.getElementById('search-dropdown');
+        const searchBtn = document.getElementById('search-btn');
+        const cartMenu = document.getElementById('cart-dropdown');
+        const cartBtn = document.getElementById('cart-btn');
+        const loginMenu = document.getElementById('login-dropdown');
+        const loginBtn = document.getElementById('login-btn');
+        const loggedOutState = document.getElementById('logged-out-state');
+        const profileMenu = document.getElementById('profile-dropdown');
+        const profileBtn = document.getElementById('profile-btn');
+        const loggedInState = document.getElementById('logged-in-state');
+
+        function toggleSearchMenu() {
+            searchMenu.classList.toggle('hidden');
+            cartMenu.classList.add('hidden');
+            if (loginMenu) loginMenu.classList.add('hidden');
+            if (profileMenu) profileMenu.classList.add('hidden');
+        }
+
+        function toggleCartMenu() {
+            cartMenu.classList.toggle('hidden');
+            searchMenu.classList.add('hidden');
+            if (loginMenu) loginMenu.classList.add('hidden');
+            if (profileMenu) profileMenu.classList.add('hidden');
+        }
+
+        function toggleLoginMenu() {
+            loginMenu.classList.toggle('hidden');
+            searchMenu.classList.add('hidden');
+            cartMenu.classList.add('hidden');
+        }
+
+        function toggleProfileMenu() {
+            profileMenu.classList.toggle('hidden');
+            searchMenu.classList.add('hidden');
+            cartMenu.classList.add('hidden');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const userGreeting = document.getElementById('user-greeting');
+            const userMenuList = document.getElementById('user-menu-list');
+            const adminMenuList = document.getElementById('admin-menu-list');
+
+            if (email === '1234' && password === '1234') {
+                userGreeting.textContent = 'Hola, Usuario';
+                userMenuList.classList.remove('hidden');
+                adminMenuList.classList.add('hidden');
+                loggedOutState.classList.replace('block', 'hidden');
+                loggedInState.classList.replace('hidden', 'block');
+                document.getElementById('login-email').value = '';
+                document.getElementById('login-password').value = '';
+                loginMenu.classList.add('hidden');
+            } else if (email === 'admin' && password === 'admin') {
+                userGreeting.textContent = 'Panel de Control';
+                userMenuList.classList.add('hidden');
+                adminMenuList.classList.remove('hidden');
+                loggedOutState.classList.replace('block', 'hidden');
+                loggedInState.classList.replace('hidden', 'block');
+                document.getElementById('login-email').value = '';
+                document.getElementById('login-password').value = '';
+                loginMenu.classList.add('hidden');
+            } else {
+                alert('Credenciales incorrectas. Intenta usar "1234" o "admin".');
+            }
+        }
+
+        function handleLogout() {
+            loggedInState.classList.replace('block', 'hidden');
+            loggedOutState.classList.replace('hidden', 'block');
+            profileMenu.classList.add('hidden');
+        }
+
+        window.addEventListener('click', function(e) {
+            if (!searchBtn.contains(e.target) && !searchMenu.contains(e.target)) searchMenu.classList.add('hidden');
+            if (!cartBtn.contains(e.target) && !cartMenu.contains(e.target)) cartMenu.classList.add('hidden');
+            if (loginBtn && !loginBtn.contains(e.target) && !loginMenu.contains(e.target)) loginMenu.classList.add('hidden');
+            if (profileBtn && !profileBtn.contains(e.target) && !profileMenu.contains(e.target)) profileMenu.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
