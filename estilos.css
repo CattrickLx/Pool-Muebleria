@@ -1,0 +1,228 @@
+/* Reset y Tipografía estilo Apple */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: url('https://images.unsplash.com/photo-1618220179428-22790b46a0eb?auto=format&fit=crop&q=80&w=1920') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.35); 
+    z-index: 0;
+}
+
+/* EFECTO LIQUID GLASS */
+.liquid-glass-panel {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 500px; 
+    background: #E5E5EA; 
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 36px; 
+    padding: 35px 40px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.panel-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.panel-header h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.5px;
+}
+
+.panel-header p {
+    font-size: 13px;
+    color: #555555;
+    margin-top: 4px;
+}
+
+/* PESTAÑAS / INTERRUPTOR */
+.tab-input { display: none; }
+
+.tab-labels {
+    background: rgba(220, 220, 225, 0.5); 
+    border-radius: 12px;
+    padding: 4px;
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.tab-labels label {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #424245;
+    cursor: pointer;
+    border-radius: 9px;
+    transition: all 0.3s ease;
+}
+
+#tab-cliente:checked ~ .tab-labels label[for="tab-cliente"],
+#tab-admin:checked ~ .tab-labels label[for="tab-admin"] {
+    background: #ffffff;
+    color: #1d1d1f;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+}
+
+/* ESTRUCTURA DE FORMULARIOS Y ANIMACIÓN */
+.form-content { 
+    display: none; 
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#tab-cliente:checked ~ .form-cliente { display: block; }
+#tab-admin:checked ~ .form-admin { display: block; }
+
+/* INPUTS */
+.input-group { margin-bottom: 14px; position: relative; }
+.input-row { display: flex; gap: 12px; }
+.input-row .half { flex: 1; }
+
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 5px;
+    margin-left: 2px;
+}
+
+input:not([type="checkbox"]):not([type="radio"]) {
+    width: 100%;
+    padding: 13px 15px;
+    background: #fbfbfd; 
+    border: 1px solid transparent; 
+    border-radius: 12px;
+    font-size: 14px;
+    color: #1d1d1f;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"])::placeholder {
+    color: #86868b;
+}
+
+input:focus {
+    background: #ffffff;
+    border-color: #3E2723; 
+    box-shadow: 0 0 0 3px rgba(62, 39, 35, 0.15);
+}
+
+/* =========================================
+   VALIDACIONES SEMÁNTICAS ESTRICTAS
+   ========================================= */
+
+/* Campos válidos */
+input:not([type="checkbox"]):not([type="radio"]):valid:not(:placeholder-shown) {
+    border-color: #34c759; 
+    background: rgba(52, 199, 89, 0.03); 
+}
+
+/* Campos inválidos */
+input:not([type="checkbox"]):not([type="radio"]):invalid:not(:placeholder-shown) {
+    border-color: #ff3b30;
+    background-color: rgba(255, 59, 48, 0.05);
+}
+
+/* =========================================
+   TEXTOS DE ERROR (Contraseñas y Edad)
+   ========================================= */
+.error-text {
+    display: none;
+    color: #ff3b30;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 6px;
+    margin-left: 4px;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Muestra texto de error dinámicamente si el campo es inválido y no está vacío */
+input#confirm_password:not(:placeholder-shown):invalid ~ .error-text,
+input#fecha_nacimiento:not(:placeholder-shown):invalid ~ .error-text.age-error {
+    display: block;
+}
+
+/* Checkbox y Botones */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    margin-bottom: 24px;
+}
+
+.checkbox-group label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #424245;
+    margin: 0;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #3E2723; 
+    color: white;
+}
+.btn-primary:hover { 
+    opacity: 0.9; 
+    transform: translateY(-1px); 
+    box-shadow: 0 4px 12px rgba(62, 39, 35, 0.3); 
+}
+
+.btn-secondary {
+    background-color: #1d1d1f;
+    color: white;
+}
+.btn-secondary:hover { background-color: #000000; }
+
+/* Panel Admin Info */
+.admin-info-box {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.6);
+}
+.admin-info-box svg { color: #3E2723; margin-bottom: 8px; }
+.admin-info-box h3 { font-size: 15px; color: #1d1d1f; margin-bottom: 4px; }
+.admin-info-box p { font-size: 11px; color: #424245; }

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro y Administración | Pool Mueblería</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <main class="liquid-glass-panel">
+        <header class="panel-header">
+            <h2>Pool Mueblería</h2>
+            <p>Crea tu cuenta o extrae datos del sistema.</p>
+        </header>
+
+        <!-- PESTAÑAS -->
+        <input type="radio" id="tab-cliente" name="tabs" class="tab-input" checked>
+        <input type="radio" id="tab-admin" name="tabs" class="tab-input">
+
+        <div class="tab-labels">
+            <label for="tab-cliente">Registro Cliente</label>
+            <label for="tab-admin">Administración</label>
+        </div>
+
+        <!-- FORMULARIO 1: REGISTRO DE CLIENTES -->
+        <form action="procesar_registro.php" method="POST" class="form-content form-cliente">
+            <div class="input-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ej. Robert House">
+            </div>
+
+            <div class="input-group">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" required 
+                       pattern="^[a-zA-Z0-9._%+\-]+@(gmail\.com|hotmail\.com|yahoo\.com|outlook\.com|icloud\.com)$" 
+                       title="Solo se aceptan dominios válidos (@gmail.com, @hotmail.com, @yahoo.com, @outlook.com, @icloud.com)"
+                       placeholder="correo@gmail.com">
+            </div>
+
+            <div class="input-row">
+                <div class="input-group half">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required 
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                           title="Debe contener al menos 8 caracteres, una mayúscula, una minúscula y un número" 
+                           placeholder="••••••••"
+                           oninput="validarPasswords()">
+                </div>
+                <div class="input-group half relative">
+                    <label for="confirm_password">Confirmar Contraseña</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required 
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                           placeholder="••••••••"
+                           oninput="validarPasswords()">
+                    <span class="error-text">Las contraseñas no coinciden.</span>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group half">
+                    <label for="telefono">Número telefónico</label>
+                    <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{10}" placeholder="10 dígitos numéricos" title="Debe contener exactamente 10 números">
+                </div>
+                
+                <!-- CAMPO DE FECHA EXCLUSIVAMENTE MANUAL -->
+                <div class="input-group half relative">
+                    <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                    <div style="position: relative;">
+                        <input type="text" id="fecha_nacimiento" name="fecha_nacimiento" required 
+                               placeholder="dd/mm/aaaa" maxlength="10" 
+                               oninput="formatearFecha(this)">
+                    </div>
+                    <span class="error-text age-error">Debes ser mayor de 18 años.</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terminos" name="terminos" required>
+                <label for="terminos">Acepto los términos y la política de anticipo 80/20.</label>
+            </div>
+
+            <button type="submit" class="btn-primary">Crear cuenta</button>
+        </form>
+
+        <!-- FORMULARIO 2: EXTRACCIÓN DE RESPALDO (ADMIN) -->
+        <form action="extraer_respaldo.php" method="POST" enctype="multipart/form-data" class="form-content form-admin">
+            <div class="admin-info-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <h3>Extracción de Base de Datos</h3>
+                <p>Sube el archivo .sql de respaldo para extraer y poblar la información en el panel.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="respaldo_db">Seleccionar archivo SQL</label>
+                <input type="file" id="respaldo_db" name="respaldo_db" accept=".sql" required class="file-input">
+            </div>
+
+            <div class="input-group">
+                <label for="clave_admin">Clave de Autorización (Admin)</label>
+                <input type="password" id="clave_admin" name="clave_admin" required placeholder="Clave de seguridad">
+            </div>
+
+            <button type="submit" class="btn-secondary">Procesar e Importar Datos</button>
+        </form>
+    </main>
+
+    <script>
+        // Validación de contraseñas
+        function validarPasswords() {
+            const pass = document.getElementById('password');
+            const confPass = document.getElementById('confirm_password');
+            
+            if (pass.value !== confPass.value) {
+                confPass.setCustomValidity('Las contraseñas no coinciden');
+            } else {
+                confPass.setCustomValidity('');
+            }
+        }
+
+        // NUEVO: Función para agregar las barras (/) automáticamente
+        function formatearFecha(input) {
+            // Elimina cualquier caracter que no sea un número
+            let valor = input.value.replace(/\D/g, '');
+            let nuevoValor = '';
+
+            // Agrega automáticamente los separadores "/"
+            if (valor.length > 0) {
+                nuevoValor += valor.substring(0, 2);
+            }
+            if (valor.length > 2) {
+                nuevoValor += '/' + valor.substring(2, 4);
+            }
+            if (valor.length > 4) {
+                nuevoValor += '/' + valor.substring(4, 8);
+            }
+            
+            input.value = nuevoValor;
+
+            // Valida la mayoría de edad en tiempo real
+            validarMayoriaEdad(input);
+        }
+
+        // Validación exclusiva para texto manual (dd/mm/aaaa)
+        function validarMayoriaEdad(inputFecha) {
+            if (!inputFecha.value) {
+                inputFecha.setCustomValidity('');
+                return;
+            }
+
+            const regexFecha = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+            const match = inputFecha.value.match(regexFecha);
+            
+            if (!match) {
+                inputFecha.setCustomValidity('Formato inválido (dd/mm/aaaa)');
+                return;
+            }
+            
+            const dia = parseInt(match[1], 10);
+            const mes = parseInt(match[2], 10) - 1; 
+            const anio = parseInt(match[3], 10);
+            
+            const fechaSeleccionada = new Date(anio, mes, dia);
+            
+            if (fechaSeleccionada.getFullYear() !== anio || fechaSeleccionada.getMonth() !== mes || fechaSeleccionada.getDate() !== dia) {
+                inputFecha.setCustomValidity('Fecha inexistente');
+                return;
+            }
+
+            // Fecha base de la práctica: Septiembre 27, 2026
+            const fechaActual = new Date(2026, 8, 27); 
+            
+            let edad = fechaActual.getFullYear() - fechaSeleccionada.getFullYear();
+            const diferenciaMes = fechaActual.getMonth() - fechaSeleccionada.getMonth();
+            
+            if (diferenciaMes < 0 || (diferenciaMes === 0 && fechaActual.getDate() < fechaSeleccionada.getDate())) {
+                edad--;
+            }
+
+            if (edad < 18) {
+                inputFecha.setCustomValidity('Debes ser mayor de 18 años');
+            } else {
+                inputFecha.setCustomValidity('');
+            }
+        }
+    </script>
+</body>
+</html>
