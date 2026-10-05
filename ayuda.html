@@ -3,119 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayuda | Pool Mueblería</title>
-    <!-- Tailwind CSS -->
+    <title>Pool Mueblería - Ayuda y FAQ</title>
+
+    <!-- 1. CONEXIÓN AL ARCHIVO CSS EXTERNO (Rúbrica) -->
+    <link rel="stylesheet" href="estilos.css">
+
+    <!-- Tailwind SOLO para colores corporativos -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tipografía estilo Apple -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Configuración de colores de la marca -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        'pool-dark': '#1C1C1E',
                         'pool-cafe': '#3E2723',
+                        'pool-bg': '#F5F5F7',
+                        'pool-dark': '#1C1C1E',
+                        'pool-card': '#FFFFFF'
                     }
                 }
             }
         }
     </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F5F5F7; }
-        html { scroll-behavior: smooth; }
-    </style>
 </head>
-<body class="text-pool-dark antialiased min-h-screen flex flex-col relative">
+<body class="text-pool-dark">
 
-    <!-- BARRA DE NAVEGACIÓN ESTILO APPLE (Cristal) -->
-    <div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl px-4">
-        <header class="bg-white/50 backdrop-blur-lg rounded-full shadow-sm border border-white/40 flex justify-center items-center py-3 px-8 text-sm font-medium transition-all duration-300">
+    <!-- BARRA DE NAVEGACIÓN GLOBAL ESTILO APPLE -->
+    <div class="nav-container">
+        <header class="nav-glass">
             <div class="flex items-center space-x-6 md:space-x-8">
                 
-                <!-- Logo (Inicio) -->
+                <!-- Logo / Inicio -->
                 <a href="index.html" class="text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
-                    <span>Pool <span class="font-light text-gray-500">Muebleria</span></span>
+                    <span>Pool <span class="font-light text-gray-500">Mueblería</span></span>
                 </a>
 
                 <div class="h-4 w-px bg-gray-400/30 hidden md:block"></div>
 
-                <!-- Enlaces Centrales -->
-                <nav class="hidden md:flex space-x-6">
+                <!-- Enlaces Principales -->
+                <nav class="nav-links">
                     <a href="producto.html" class="hover:text-gray-700 transition-colors">Productos</a>
-                    <a href="contacto.html" class="hover:text-gray-700 transition-colors">Contactanos</a>
-                    <a href="ayuda.html" class="text-pool-dark transition-colors">Ayuda</a>
+                    <a href="contacto.html" class="hover:text-gray-700 transition-colors">Contáctanos</a>
+                    <a href="ayuda.html" class="hover:text-gray-700 transition-colors">Ayuda</a>
                 </nav>
 
                 <div class="h-4 w-px bg-gray-400/30 hidden md:block"></div>
 
-                <!-- Iconos y Cuenta (Buscador, Carrito, Usuario) -->
+                <!-- Iconos de Acción -->
                 <div class="flex items-center space-x-5">
                     
-                    <!-- 1. ICONO BUSCAR -->
+                    <!-- Buscador (Lupa) -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleSearchMenu()" id="search-btn" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                        <button onclick="toggleMenu('search-dropdown')" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
                         </button>
-                        <div id="search-dropdown" class="hidden absolute right-[-120px] md:right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/50 backdrop-blur-lg border border-white/40 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top">
-                            <div class="absolute -top-2 right-[124px] md:right-[64px] w-4 h-4 bg-white/50 backdrop-blur-lg border-t border-l border-white/40 transform rotate-45"></div>
+                        <div id="search-dropdown" class="hidden absolute right-[-120px] md:right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top z-50">
+                            <div class="absolute -top-2 right-[124px] md:right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
                             <div class="relative z-10">
                                 <div class="relative mb-6 pb-2 border-b border-gray-400/30 flex items-center">
                                     <svg class="w-5 h-5 text-gray-500 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
-                                    <input type="text" placeholder="Buscar en Pool Muebleria" class="w-full bg-transparent text-base font-medium outline-none placeholder-gray-500 text-black">
+                                    <input type="text" placeholder="Buscar en Pool Mueblería" class="w-full bg-transparent text-base font-medium outline-none placeholder-gray-500 text-black">
                                 </div>
                                 <div>
                                     <p class="text-xs text-gray-500 mb-3 px-2 font-medium tracking-wide">Filtros rápidos</p>
                                     <ul class="space-y-1 text-sm font-light">
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Sofás (3 plazas)</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Sillones (1 plaza)</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Mesas de Centro</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Material: Piel Natural</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Menos de $5,000 MXN</a></li>
+                                        <li><a href="producto.html" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Sofás (3 plazas)</a></li>
+                                        <li><a href="producto.html" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Sillones (1 plaza)</a></li>
+                                        <li><a href="producto.html" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Mesas de Centro</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 2. ICONO CARRITO -->
+                    <!-- Carrito (Bolsa) -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleCartMenu()" id="cart-btn" title="Carrito" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                        <button onclick="toggleMenu('cart-dropdown')" title="Carrito" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></path></svg>
                         </button>
-                        <div id="cart-dropdown" class="hidden absolute right-[-80px] md:right-[-20px] top-full mt-6 w-80 bg-white/50 backdrop-blur-lg border border-white/40 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top">
-                            <div class="absolute -top-2 right-[84px] md:right-[24px] w-4 h-4 bg-white/50 backdrop-blur-lg border-t border-l border-white/40 transform rotate-45"></div>
-                            <div class="relative z-10">
-                                <h3 class="text-lg font-semibold mb-2 pb-4 text-center tracking-tight border-b border-gray-400/20">Mi Carrito</h3>
-                                <div class="flex flex-col items-center justify-center py-6">
-                                    <svg class="w-16 h-16 text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                                    </svg>
-                                    <p class="text-gray-500 text-sm font-light">Tu bolsa está vacía.</p>
-                                </div>
+                        <div id="cart-dropdown" class="hidden absolute right-[-60px] top-full mt-6 w-80 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-8 text-center transition-all origin-top z-50">
+                            <div class="absolute -top-2 right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10 flex flex-col items-center justify-center">
+                                <h3 class="text-lg font-semibold mb-6 tracking-tight text-pool-dark">Tu carrito</h3>
+                                <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"></path></svg>
+                                <p class="text-sm text-gray-500 font-light mb-6">Aún no tienes artículos en tu carrito.</p>
+                                
+                                <a href="producto.html" class="bg-transparent text-pool-cafe border border-pool-cafe px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-50 transition w-full text-center">Ir a comprar</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 3. SECCIÓN DE CUENTA -->
-                    <div class="relative hidden md:block pl-2">
-                        
-                        <!-- Estado Desconectado (Texto) -->
-                        <div id="logged-out-state" class="block">
-                            <button onclick="toggleLoginMenu()" id="login-btn" class="text-gray-700 hover:text-black transition-colors whitespace-nowrap focus:outline-none flex items-center gap-2">
-                                Iniciar / Crear sesión
-                            </button>
-                            <div id="login-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/50 backdrop-blur-lg border border-white/40 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right">
-                                <div class="absolute -top-2 right-16 w-4 h-4 bg-white/50 backdrop-blur-lg border-t border-l border-white/40 transform rotate-45"></div>
-                                <div class="relative z-10">
-                                    <h3 class="text-lg font-semibold mb-4 text-center tracking-tight">Mi Cuenta</h3>
-                                    <form onsubmit="handleLogin(event)">
-                                        <input type="text" id="login-email" placeholder="Correo (1234 o admin)" class="w-full mb-3 px-4 py-2.5 bg-white/60 border border-white/50 rounded-xl text-sm font-light focus:outline-none focus:ring-2 focus:ring-pool-cafe/40 focus:bg-white/80 transition">
-                                        <input type="password" id="login-password" placeholder="Contraseña" class="w-full mb-5 px-4 py-2.5 bg-white/60 border border-white/50 rounded-xl text-sm font-light focus:outline-none focus:ring-2 focus:ring-pool-cafe/40 focus:bg-white/80 transition">
-                                        <button type="submit" class="w-full bg-pool-cafe text-white font-medium text-sm py-2.5 rounded-full hover:opacity-90 transition shadow-md">Ingresar</button>
+                    <!-- Perfil / Sesión -->
+                    <div class="relative flex items-center">
+                        <button onclick="toggleMenu('profile-dropdown')" title="Cuenta" class="text-sm font-medium text-gray-700 hover:text-black transition-colors focus:outline-none flex items-center gap-2">
+                            <span id="session-text">Iniciar / Crear sesión</span>
+                            <div id="session-icon" class="hidden w-7 h-7 rounded-full bg-gray-200 border border-gray-300 flex items-center justify-center overflow-hidden">
+                                <svg class="w-4 h-4 text-gray-500 mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </div>
+                        </button>
+                        <div id="profile-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right z-50">
+                            <div class="absolute -top-2 right-4 w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                
+                                <div id="login-form-nav">
+                                    <h3 class="text-lg font-semibold mb-4 tracking-tight text-center">Mi Cuenta</h3>
+                                    <form onsubmit="handleNavLogin(event)" class="space-y-3">
+                                        <input type="text" id="nav-username" placeholder="Correo (1234 o admin)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-pool-cafe transition-all" required>
+                                        <input type="password" id="nav-password" placeholder="Contraseña (1234 o admin)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-pool-cafe transition-all" required>
+                                        <p id="nav-login-error" class="text-xs text-red-500 hidden mt-1">Usuario o contraseña incorrectos</p>
+                                        <button type="submit" class="btn-primary mt-2 shadow-md w-full" style="border-radius: 9999px; padding: 10px; font-size: 0.875rem;">Ingresar</button>
                                     </form>
                                     <div class="flex items-center my-5">
                                         <div class="flex-grow border-t border-gray-400/20"></div>
@@ -123,34 +120,20 @@
                                         <div class="flex-grow border-t border-gray-400/20"></div>
                                     </div>
                                     <div class="text-center">
-                                        <a href="#" class="text-sm font-medium text-gray-700 hover:text-black transition">Crear cuenta</a>
+                                        <a href="registro.html" class="text-sm font-medium text-gray-700 hover:text-black transition">Crear cuenta</a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Estado Conectado (Icono) -->
-                        <div id="logged-in-state" class="hidden">
-                            <button onclick="toggleProfileMenu()" id="profile-btn" class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:text-black hover:bg-gray-300 transition-colors focus:outline-none">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path></svg>
-                            </button>
-                            <div id="profile-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/50 backdrop-blur-lg border border-white/40 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right">
-                                <div class="absolute -top-2 right-4 w-4 h-4 bg-white/50 backdrop-blur-lg border-t border-l border-white/40 transform rotate-45"></div>
-                                <div class="relative z-10">
+                                
+                                <div id="logged-in-menu" class="hidden">
                                     <h3 id="user-greeting" class="text-lg font-semibold mb-4 tracking-tight px-3 border-b border-gray-400/20 pb-3">Hola</h3>
-                                    
-                                    <!-- Menú de Usuario -->
                                     <ul id="user-menu-list" class="hidden space-y-1 text-sm font-light">
                                         <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"></path></svg> Pedidos</a></li>
                                         <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 3h-11a2 2 0 00-2 2v16l7.5-3.5L19 21V5a2 2 0 00-2-2z"></path></svg> Tus selecciones</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Cuenta</a></li>
                                     </ul>
-                                    
-                                    <!-- Menú de Administrador -->
                                     <ul id="admin-menu-list" class="hidden space-y-1 text-sm font-light">
                                         <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg> Gestión de inventario</a></li>
                                         <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"></path></svg> Cola de producción</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Control de anticipos (80/20)</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Control de anticipos</a></li>
                                     </ul>
                                     <div class="border-t border-gray-400/20 my-2"></div>
                                     <ul>
@@ -159,20 +142,16 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </header>
     </div>
 
-    <!-- SECCIÓN DE PREGUNTAS FRECUENTES (Estilo Cuadrícula / Bento Box) -->
-    <main class="flex-grow flex flex-col justify-center">
-        <!-- Ajustamos el pt-20 a pt-28 para que coincida exactamente con la página de inicio -->
-        <section class="max-w-6xl mx-auto px-4 md:px-6 pt-28 pb-24 w-full">
+    <!-- SECCIÓN DE PREGUNTAS FRECUENTES (Bento Box desde estilos.css) -->
+    <main class="flex-grow flex flex-col justify-center relative z-10">
+        <section class="max-w-6xl mx-auto px-4 md:px-6 pt-32 pb-24 w-full">
             
-            <!-- Título de la Página -->
-            <!-- Agregamos el mt-8 para bajar el texto y dar la misma separación que en Colección Pool -->
             <div class="text-center mb-10 mt-8">
                 <p class="text-sm text-gray-500 font-semibold tracking-widest uppercase mb-3">Preguntas Frecuentes</p>
                 <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
@@ -180,42 +159,37 @@
                 </h1>
             </div>
 
-            <!-- Grid de Cápsulas -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Aquí usamos la clase faq-grid del CSS externo -->
+            <div class="faq-grid">
 
-                <!-- Cápsula 1 -->
-                <div class="bg-white/60 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 md:p-10 hover:shadow-lg transition duration-500 flex flex-col justify-center group overflow-hidden">
+                <div class="faq-card group">
                     <h3 class="text-xl font-semibold text-gray-900 mb-4 relative z-10">¿Cuáles son los tiempos de entrega?</h3>
                     <p class="text-gray-600 font-light leading-relaxed relative z-10">Nuestros muebles son fabricados a medida en nuestro taller en Santiago de Querétaro. El tiempo estimado de producción base es de 15 a 20 días hábiles. En caso de alta demanda, el sistema te notificará cualquier ajuste.</p>
                 </div>
 
-                <!-- Cápsula 2 -->
-                <div class="bg-white/60 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 md:p-10 hover:shadow-lg transition duration-500 flex flex-col justify-center group overflow-hidden">
+                <div class="faq-card group">
                     <h3 class="text-xl font-semibold text-gray-900 mb-4 relative z-10">¿Cómo funciona la política 80/20?</h3>
                     <p class="text-gray-600 font-light leading-relaxed relative z-10">Para iniciar la producción solicitamos un anticipo del 80%. El 20% restante se liquida al momento de la entrega de tu producto, garantizando así tu completa satisfacción con el resultado final.</p>
                 </div>
 
-                <!-- Cápsula 3 -->
-                <div class="bg-white/60 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 md:p-10 hover:shadow-lg transition duration-500 flex flex-col justify-center group overflow-hidden">
+                <div class="faq-card group">
                     <h3 class="text-xl font-semibold text-gray-900 mb-4 relative z-10">¿Hacen envíos fuera de Querétaro?</h3>
                     <p class="text-gray-600 font-light leading-relaxed relative z-10">Nuestra logística cubre Santiago de Querétaro y áreas metropolitanas circundantes. Para envíos a otras partes de la república, por favor contáctanos por WhatsApp para cotizar un flete especializado.</p>
                 </div>
 
-                <!-- Cápsula 4 -->
-                <div class="bg-white/60 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 md:p-10 hover:shadow-lg transition duration-500 flex flex-col justify-center group overflow-hidden">
+                <div class="faq-card group">
                     <h3 class="text-xl font-semibold text-gray-900 mb-4 relative z-10">¿Puedo personalizar las medidas?</h3>
                     <p class="text-gray-600 font-light leading-relaxed relative z-10">¡Por supuesto! Al ser fabricantes directos, podemos adaptar la mayoría de nuestros modelos a las dimensiones exactas de tu espacio. Puedes escribirnos para cualquier proyecto a medida.</p>
                 </div>
 
-                <!-- Cápsula Final de Contacto (WhatsApp) -->
-                <div class="md:col-span-2 mt-4 bg-pool-cafe/5 border border-pool-cafe/10 rounded-[2rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between hover:shadow-lg transition duration-500 group overflow-hidden">
+                <!-- Cápsula Final de Contacto (Ocupa dos columnas en escritorio) -->
+                <div class="faq-card faq-full-width !bg-pool-cafe/5 !border-pool-cafe/10 !p-8 md:!p-12 !flex-row !justify-between !items-center group">
                     <div class="mb-6 md:mb-0 text-center md:text-left relative z-10">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">¿Sigues con dudas? Contáctanos.</h3>
                         <p class="text-gray-600 font-light">Nuestro equipo en Pool Mueblería está listo para ayudarte personalmente.</p>
                     </div>
                     
-                    <!-- Botón de WhatsApp con Logo -->
-                    <a href="#" class="relative z-10 flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-4 rounded-full text-base font-medium hover:bg-[#20b858] transition-all shadow-md hover:shadow-lg hover:-translate-y-1">
+                    <a href="contacto.html" class="relative z-10 flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-4 rounded-full text-base font-medium hover:bg-[#20b858] transition-all shadow-md hover:shadow-lg hover:-translate-y-1">
                         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.663-2.06-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                         </svg>
@@ -227,102 +201,90 @@
         </section>
     </main>
 
-    <!-- SCRIPTS (Menús y Sesión) -->
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500 relative z-10">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="#" class="hover:text-black transition">Acerca de Pool Mueblería</a>
+            <a href="#" class="hover:text-black transition">Soporte</a>
+            <a href="#" class="hover:text-black transition">Cotizaciones</a>
+        </div>
+        <p>© 2026 Pool Mueblería. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- SCRIPTS LÓGICA -->
     <script>
-        const searchMenu = document.getElementById('search-dropdown');
-        const searchBtn = document.getElementById('search-btn');
-        const cartMenu = document.getElementById('cart-dropdown');
-        const cartBtn = document.getElementById('cart-btn');
-        const loginMenu = document.getElementById('login-dropdown');
-        const loginBtn = document.getElementById('login-btn');
-        const profileMenu = document.getElementById('profile-dropdown');
-        const profileBtn = document.getElementById('profile-btn');
-        
-        const loggedOutState = document.getElementById('logged-out-state');
-        const loggedInState = document.getElementById('logged-in-state');
-        const userGreeting = document.getElementById('user-greeting');
-        const userMenuList = document.getElementById('user-menu-list');
-        const adminMenuList = document.getElementById('admin-menu-list');
-
-        function toggleSearchMenu() {
-            searchMenu.classList.toggle('hidden');
-            if(!cartMenu.classList.contains('hidden')) cartMenu.classList.add('hidden');
-            if(loginMenu && !loginMenu.classList.contains('hidden')) loginMenu.classList.add('hidden');
-            if(profileMenu && !profileMenu.classList.contains('hidden')) profileMenu.classList.add('hidden');
+        // -- Menús Desplegables --
+        function toggleMenu(menuId) {
+            const menus = ['search-dropdown', 'cart-dropdown', 'profile-dropdown'];
+            menus.forEach(id => {
+                const element = document.getElementById(id);
+                if (id === menuId) {
+                    element.classList.toggle('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
         }
 
-        function toggleCartMenu() {
-            cartMenu.classList.toggle('hidden');
-            if(!searchMenu.classList.contains('hidden')) searchMenu.classList.add('hidden');
-            if(loginMenu && !loginMenu.classList.contains('hidden')) loginMenu.classList.add('hidden');
-            if(profileMenu && !profileMenu.classList.contains('hidden')) profileMenu.classList.add('hidden');
-        }
+        document.addEventListener('click', (event) => {
+            const header = document.querySelector('header');
+            if (!header.contains(event.target)) {
+                document.getElementById('search-dropdown').classList.add('hidden');
+                document.getElementById('cart-dropdown').classList.add('hidden');
+                document.getElementById('profile-dropdown').classList.add('hidden');
+            }
+        });
 
-        function toggleLoginMenu() {
-            loginMenu.classList.toggle('hidden');
-            if(!searchMenu.classList.contains('hidden')) searchMenu.classList.add('hidden');
-            if(!cartMenu.classList.contains('hidden')) cartMenu.classList.add('hidden');
-        }
-
-        function toggleProfileMenu() {
-            profileMenu.classList.toggle('hidden');
-            if(!searchMenu.classList.contains('hidden')) searchMenu.classList.add('hidden');
-            if(!cartMenu.classList.contains('hidden')) cartMenu.classList.add('hidden');
-        }
-
-        function handleLogin(e) {
+        // -- Lógica de Sesión Inteligente (Usuario / Admin) --
+        function handleNavLogin(e) {
             e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
+            const user = document.getElementById('nav-username').value;
+            const pass = document.getElementById('nav-password').value;
 
-            if (email === '1234' && password === '1234') {
-                userGreeting.textContent = 'Hola, Usuario';
+            const loginForm = document.getElementById('login-form-nav');
+            const loggedInMenu = document.getElementById('logged-in-menu');
+            const sessionText = document.getElementById('session-text');
+            const sessionIcon = document.getElementById('session-icon');
+            const userGreeting = document.getElementById('user-greeting');
+            const userMenuList = document.getElementById('user-menu-list');
+            const adminMenuList = document.getElementById('admin-menu-list');
+            const errorMsg = document.getElementById('nav-login-error');
+
+            errorMsg.classList.add('hidden');
+
+            if (user === '1234' && pass === '1234') {
+                loginForm.classList.add('hidden');
+                loggedInMenu.classList.remove('hidden');
+                sessionText.classList.add('hidden');
+                sessionIcon.classList.remove('hidden');
+                
+                userGreeting.innerText = 'Hola, Usuario';
                 userMenuList.classList.remove('hidden');
                 adminMenuList.classList.add('hidden');
+            } else if (user === 'admin' && pass === 'admin') {
+                loginForm.classList.add('hidden');
+                loggedInMenu.classList.remove('hidden');
+                sessionText.classList.add('hidden');
+                sessionIcon.classList.remove('hidden');
                 
-                loggedOutState.classList.replace('block', 'hidden');
-                loggedInState.classList.replace('hidden', 'block');
-                
-                document.getElementById('login-email').value = '';
-                document.getElementById('login-password').value = '';
-                loginMenu.classList.add('hidden');
-            } 
-            else if (email === 'admin' && password === 'admin') {
-                userGreeting.textContent = 'Panel de Control';
-                userMenuList.classList.add('hidden');
+                userGreeting.innerText = 'Panel de Control';
                 adminMenuList.classList.remove('hidden');
-                
-                loggedOutState.classList.replace('block', 'hidden');
-                loggedInState.classList.replace('hidden', 'block');
-                
-                document.getElementById('login-email').value = '';
-                document.getElementById('login-password').value = '';
-                loginMenu.classList.add('hidden');
+                userMenuList.classList.add('hidden');
             } else {
-                alert('Credenciales incorrectas. Intenta usar "1234" o "admin".');
+                errorMsg.classList.remove('hidden');
             }
         }
 
         function handleLogout() {
-            loggedInState.classList.replace('block', 'hidden');
-            loggedOutState.classList.replace('hidden', 'block');
-            profileMenu.classList.add('hidden');
+            document.getElementById('login-form-nav').classList.remove('hidden');
+            document.getElementById('logged-in-menu').classList.add('hidden');
+            document.getElementById('session-text').classList.remove('hidden');
+            document.getElementById('session-icon').classList.add('hidden');
+            
+            document.getElementById('nav-username').value = '';
+            document.getElementById('nav-password').value = '';
+            document.getElementById('nav-login-error').classList.add('hidden');
         }
-
-        window.addEventListener('click', function(e) {
-            if (!searchBtn.contains(e.target) && !searchMenu.contains(e.target)) {
-                searchMenu.classList.add('hidden');
-            }
-            if (!cartBtn.contains(e.target) && !cartMenu.contains(e.target)) {
-                cartMenu.classList.add('hidden');
-            }
-            if (loginBtn && !loginBtn.contains(e.target) && !loginMenu.contains(e.target)) {
-                loginMenu.classList.add('hidden');
-            }
-            if (profileBtn && !profileBtn.contains(e.target) && !profileMenu.contains(e.target)) {
-                profileMenu.classList.add('hidden');
-            }
-        });
     </script>
 </body>
 </html>

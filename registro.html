@@ -4,11 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro y Administración | Pool Mueblería</title>
+    
+    <!-- 1. CONEXIÓN AL ARCHIVO CSS EXTERNO (Rúbrica) -->
     <link rel="stylesheet" href="estilos.css">
+    
+    <!-- Tailwind para la barra de navegación y colores -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        'pool-cafe': '#3E2723',
+                        'pool-bg': '#F5F5F7',
+                        'pool-dark': '#1C1C1E',
+                        'pool-card': '#FFFFFF'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+<body class="text-pool-dark">
+
+    <!-- Capa oscura sutil de fondo para el formulario -->
     <div class="overlay"></div>
 
+    <!-- BARRA DE NAVEGACIÓN GLOBAL -->
+    <div class="nav-container">
+        <header class="nav-glass">
+            <div class="flex items-center space-x-6 md:space-x-8">
+                
+                <a href="index.html" class="text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
+                    <span>Pool <span class="font-light text-gray-500">Mueblería</span></span>
+                </a>
+
+                <div class="h-4 w-px bg-gray-400/30 hidden md:block"></div>
+
+                <nav class="nav-links">
+                    <a href="producto.html" class="hover:text-gray-700 transition-colors">Productos</a>
+                    <a href="contacto.html" class="hover:text-gray-700 transition-colors">Contáctanos</a>
+                    <a href="ayuda.html" class="hover:text-gray-700 transition-colors">Ayuda</a>
+                </nav>
+
+                <div class="h-4 w-px bg-gray-400/30 hidden md:block"></div>
+
+                <div class="flex items-center space-x-5">
+                    
+                    <!-- LUPA Y BUSCADOR -->
+                    <div class="relative flex items-center">
+                        <button onclick="toggleMenu('search-dropdown')" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+                        </button>
+
+                        <div id="search-dropdown" class="hidden absolute right-[-120px] md:right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top z-50">
+                            <div class="absolute -top-2 right-[124px] md:right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                <div class="relative mb-6 pb-2 border-b border-gray-400/30 flex items-center">
+                                    <svg class="w-5 h-5 text-gray-500 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+                                    <input type="text" placeholder="Buscar en Pool Mueblería" class="w-full bg-transparent text-base font-medium outline-none placeholder-gray-500 text-black">
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 mb-3 px-2 font-medium tracking-wide">Filtros rápidos</p>
+                                    <ul class="space-y-1 text-sm font-light">
+                                        <li><a href="producto.html" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Sofás (3 plazas)</a></li>
+                                        <li><a href="producto.html" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Sillones (1 plaza)</a></li>
+                                        <li><a href="producto.html" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Mesas de Centro</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARRITO -->
+                    <div class="relative flex items-center">
+                        <button onclick="toggleMenu('cart-dropdown')" title="Carrito" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></path></svg>
+                        </button>
+                        <div id="cart-dropdown" class="hidden absolute right-[-60px] top-full mt-6 w-80 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-8 text-center transition-all origin-top z-50">
+                            <div class="absolute -top-2 right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10 flex flex-col items-center justify-center">
+                                <h3 class="text-lg font-semibold mb-6 tracking-tight text-pool-dark">Tu carrito</h3>
+                                <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"></path></svg>
+                                <p class="text-sm text-gray-500 font-light mb-6">Aún no tienes artículos en tu carrito.</p>
+                                <a href="producto.html" class="bg-pool-cafe text-white px-6 py-2 rounded-full text-sm font-medium hover:opacity-90 transition w-full text-center">Ir a comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SESIÓN / PERFIL EN NAV -->
+                    <div class="relative flex items-center">
+                        <button onclick="toggleMenu('profile-dropdown')" title="Cuenta" class="text-xs font-medium text-gray-700 hover:text-black transition-colors focus:outline-none flex items-center gap-2">
+                            <span id="session-text">Ingresar</span>
+                            <div id="session-icon" class="hidden w-7 h-7 rounded-full bg-gray-200 border border-gray-300 flex items-center justify-center overflow-hidden">
+                                <svg class="w-4 h-4 text-gray-500 mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </div>
+                        </button>
+
+                        <div id="profile-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right z-50">
+                            <div class="absolute -top-2 right-4 w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                <div id="login-form-nav">
+                                    <h3 class="text-lg font-semibold mb-4 tracking-tight">Ingresa a tu cuenta</h3>
+                                    <form onsubmit="handleNavLogin(event)" class="space-y-3">
+                                        <input type="text" id="nav-username" placeholder="Usuario (Ej. cliente / admin)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2 text-sm outline-none focus:border-pool-cafe" required>
+                                        <input type="password" id="nav-password" placeholder="Contraseña (1234)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2 text-sm outline-none focus:border-pool-cafe" required>
+                                        <p id="nav-login-error" class="text-xs text-red-500 hidden mt-1">Usuario o contraseña incorrectos</p>
+                                        <button type="submit" class="w-full bg-pool-cafe text-white rounded-xl py-2 text-sm font-medium hover:opacity-90 transition mt-2">Iniciar sesión</button>
+                                    </form>
+                                </div>
+
+                                <div id="logged-in-menu" class="hidden">
+                                    <h3 id="user-greeting" class="text-lg font-semibold mb-4 tracking-tight px-3 border-b border-gray-400/20 pb-3">Hola</h3>
+                                    <ul id="user-menu-list" class="hidden space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"></path></svg> Pedidos</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 3h-11a2 2 0 00-2 2v16l7.5-3.5L19 21V5a2 2 0 00-2-2z"></path></svg> Tus selecciones</a></li>
+                                    </ul>
+                                    <ul id="admin-menu-list" class="hidden space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg> Gestión de inventario</a></li>
+                                    </ul>
+                                    <div class="border-t border-gray-400/20 my-2"></div>
+                                    <button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors text-red-600"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path></svg> Cerrar sesión</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL DEL FORMULARIO -->
     <main class="liquid-glass-panel">
         <header class="panel-header">
             <h2>Pool Mueblería</h2>
@@ -41,16 +169,16 @@
 
             <div class="input-row">
                 <div class="input-group half">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required 
+                    <label for="reg-password">Contraseña</label>
+                    <input type="password" id="reg-password" name="password" required 
                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                            title="Debe contener al menos 8 caracteres, una mayúscula, una minúscula y un número" 
                            placeholder="••••••••"
                            oninput="validarPasswords()">
                 </div>
                 <div class="input-group half relative">
-                    <label for="confirm_password">Confirmar Contraseña</label>
-                    <input type="password" id="confirm_password" name="confirm_password" required 
+                    <label for="reg-confirm-password">Confirmar Contraseña</label>
+                    <input type="password" id="reg-confirm-password" name="confirm_password" required 
                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                            placeholder="••••••••"
                            oninput="validarPasswords()">
@@ -64,7 +192,6 @@
                     <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{10}" placeholder="10 dígitos numéricos" title="Debe contener exactamente 10 números">
                 </div>
                 
-                <!-- CAMPO DE FECHA EXCLUSIVAMENTE MANUAL -->
                 <div class="input-group half relative">
                     <label for="fecha_nacimiento">Fecha de nacimiento</label>
                     <div style="position: relative;">
@@ -106,11 +233,74 @@
         </form>
     </main>
 
+    <footer class="text-center text-xs text-white/70 pb-6 relative z-10">
+        <p>© 2026 Pool Mueblería. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- SCRIPTS DE NAVEGACIÓN Y VALIDACIÓN -->
     <script>
-        // Validación de contraseñas
+        // Lógica de Menús en Nav Bar
+        function toggleMenu(menuId) {
+            const menus = ['search-dropdown', 'cart-dropdown', 'profile-dropdown'];
+            menus.forEach(id => {
+                const element = document.getElementById(id);
+                if (id === menuId) {
+                    element.classList.toggle('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+        }
+
+        document.addEventListener('click', (event) => {
+            const header = document.querySelector('header');
+            if (!header.contains(event.target)) {
+                document.getElementById('search-dropdown').classList.add('hidden');
+                document.getElementById('cart-dropdown').classList.add('hidden');
+                document.getElementById('profile-dropdown').classList.add('hidden');
+            }
+        });
+
+        // Lógica Login desde la Nav Bar
+        function handleNavLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('nav-username').value;
+            const pass = document.getElementById('nav-password').value;
+
+            if (pass === '1234') {
+                document.getElementById('login-form-nav').classList.add('hidden');
+                document.getElementById('logged-in-menu').classList.remove('hidden');
+                document.getElementById('session-text').classList.add('hidden');
+                document.getElementById('session-icon').classList.remove('hidden');
+
+                if (user.toLowerCase() === 'admin') {
+                    document.getElementById('user-greeting').innerText = 'Panel Admin';
+                    document.getElementById('admin-menu-list').classList.remove('hidden');
+                    document.getElementById('user-menu-list').classList.add('hidden');
+                } else {
+                    document.getElementById('user-greeting').innerText = `Hola, ${user}`;
+                    document.getElementById('user-menu-list').classList.remove('hidden');
+                    document.getElementById('admin-menu-list').classList.add('hidden');
+                }
+            } else {
+                document.getElementById('nav-login-error').classList.remove('hidden');
+            }
+        }
+
+        function handleLogout() {
+            document.getElementById('login-form-nav').classList.remove('hidden');
+            document.getElementById('logged-in-menu').classList.add('hidden');
+            document.getElementById('session-text').classList.remove('hidden');
+            document.getElementById('session-icon').classList.add('hidden');
+            document.getElementById('nav-username').value = '';
+            document.getElementById('nav-password').value = '';
+            document.getElementById('nav-login-error').classList.add('hidden');
+        }
+
+        // Lógica Validación de Registro (Práctica 01)
         function validarPasswords() {
-            const pass = document.getElementById('password');
-            const confPass = document.getElementById('confirm_password');
+            const pass = document.getElementById('reg-password');
+            const confPass = document.getElementById('reg-confirm-password');
             
             if (pass.value !== confPass.value) {
                 confPass.setCustomValidity('Las contraseñas no coinciden');
@@ -119,30 +309,16 @@
             }
         }
 
-        // NUEVO: Función para agregar las barras (/) automáticamente
         function formatearFecha(input) {
-            // Elimina cualquier caracter que no sea un número
             let valor = input.value.replace(/\D/g, '');
             let nuevoValor = '';
-
-            // Agrega automáticamente los separadores "/"
-            if (valor.length > 0) {
-                nuevoValor += valor.substring(0, 2);
-            }
-            if (valor.length > 2) {
-                nuevoValor += '/' + valor.substring(2, 4);
-            }
-            if (valor.length > 4) {
-                nuevoValor += '/' + valor.substring(4, 8);
-            }
-            
+            if (valor.length > 0) nuevoValor += valor.substring(0, 2);
+            if (valor.length > 2) nuevoValor += '/' + valor.substring(2, 4);
+            if (valor.length > 4) nuevoValor += '/' + valor.substring(4, 8);
             input.value = nuevoValor;
-
-            // Valida la mayoría de edad en tiempo real
             validarMayoriaEdad(input);
         }
 
-        // Validación exclusiva para texto manual (dd/mm/aaaa)
         function validarMayoriaEdad(inputFecha) {
             if (!inputFecha.value) {
                 inputFecha.setCustomValidity('');
@@ -168,9 +344,7 @@
                 return;
             }
 
-            // Fecha base de la práctica: Septiembre 27, 2026
             const fechaActual = new Date(2026, 8, 27); 
-            
             let edad = fechaActual.getFullYear() - fechaSeleccionada.getFullYear();
             const diferenciaMes = fechaActual.getMonth() - fechaSeleccionada.getMonth();
             

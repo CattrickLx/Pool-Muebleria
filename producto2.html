@@ -3,54 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Pág. 2 | Pool Mueblería</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Catálogo P2 | Pool Mueblería</title>
+    
+    <link rel="stylesheet" href="estilos.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        pool: {
-                            bg: '#F5F5F7',
-                            cafe: '#3E2723',
-                            dark: '#1D1D1F',
-                            card: '#FFFFFF'
-                        }
+                        'pool-cafe': '#3E2723',
+                        'pool-bg': '#F5F5F7',
+                        'pool-dark': '#1C1C1E',
+                        'pool-card': '#FFFFFF'
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-pool-bg text-pool-dark font-sans antialiased overflow-x-hidden pt-32">
+<body class="text-pool-dark">
 
-    <div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl px-4">
-        <header class="bg-white/50 backdrop-blur-lg rounded-full shadow-sm border border-white/40 flex justify-center items-center py-3 px-8 text-sm font-medium transition-all duration-300">
+    <!-- BARRA DE NAVEGACIÓN GLOBAL ESTILO APPLE -->
+    <div class="nav-container">
+        <header class="nav-glass">
             <div class="flex items-center space-x-6 md:space-x-8">
+                
+                <!-- Logo / Inicio -->
                 <a href="index.html" class="text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
                     <span>Pool <span class="font-light text-gray-500">Mueblería</span></span>
                 </a>
-                
+
                 <div class="h-4 w-px bg-gray-400/30 hidden md:block"></div>
-                
-                <nav class="hidden md:flex space-x-6">
-                    <a href="producto.html" class="text-black font-semibold transition-colors">Productos</a>
-                    <a href="contacto.html" class="hover:text-gray-700 transition-colors">Contactanos</a>
+
+                <!-- Enlaces Principales -->
+                <nav class="nav-links">
+                    <a href="producto.html" class="hover:text-gray-700 transition-colors">Productos</a>
+                    <a href="contacto.html" class="hover:text-gray-700 transition-colors">Contáctanos</a>
                     <a href="ayuda.html" class="hover:text-gray-700 transition-colors">Ayuda</a>
                 </nav>
-                
+
                 <div class="h-4 w-px bg-gray-400/30 hidden md:block"></div>
-                
+
+                <!-- Iconos de Acción -->
                 <div class="flex items-center space-x-5">
                     
+                    <!-- Buscador (Lupa) -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleSearchMenu()" id="search-btn" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                        <button onclick="toggleMenu('search-dropdown')" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
                         </button>
-                        <div id="search-dropdown" class="hidden absolute right-[-120px] md:right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/50 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top">
-                            <div class="absolute -top-2 right-[124px] md:right-[64px] w-4 h-4 bg-white/50 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                        <div id="search-dropdown" class="hidden absolute right-[-120px] md:right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top z-50">
+                            <div class="absolute -top-2 right-[124px] md:right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
                             <div class="relative z-10">
                                 <div class="relative mb-6 pb-2 border-b border-gray-400/30 flex items-center">
                                     <svg class="w-5 h-5 text-gray-500 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
@@ -59,449 +66,479 @@
                                 <div>
                                     <p class="text-xs text-gray-500 mb-3 px-2 font-medium tracking-wide">Filtros rápidos</p>
                                     <ul class="space-y-1 text-sm font-light">
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Sofás (3 plazas)</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Sillones (1 plaza)</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Mesas de Centro</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Lino Premium</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">&rarr;</span> Entrega Inmediata</a></li>
+                                        <li><a href="producto.html" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Sofás (3 plazas)</a></li>
+                                        <li><a href="producto.html" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Sillones (1 plaza)</a></li>
+                                        <li><a href="producto.html" class="flex items-center gap-3 px-2 py-2 hover:bg-white/60 rounded-xl transition-colors"><span class="text-gray-400 font-serif text-lg leading-none">→</span> Mesas de Centro</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Carrito (Bolsa) -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleCartMenu()" id="cart-btn" title="Carrito" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                        <button onclick="toggleMenu('cart-dropdown')" title="Carrito" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></path></svg>
                         </button>
-                        <div id="cart-dropdown" class="hidden absolute right-[-80px] md:right-[-20px] top-full mt-6 w-80 bg-white/50 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top">
-                            <div class="absolute -top-2 right-[84px] md:right-[24px] w-4 h-4 bg-white/50 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
-                            <div class="relative z-10 flex flex-col items-center">
-                                <h3 class="text-lg font-semibold mb-4 text-center tracking-tight w-full border-b border-gray-400/20 pb-2">Mi Carrito</h3>
-                                <svg class="w-12 h-12 text-gray-400/50 mb-3 mt-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"></path></svg>
-                                <p class="text-gray-500 text-center text-sm font-light mb-2">Tu bolsa está vacía.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="relative hidden md:block pl-2">
-                        
-                        <div id="logged-out-state" class="block">
-                            <button onclick="toggleLoginMenu()" id="login-btn" class="text-gray-700 hover:text-black transition-colors whitespace-nowrap focus:outline-none flex items-center gap-2">
-                                Iniciar / Crear sesión
-                            </button>
-                        </div>
-
-                        <div id="logged-in-state" class="hidden">
-                            <button onclick="toggleProfileMenu()" id="profile-btn" class="text-gray-700 hover:text-black transition-colors focus:outline-none bg-gray-200/50 p-1.5 rounded-full">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path></svg>
-                            </button>
-                        </div>
-
-                        <div id="login-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/50 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right z-50">
-                            <div class="absolute -top-2 right-16 w-4 h-4 bg-white/50 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
-                            <div class="relative z-10">
-                                <h3 class="text-lg font-semibold mb-4 text-center tracking-tight">Mi Cuenta</h3>
-                                <form onsubmit="handleLogin(event)">
-                                    <input type="text" id="login-email" placeholder="Correo (ej. 1234 o admin)" class="w-full mb-3 px-4 py-2.5 bg-white/60 border border-white/50 rounded-xl text-sm font-light focus:outline-none focus:ring-2 focus:ring-pool-cafe/40 transition">
-                                    <input type="password" id="login-password" placeholder="Contraseña" class="w-full mb-5 px-4 py-2.5 bg-white/60 border border-white/50 rounded-xl text-sm font-light focus:outline-none focus:ring-2 focus:ring-pool-cafe/40 transition">
-                                    <button type="submit" class="w-full bg-pool-cafe text-white font-medium text-sm py-2.5 rounded-full hover:opacity-90 transition shadow-md">Ingresar</button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div id="profile-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/50 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right z-50">
-                            <div class="absolute -top-2 right-[20px] w-4 h-4 bg-white/50 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
-                            <div class="relative z-10">
-                                <h3 id="user-greeting" class="text-lg font-semibold mb-4 text-center tracking-tight w-full border-b border-gray-400/20 pb-2">Hola, Usuario</h3>
+                        <div id="cart-dropdown" class="hidden absolute right-[-60px] top-full mt-6 w-80 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-8 text-center transition-all origin-top z-50">
+                            <div class="absolute -top-2 right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10 flex flex-col items-center justify-center">
+                                <h3 class="text-lg font-semibold mb-6 tracking-tight text-pool-dark">Tu carrito</h3>
+                                <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"></path></svg>
+                                <p class="text-sm text-gray-500 font-light mb-6">Aún no tienes artículos en tu carrito.</p>
                                 
-                                <ul id="user-menu-list" class="space-y-1 text-sm font-light mb-4 hidden">
-                                    <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"></path></svg> Mis Pedidos</a></li>
-                                    <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"></path></svg> Tus selecciones</a></li>
-                                    <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path></svg> Cuenta</a></li>
-                                </ul>
-
-                                <ul id="admin-menu-list" class="space-y-1 text-sm font-light mb-4 hidden">
-                                    <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.118l-12 1.25A2.1 2.1 0 0 1 4.25 19.65V4.35a2.1 2.1 0 0 1 2.128-2.118l12-1.25c1.085-.113 1.872.824 1.872 1.918v4.25"></path><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 12h5.5M17 9.25l2.75 2.75-2.75 2.75"></path></svg> Inventario / Catálogo</a></li>
-                                    <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z"></path></svg> Cola de Producción</a></li>
-                                    <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg> Control de Anticipos</a></li>
-                                </ul>
-
-                                <button onclick="handleLogout()" class="w-full text-center text-red-500 font-medium text-sm py-2 rounded-full hover:bg-red-50 transition flex items-center justify-center gap-2">
-                                    Cerrar sesión
-                                </button>
+                                <a href="producto.html" class="bg-transparent text-pool-cafe border border-pool-cafe px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-50 transition w-full text-center">Ir a comprar</a>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Perfil / Sesión -->
+                    <div class="relative flex items-center">
+                        <button onclick="toggleMenu('profile-dropdown')" title="Cuenta" class="text-sm font-medium text-gray-700 hover:text-black transition-colors focus:outline-none flex items-center gap-2">
+                            <span id="session-text">Iniciar / Crear sesión</span>
+                            <div id="session-icon" class="hidden w-7 h-7 rounded-full bg-gray-200 border border-gray-300 flex items-center justify-center overflow-hidden">
+                                <svg class="w-4 h-4 text-gray-500 mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </div>
+                        </button>
+                        <div id="profile-dropdown" class="hidden absolute right-0 top-full mt-6 w-72 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top-right z-50">
+                            <div class="absolute -top-2 right-4 w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                
+                                <div id="login-form-nav">
+                                    <h3 class="text-lg font-semibold mb-4 tracking-tight text-center">Mi Cuenta</h3>
+                                    <form onsubmit="handleNavLogin(event)" class="space-y-3">
+                                        <input type="text" id="nav-username" placeholder="Correo (1234 o admin)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-pool-cafe transition-all" required>
+                                        <input type="password" id="nav-password" placeholder="Contraseña (1234 o admin)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-pool-cafe transition-all" required>
+                                        <p id="nav-login-error" class="text-xs text-red-500 hidden mt-1">Usuario o contraseña incorrectos</p>
+                                        <button type="submit" class="btn-primary mt-2 shadow-md w-full" style="border-radius: 9999px; padding: 10px; font-size: 0.875rem;">Ingresar</button>
+                                    </form>
+                                    <div class="flex items-center my-5">
+                                        <div class="flex-grow border-t border-gray-400/20"></div>
+                                        <span class="mx-3 text-xs text-gray-500 font-light">o</span>
+                                        <div class="flex-grow border-t border-gray-400/20"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="registro.html" class="text-sm font-medium text-gray-700 hover:text-black transition">Crear cuenta</a>
+                                    </div>
+                                </div>
+                                
+                                <div id="logged-in-menu" class="hidden">
+                                    <h3 id="user-greeting" class="text-lg font-semibold mb-4 tracking-tight px-3 border-b border-gray-400/20 pb-3">Hola</h3>
+                                    <ul id="user-menu-list" class="hidden space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"></path></svg> Pedidos</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 3h-11a2 2 0 00-2 2v16l7.5-3.5L19 21V5a2 2 0 00-2-2z"></path></svg> Tus selecciones</a></li>
+                                    </ul>
+                                    <ul id="admin-menu-list" class="hidden space-y-1 text-sm font-light">
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg> Gestión de inventario</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"></path></svg> Cola de producción</a></li>
+                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Control de anticipos</a></li>
+                                    </ul>
+                                    <div class="border-t border-gray-400/20 my-2"></div>
+                                    <ul>
+                                        <li><button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors text-red-600"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path></svg> Cerrar sesión</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
     </div>
 
-    <div class="max-w-[1600px] mx-auto px-6 mb-10 text-center md:text-left">
-        <h1 class="text-4xl font-semibold tracking-tight text-pool-dark">Todos los productos</h1>
-        <p class="text-gray-500 mt-2 font-light">Diseño exclusivo a medida. Resultados 29 a 36.</p>
-    </div>
-
-    <div class="max-w-[1600px] mx-auto px-6 flex flex-col lg:flex-row gap-10 lg:gap-14 pb-16">
+    <!-- SECCIÓN DE PRODUCTOS (Página 2) -->
+    <!-- SECCIÓN DE PRODUCTOS CON FILTROS EN "PÍLDORA FLOTANTE" -->
+    <section class="max-w-[1500px] mx-auto px-4 md:px-6 pt-32 pb-12 flex flex-col md:flex-row gap-8 lg:gap-12 relative">
         
-        <aside class="w-full lg:w-64 flex-shrink-0">
-            <div class="sticky top-32">
+        <!-- PÍLDORA LATERAL FLOTANTE DE FILTROS -->
+        <aside class="w-full md:w-[280px] lg:w-[300px] flex-shrink-0 z-20">
+            <!-- La píldora blanca pegajosa -->
+            <div class="sticky top-28 bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg rounded-3xl p-6 overflow-y-auto no-scrollbar" style="max-height: calc(100vh - 140px);">
                 
-                <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-xl font-medium tracking-tight text-pool-dark">Filtros</h3>
-                    <button class="text-xs text-gray-500 hover:text-black transition underline decoration-gray-300 underline-offset-4">Limpiar</button>
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-semibold tracking-tight text-pool-dark">Filtros</h1>
+                    <button class="text-[11px] font-medium text-pool-cafe hover:text-black uppercase tracking-wider transition">Limpiar</button>
                 </div>
 
-                <div class="mb-8 border-b border-gray-200 pb-6">
-                    <h4 class="text-sm font-medium mb-4 text-pool-dark">Categoría</h4>
-                    <div class="space-y-3">
-                        <label class="flex items-center space-x-3 cursor-pointer group">
-                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-pool-cafe focus:ring-pool-cafe accent-[#3E2723]">
-                            <span class="text-sm text-gray-600 group-hover:text-black transition-colors">Sofás (3 plazas)</span>
-                        </label>
-                        <label class="flex items-center space-x-3 cursor-pointer group">
-                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-pool-cafe focus:ring-pool-cafe accent-[#3E2723]">
-                            <span class="text-sm text-gray-600 group-hover:text-black transition-colors">Sillones (1 plaza)</span>
-                        </label>
-                        <label class="flex items-center space-x-3 cursor-pointer group">
-                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-pool-cafe focus:ring-pool-cafe accent-[#3E2723]">
-                            <span class="text-sm text-gray-600 group-hover:text-black transition-colors">Mesas de Centro</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="mb-8 border-b border-gray-200 pb-6">
-                    <h4 class="text-sm font-medium mb-4 text-pool-dark">Material</h4>
-                    <div class="space-y-3">
-                        <label class="flex items-center space-x-3 cursor-pointer group">
-                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-pool-cafe focus:ring-pool-cafe accent-[#3E2723]">
-                            <span class="text-sm text-gray-600 group-hover:text-black transition-colors">Piel Natural</span>
-                        </label>
-                        <label class="flex items-center space-x-3 cursor-pointer group">
-                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-pool-cafe focus:ring-pool-cafe accent-[#3E2723]">
-                            <span class="text-sm text-gray-600 group-hover:text-black transition-colors">Lino Premium</span>
-                        </label>
-                        <label class="flex items-center space-x-3 cursor-pointer group">
-                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-pool-cafe focus:ring-pool-cafe accent-[#3E2723]">
-                            <span class="text-sm text-gray-600 group-hover:text-black transition-colors">Terciopelo</span>
-                        </label>
-                    </div>
-                </div>
-
+                <!-- Sección: Categoría -->
                 <div class="mb-8">
-                    <div class="flex justify-between items-center mb-4">
-                        <h4 class="text-sm font-medium text-pool-dark">Precio</h4>
-                        <span id="price-display" class="text-xs font-semibold text-pool-cafe bg-gray-100 px-2 py-1 rounded-md tracking-wide">
-                            Hasta $30,000
-                        </span>
+                    <h3 class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-widest">Categoría</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300" checked>
+                            <span class="text-sm font-medium text-pool-dark group-hover:text-black transition">Todos los productos</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Sofás (3 y 4 Plazas)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Sillones Individuales</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Salas Modulares (L)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Mesas de Centro</span>
+                        </label>
                     </div>
-                    <input type="range" id="price-slider" min="0" max="30000" value="30000" step="100" class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#3E2723]">
-                    <div class="flex justify-between text-xs text-gray-500 mt-3 font-light">
-                        <span>$0</span>
-                        <span>$30,000+</span>
+                </div>
+
+                <!-- Sección: Material -->
+                <div class="border-t border-gray-100 pt-6 mb-8">
+                    <h3 class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-widest">Material</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Lino Transpirable</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Terciopelo Premium</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Piel Sintética</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Madera de Roble</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Sección: Color (Estilo Apple Circular) -->
+                <div class="border-t border-gray-100 pt-6 mb-8">
+                    <h3 class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-widest">Color</h3>
+                    <div class="flex flex-wrap gap-3 px-1.5">
+                        <button class="w-8 h-8 rounded-full border border-gray-300 bg-[#F5F5F7] focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 shadow-inner transition hover:scale-110" title="Blanco"></button>
+                        <button class="w-8 h-8 rounded-full border border-gray-300 bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 shadow-inner transition hover:scale-110" title="Gris"></button>
+                        <button class="w-8 h-8 rounded-full border border-emerald-900 bg-emerald-800 focus:ring-2 focus:ring-offset-2 focus:ring-emerald-800 shadow-inner transition hover:scale-110" title="Esmeralda"></button>
+                        <button class="w-8 h-8 rounded-full border border-pool-cafe bg-pool-cafe focus:ring-2 focus:ring-offset-2 focus:ring-pool-cafe shadow-inner transition hover:scale-110" title="Café"></button>
+                        <button class="w-8 h-8 rounded-full border border-gray-900 bg-pool-dark focus:ring-2 focus:ring-offset-2 focus:ring-black shadow-inner transition hover:scale-110" title="Negro"></button>
+                    </div>
+                </div>
+
+                <!-- Sección: Disponibilidad -->
+                <div class="border-t border-gray-100 pt-6 mb-8">
+                    <h3 class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-widest">Disponibilidad</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Entrega inmediata</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-lg hover:bg-gray-50 transition">
+                            <input type="checkbox" class="w-4 h-4 accent-pool-cafe rounded border-gray-300">
+                            <span class="text-sm text-gray-500 group-hover:text-black transition">Sobre pedido (Plan 80/20)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Sección: Precio -->
+                <div class="border-t border-gray-100 pt-6">
+                    <div class="flex justify-between items-center mb-4 px-1.5">
+                        <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Precio Máximo</h3>
+                        <span id="price-display" class="text-xs text-pool-dark font-semibold bg-gray-100 px-2 py-1 rounded-md">Hasta $15,000</span>
+                    </div>
+                    <div class="px-1.5">
+                        <input type="range" min="2000" max="30000" step="100" value="15000" class="w-full accent-pool-cafe cursor-pointer" oninput="updatePrice(this.value)">
+                        <div class="flex justify-between text-[10px] text-gray-400 mt-2 font-medium">
+                            <span>$2,000</span>
+                            <span>$30,000+</span>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </aside>
 
-        <main class="flex-1">
-            <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- CUADRÍCULA DE PRODUCTOS -->
+        <main class="flex-1 min-w-0">
+            <!-- Paginación superior y Título de Sección -->
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-pool-dark">Muebles</h2>
                 </div>
+                <div class="text-sm text-gray-500 font-medium pb-1">
+                    Página 2 de 2
+                </div>
+            </div>
+
+            <!-- Inyección de tarjetas mediante JavaScript -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Se llena con JS -->
+            </div>
+
+            <!-- PAGINACIÓN INFERIOR INVERTIDA (Página 2) -->
+            <div class="mt-16 flex justify-center items-center space-x-4">
+                
+                <!-- Flecha Izquierda (Activa para regresar) -->
+                <a href="producto.html" class="p-2 rounded-full text-gray-700 hover:bg-gray-200 transition focus:outline-none">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
+                </a>
+                
+                <div class="flex space-x-2">
+                    <!-- Número 1 (Inactivo) -->
+                    <a href="producto.html" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-200 text-pool-dark text-sm font-medium transition">1</a>
+                    
+                    <!-- Número 2 (Activo y oscuro) -->
+                    <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-pool-dark text-white text-sm font-medium">2</a>
+                </div>
+
+                <!-- Flecha Derecha (Desactivada) -->
+                <a href="#" class="p-2 rounded-full text-gray-300 cursor-not-allowed pointer-events-none">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                </a>
+            </div>
         </main>
-
-    </div>
-
-    <div class="flex justify-center items-center space-x-2 pb-24">
-        <a href="producto.html" class="w-10 h-10 flex items-center justify-center rounded-full text-pool-dark hover:bg-gray-200 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path></svg>
-        </a>
-        <a href="producto.html" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 hover:bg-gray-200 font-medium text-sm transition">1</a>
-        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-pool-dark text-white font-medium text-sm transition">2</a>
-        <button class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 cursor-not-allowed" disabled>
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path></svg>
-        </button>
-    </div>
+    </section>
 
     <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500">
-        <div class="flex justify-center space-x-6 mb-4">
-            <a href="#" class="hover:text-black transition">Acerca de Pool Mueblería</a>
-            <a href="#" class="hover:text-black transition">Soporte</a>
-            <a href="#" class="hover:text-black transition">Cotizaciones</a>
-        </div>
-        <p>&copy; 2026 Pool Mueblería. Todos los derechos reservados.</p>
+        <p>© 2026 Pool Mueblería. Todos los derechos reservados.</p>
     </footer>
 
-    <div id="purchase-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity">
+    <!-- MODAL DE COMPRA REDISEÑADO (ESTILO APPLE PREMIUM) -->
+    <div id="purchase-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
+        <!-- Fondo oscuro desenfocado -->
+        <div class="absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity opacity-0" id="purchase-backdrop" onclick="closePurchaseModal()"></div>
         
-        <div id="purchase-modal-content" class="bg-[#F5F5F7] w-[90%] max-w-5xl h-[85vh] rounded-[2rem] shadow-2xl overflow-hidden flex flex-col transform scale-95 transition-transform duration-300">
+        <!-- Contenedor Principal Flotante -->
+        <div class="relative w-[95vw] md:w-[90vw] max-w-5xl h-[90vh] md:h-[80vh] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row transform scale-95 transition-all duration-300 opacity-0" id="purchase-content">
             
-            <div class="flex justify-between items-center p-6 border-b border-gray-200 bg-white/50 backdrop-blur-md z-20 flex-shrink-0">
-                <h2 class="text-xl font-semibold tracking-tight">Configura tu diseño</h2>
-                <button onclick="closePurchaseModal()" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200/50 hover:bg-gray-300 text-gray-600 transition">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path></svg>
-                </button>
+            <!-- Botón de Cerrar -->
+            <button onclick="closePurchaseModal()" class="absolute top-6 right-6 z-50 bg-white/80 hover:bg-gray-100 text-gray-600 p-2.5 rounded-full transition shadow-sm focus:outline-none backdrop-blur-md">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- COLUMNA IZQUIERDA: Imagen Fija al 100% -->
+            <div class="w-full md:w-1/2 h-[40%] md:h-full relative flex-shrink-0 bg-gray-100">
+                <img id="modal-image" src="" alt="Producto" class="absolute inset-0 w-full h-full object-cover">
             </div>
 
-            <div class="flex flex-col md:flex-row flex-1 min-h-0 overflow-hidden">
+            <!-- COLUMNA DERECHA: Opciones y Barra Fija -->
+            <div class="w-full md:w-1/2 h-[60%] md:h-full bg-white flex flex-col relative">
                 
-                <div class="md:w-1/2 p-10 flex flex-col items-center justify-center border-r border-gray-200 bg-[#F5F5F7]">
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600" alt="Sofá Oslo" class="w-full max-w-sm rounded-xl mix-blend-multiply drop-shadow-xl mb-6">
-                    <h3 class="text-2xl font-semibold tracking-tight text-center">Sofá Modular Oslo</h3>
-                    <p class="text-gray-500 mt-2 text-center text-sm font-light">Diseñado en Querétaro. Ensamblado a mano.</p>
+                <!-- Opciones (Área con scroll) -->
+                <div class="flex-1 overflow-y-auto p-8 md:p-12 no-scrollbar pb-6">
+                    <div class="mb-10">
+                        <p class="text-xs text-pool-cafe font-bold tracking-widest uppercase mb-2">Nuevo</p>
+                        <h2 id="modal-title" class="text-3xl md:text-4xl font-semibold tracking-tight text-pool-dark mb-2">Producto</h2>
+                        <p id="modal-price" class="text-xl text-gray-500 font-light">Desde $0 MXN</p>
+                    </div>
+
+                    <!-- Selector de Tamaño -->
+                    <div class="mb-10">
+                        <h3 class="text-lg font-semibold mb-4 text-pool-dark">Tamaño</h3>
+                        <div class="space-y-4">
+                            <div class="modal-option active" onclick="selectOption(this, 'size')">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-semibold text-pool-dark">3 Plazas (Estándar)</h4>
+                                    <span class="text-sm font-medium text-pool-dark">Incluido</span>
+                                </div>
+                                <p class="text-sm text-gray-500">2.10m de largo. Ideal para salas medianas.</p>
+                            </div>
+                            <div class="modal-option" onclick="selectOption(this, 'size')">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-semibold text-pool-dark">Modular en L (4 Plazas)</h4>
+                                    <span class="text-sm font-medium text-gray-500">+ $4,500</span>
+                                </div>
+                                <p class="text-sm text-gray-500">2.80m x 1.60m. Máximo confort familiar.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selector de Acabado -->
+                    <div class="mb-10">
+                        <h3 class="text-lg font-semibold mb-4 text-pool-dark">Acabado</h3>
+                        <div class="space-y-4">
+                            <div class="modal-option active flex items-center" onclick="selectOption(this, 'material')">
+                                <div class="color-circle bg-gray-100 border border-gray-300"></div>
+                                <div>
+                                    <h4 class="font-semibold text-pool-dark">Lino Blanco</h4>
+                                    <p class="text-sm text-gray-500 mt-1">Fresco, transpirable y elegante.</p>
+                                </div>
+                            </div>
+                            <div class="modal-option flex items-center" onclick="selectOption(this, 'material')">
+                                <div class="color-circle bg-emerald-800 border border-emerald-900"></div>
+                                <div>
+                                    <h4 class="font-semibold text-pool-dark">Terciopelo Esmeralda</h4>
+                                    <p class="text-sm text-gray-500 mt-1">Toque suave y aspecto lujoso. <span class="text-pool-dark font-medium">+ $800</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="md:w-1/2 p-10 overflow-y-auto bg-white/30">
-                    
-                    <div class="mb-10">
-                        <h4 class="font-medium mb-4 tracking-tight flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center text-xs">1</span> Tamaño</h4>
-                        <div class="space-y-3">
-                            <div onclick="selectOption(this, 'size')" class="border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex justify-between items-center bg-white transition shadow-sm">
-                                <div>
-                                    <p class="font-semibold text-sm">3 Plazas</p>
-                                    <p class="text-xs text-gray-500 mt-1">2.40m ancho x 0.90m fondo</p>
-                                </div>
-                                <span class="text-sm font-medium">Incluido</span>
-                            </div>
-                            <div onclick="selectOption(this, 'size')" class="border border-gray-300 rounded-2xl p-5 cursor-pointer flex justify-between items-center hover:border-gray-400 transition">
-                                <div>
-                                    <p class="font-semibold text-sm">Modular en L</p>
-                                    <p class="text-xs text-gray-500 mt-1">2.80m ancho x 1.60m fondo (Chaise longue)</p>
-                                </div>
-                                <span class="text-sm font-medium">+ $4,500</span>
-                            </div>
+                <!-- BARRA INFERIOR FIJA -->
+                <div class="w-full border-t border-gray-100 p-6 md:px-10 bg-white/95 backdrop-blur-md flex-shrink-0 z-20">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div class="w-full sm:w-auto text-left">
+                            <p id="modal-total" class="text-xl font-semibold tracking-tight text-pool-dark">Total: $0 MXN</p>
+                            <p class="text-xs text-gray-500 mt-1">Con Plan 80/20 asegura tu producto hoy.</p>
+                        </div>
+                        <div class="w-full sm:w-auto flex flex-col xl:flex-row gap-3">
+                            <button class="w-full xl:w-auto bg-white text-pool-cafe px-6 py-3 rounded-full text-sm font-semibold border-[1.5px] border-pool-cafe hover:bg-gray-50 transition focus:outline-none">
+                                Agregar a la bolsa
+                            </button>
+                            <button class="w-full xl:w-auto bg-pool-cafe text-white px-6 py-3 rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md focus:outline-none">
+                                Comprar ahora
+                            </button>
                         </div>
                     </div>
-
-                    <div class="mb-10">
-                        <h4 class="font-medium mb-4 tracking-tight flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center text-xs">2</span> Material</h4>
-                        <div class="space-y-3">
-                            <div onclick="selectOption(this, 'material')" class="border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex justify-between items-center bg-white transition shadow-sm">
-                                <div>
-                                    <p class="font-semibold text-sm">Lino Premium Blanco</p>
-                                    <p class="text-xs text-gray-500 mt-1">Fresco, elegante y lavable</p>
-                                </div>
-                                <span class="text-sm font-medium">Incluido</span>
-                            </div>
-                            <div onclick="selectOption(this, 'material')" class="border border-gray-300 rounded-2xl p-5 cursor-pointer flex justify-between items-center hover:border-gray-400 transition">
-                                <div>
-                                    <p class="font-semibold text-sm">Terciopelo Café</p>
-                                    <p class="text-xs text-gray-500 mt-1">Textura suave y máxima calidez</p>
-                                </div>
-                                <span class="text-sm font-medium">+ $1,200</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-10">
-                        <h4 class="font-medium mb-4 tracking-tight flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center text-xs">3</span> Pago (80/20)</h4>
-                        <div class="flex gap-4">
-                            <div onclick="selectOption(this, 'payment')" class="flex-1 border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex flex-col justify-center bg-white transition shadow-sm">
-                                <p class="font-semibold text-sm text-center mb-1">Anticipo 80%</p>
-                                <p class="text-xs text-gray-500 text-center">Paga $10,000 hoy para iniciar producción</p>
-                            </div>
-                            <div onclick="selectOption(this, 'payment')" class="flex-1 border border-gray-300 rounded-2xl p-5 cursor-pointer flex flex-col justify-center hover:border-gray-400 transition">
-                                <p class="font-semibold text-sm text-center mb-1">Pago Total</p>
-                                <p class="text-xs text-gray-500 text-center">Liquida $12,500 hoy mismo</p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
+
             </div>
-
-            <div class="border-t border-gray-200 bg-white/80 backdrop-blur-xl p-5 px-8 flex-shrink-0 flex flex-col md:flex-row justify-between items-center z-20">
-                <div class="text-center md:text-left mb-4 md:mb-0">
-                    <p class="text-2xl font-semibold tracking-tight">$12,500</p>
-                    <p class="text-xs text-gray-500 mt-1">Envío gratis en Querétaro. Entrega en 14 días.</p>
-                </div>
-                <div class="flex flex-col md:flex-row gap-3 w-full md:w-auto">
-                    <button class="w-full md:w-auto border border-pool-cafe text-pool-cafe font-medium px-6 py-3 rounded-full hover:bg-gray-50 transition">
-                        Agregar a la bolsa
-                    </button>
-                    <button class="w-full md:w-auto bg-pool-cafe text-white font-medium px-8 py-3 rounded-full hover:opacity-90 transition shadow-lg">
-                        Comprar ahora
-                    </button>
-                </div>
-            </div>
-
         </div>
     </div>
 
+    <!-- SCRIPTS LÓGICA -->
     <script>
-        // ----------------------------------------------------
-        // LÓGICA DE RENDERIZADO PARA PÁGINA 2 (Solo 8 Productos)
-        // ----------------------------------------------------
         const baseProducts = [
             { img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600", name: "Sofá Modular Oslo", desc: "Lino blanco • 3 Plazas", price: "12,500" },
             { img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600", name: "Sillón Nórdico", desc: "Terciopelo Café • 1 Plaza", price: "4,200" },
             { img: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=600", name: "Sofá Cama Piel", desc: "Piel Sintética • 2 Plazas", price: "8,700" },
             { img: "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=600", name: "Sillón Velvet", desc: "Terciopelo Esmeralda • 1 Plaza", price: "5,200" },
-            { img: "https://images.unsplash.com/photo-1533090368676-1fd25485d282?auto=format&fit=crop&q=80&w=600", name: "Mesita Café DARA", desc: "Madera de Roble", price: "2,500" },
+            { img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600", name: "Sillón Nórdico", desc: "Terciopelo Café • 1 Plaza", price: "4,200" },
             { img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=600", name: "Sofá Seccional Gris", desc: "Tela Antiderrames • 4 Plazas", price: "15,800" },
             { img: "https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&q=80&w=600", name: "Sofá Premium Cuero", desc: "Cuero Natural • 3 Plazas", price: "22,000" }
         ];
 
-        const catalogGrid = document.getElementById('catalog-grid');
-        let totalProducts = 8; // Simula el final del catálogo en la página 2
+        const grid = document.getElementById('product-grid');
+        let htmlContent = '';
 
-        for (let i = 0; i < totalProducts; i++) {
-            let p = baseProducts[i % baseProducts.length]; 
-            let cardHTML = `
-                <div class="w-full bg-white rounded-[2rem] p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <div class="bg-[#E8E8ED] rounded-2xl h-40 flex justify-center items-center mb-4 relative">
-                        <div class="absolute inset-0 bg-[#E8E8ED] rounded-2xl"></div>
-                        <div class="relative z-10 transition-transform duration-500 hover:scale-[1.25] hover:-translate-y-6 hover:shadow-2xl rounded-xl w-full h-full flex justify-center items-center">
-                            <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover rounded-2xl mix-blend-multiply border border-gray-50/50">
-                        </div>
+        for (let i = 0; i < 8; i++) {
+            const product = baseProducts[i % baseProducts.length];
+            htmlContent += `
+                <div class="product-card group overflow-hidden">
+                    <div class="h-48 w-full rounded-2xl mb-5 border border-gray-50 overflow-hidden bg-gray-50">
+                        <img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 pointer-events-none">
                     </div>
-                    <div class="text-center px-1">
-                        <h3 class="font-semibold text-sm tracking-tight text-gray-900">${p.name}</h3>
-                        <p class="text-xs text-gray-500 mt-1 font-light">${p.desc}</p>
-                        <p class="text-sm font-medium mt-3 mb-4">MXN ${p.price}</p>
-                        <div class="flex space-x-2">
-                            <button onclick="openPurchaseModal()" class="bg-pool-cafe text-white text-[11px] px-3 py-2 rounded-full flex-1 hover:opacity-90 transition shadow-sm">Comprar</button>
-                            <button onclick="openPurchaseModal()" class="text-pool-cafe border border-pool-cafe text-[11px] px-3 py-2 rounded-full flex-1 hover:bg-gray-50 transition">Agregar al carrito</button>
-                        </div>
+                    <h3 class="font-semibold text-sm xl:text-base text-pool-dark">${product.name}</h3>
+                    <p class="text-xs text-gray-500 mt-1">${product.desc}</p>
+                    <p class="text-sm font-medium mt-3 mb-5">MXN ${product.price}</p>
+                    <div class="mt-auto flex flex-col xl:flex-row space-y-2 xl:space-y-0 xl:space-x-2">
+                        <button onclick="openPurchaseModal('${product.img}', '${product.name}', '${product.price}')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition">Comprar</button>
+                        <button onclick="openPurchaseModal('${product.img}', '${product.name}', '${product.price}')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition">Agregar al carrito</button>
                     </div>
                 </div>
             `;
-            catalogGrid.innerHTML += cardHTML;
+        }
+        grid.innerHTML = htmlContent;
+
+        function updatePrice(val) { document.getElementById('price-display').innerText = `Hasta $${Number(val).toLocaleString()}`; }
+        
+        // -- Menús Desplegables --
+        function toggleMenu(menuId) {
+            const menus = ['search-dropdown', 'cart-dropdown', 'profile-dropdown'];
+            menus.forEach(id => {
+                const element = document.getElementById(id);
+                if (id === menuId) {
+                    element.classList.toggle('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
         }
 
-        // ----------------------------------------------------
-        // LÓGICA DE MENÚS Y SESIÓN
-        // ----------------------------------------------------
-        const searchMenu = document.getElementById('search-dropdown');
-        const searchBtn = document.getElementById('search-btn');
-        const cartMenu = document.getElementById('cart-dropdown');
-        const cartBtn = document.getElementById('cart-btn');
-        const loginMenu = document.getElementById('login-dropdown');
-        const loginBtn = document.getElementById('login-btn');
-        const loggedOutState = document.getElementById('logged-out-state');
-        const profileMenu = document.getElementById('profile-dropdown');
-        const profileBtn = document.getElementById('profile-btn');
-        const loggedInState = document.getElementById('logged-in-state');
+        document.addEventListener('click', (event) => {
+            const header = document.querySelector('header');
+            if (!header.contains(event.target)) {
+                document.getElementById('search-dropdown').classList.add('hidden');
+                document.getElementById('cart-dropdown').classList.add('hidden');
+                document.getElementById('profile-dropdown').classList.add('hidden');
+            }
+        });
 
-        function toggleSearchMenu() { 
-            searchMenu.classList.toggle('hidden'); 
-            cartMenu.classList.add('hidden'); 
-            if (loginMenu) loginMenu.classList.add('hidden'); 
-            if (profileMenu) profileMenu.classList.add('hidden');
-        }
-        function toggleCartMenu() { 
-            cartMenu.classList.toggle('hidden'); 
-            searchMenu.classList.add('hidden'); 
-            if (loginMenu) loginMenu.classList.add('hidden'); 
-            if (profileMenu) profileMenu.classList.add('hidden'); 
-        }
-        function toggleLoginMenu() { 
-            loginMenu.classList.toggle('hidden'); 
-            searchMenu.classList.add('hidden'); 
-            cartMenu.classList.add('hidden'); 
-        }
-        function toggleProfileMenu() { 
-            profileMenu.classList.toggle('hidden'); 
-            searchMenu.classList.add('hidden'); 
-            cartMenu.classList.add('hidden'); 
-        }
-
-        function handleLogin(e) {
+        // -- Lógica de Sesión Inteligente (Usuario / Admin) --
+        function handleNavLogin(e) {
             e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
+            const user = document.getElementById('nav-username').value;
+            const pass = document.getElementById('nav-password').value;
+
+            const loginForm = document.getElementById('login-form-nav');
+            const loggedInMenu = document.getElementById('logged-in-menu');
+            const sessionText = document.getElementById('session-text');
+            const sessionIcon = document.getElementById('session-icon');
             const userGreeting = document.getElementById('user-greeting');
             const userMenuList = document.getElementById('user-menu-list');
             const adminMenuList = document.getElementById('admin-menu-list');
+            const errorMsg = document.getElementById('nav-login-error');
 
-            if (email === '1234' && password === '1234') {
-                userGreeting.textContent = 'Hola, Usuario';
+            errorMsg.classList.add('hidden');
+
+            if (user === '1234' && pass === '1234') {
+                loginForm.classList.add('hidden');
+                loggedInMenu.classList.remove('hidden');
+                sessionText.classList.add('hidden');
+                sessionIcon.classList.remove('hidden');
+                
+                userGreeting.innerText = 'Hola, Usuario';
                 userMenuList.classList.remove('hidden');
                 adminMenuList.classList.add('hidden');
-                loggedOutState.classList.replace('block', 'hidden');
-                loggedInState.classList.replace('hidden', 'block');
-                document.getElementById('login-email').value = '';
-                document.getElementById('login-password').value = '';
-                loginMenu.classList.add('hidden');
-            } else if (email === 'admin' && password === 'admin') {
-                userGreeting.textContent = 'Panel de Control';
-                userMenuList.classList.add('hidden');
+            } else if (user === 'admin' && pass === 'admin') {
+                loginForm.classList.add('hidden');
+                loggedInMenu.classList.remove('hidden');
+                sessionText.classList.add('hidden');
+                sessionIcon.classList.remove('hidden');
+                
+                userGreeting.innerText = 'Panel de Control';
                 adminMenuList.classList.remove('hidden');
-                loggedOutState.classList.replace('block', 'hidden');
-                loggedInState.classList.replace('hidden', 'block');
-                document.getElementById('login-email').value = '';
-                document.getElementById('login-password').value = '';
-                loginMenu.classList.add('hidden');
+                userMenuList.classList.add('hidden');
             } else {
-                alert('Credenciales incorrectas. Intenta usar "1234" o "admin".');
+                errorMsg.classList.remove('hidden');
             }
         }
 
         function handleLogout() {
-            loggedInState.classList.replace('block', 'hidden');
-            loggedOutState.classList.replace('hidden', 'block');
-            profileMenu.classList.add('hidden');
+            document.getElementById('login-form-nav').classList.remove('hidden');
+            document.getElementById('logged-in-menu').classList.add('hidden');
+            document.getElementById('session-text').classList.remove('hidden');
+            document.getElementById('session-icon').classList.add('hidden');
+            
+            document.getElementById('nav-username').value = '';
+            document.getElementById('nav-password').value = '';
+            document.getElementById('nav-login-error').classList.add('hidden');
         }
 
-        window.addEventListener('click', function(e) {
-            if (!searchBtn.contains(e.target) && !searchMenu.contains(e.target)) searchMenu.classList.add('hidden');
-            if (!cartBtn.contains(e.target) && !cartMenu.contains(e.target)) cartMenu.classList.add('hidden');
-            if (loginBtn && !loginBtn.contains(e.target) && !loginMenu.contains(e.target)) loginMenu.classList.add('hidden');
-            if (profileBtn && !profileBtn.contains(e.target) && !profileMenu.contains(e.target)) profileMenu.classList.add('hidden');
-        });
-
-        // ----------------------------------------------------
-        // LÓGICA DEL SLIDER DE PRECIO DINÁMICO
-        // ----------------------------------------------------
-        const priceSlider = document.getElementById('price-slider');
-        const priceDisplay = document.getElementById('price-display');
-
-        if (priceSlider && priceDisplay) {
-            priceSlider.addEventListener('input', function() {
-                const formattedPrice = Number(this.value).toLocaleString('es-MX');
-                priceDisplay.textContent = `Hasta $${formattedPrice}`;
-            });
-        }
-
-        // ----------------------------------------------------
-        // LÓGICA DEL MODAL DE COMPRA PREMIUM
-        // ----------------------------------------------------
+        // -- Lógica Modal de Compra Premium --
         const modal = document.getElementById('purchase-modal');
-        const modalContent = document.getElementById('purchase-modal-content');
+        const backdrop = document.getElementById('purchase-backdrop');
+        const content = document.getElementById('purchase-content');
 
-        function openPurchaseModal() {
+        function openPurchaseModal(imgSrc, title, price) {
+            if(imgSrc) document.getElementById('modal-image').src = imgSrc;
+            if(title) document.getElementById('modal-title').innerText = title;
+            if(price) {
+                document.getElementById('modal-price').innerText = `Desde $${price} MXN`;
+                document.getElementById('modal-total').innerText = `Total: $${price} MXN`;
+            }
+
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
             setTimeout(() => {
-                modalContent.classList.remove('scale-95');
-                modalContent.classList.add('scale-100');
+                backdrop.classList.remove('opacity-0');
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
             }, 10);
+            document.body.style.overflow = 'hidden';
         }
 
         function closePurchaseModal() {
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 300);
+            backdrop.classList.add('opacity-0');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+            document.body.style.overflow = 'auto';
         }
 
         function selectOption(clickedElement, category) {
             const siblings = clickedElement.parentElement.children;
-            for (let card of siblings) {
-                card.className = "border border-gray-300 rounded-2xl p-5 cursor-pointer flex justify-between items-center hover:border-gray-400 transition";
-                if (category === 'payment') {
-                    card.className = "flex-1 border border-gray-300 rounded-2xl p-5 cursor-pointer flex flex-col justify-center hover:border-gray-400 transition";
-                }
+            for (let sibling of siblings) {
+                sibling.classList.remove('active');
             }
-            if (category === 'payment') {
-                clickedElement.className = "flex-1 border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex flex-col justify-center bg-white transition shadow-sm";
-            } else {
-                clickedElement.className = "border-2 border-pool-cafe ring-1 ring-pool-cafe rounded-2xl p-5 cursor-pointer flex justify-between items-center bg-white transition shadow-sm";
-            }
+            clickedElement.classList.add('active');
         }
     </script>
 </body>

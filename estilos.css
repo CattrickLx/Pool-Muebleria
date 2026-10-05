@@ -1,4 +1,6 @@
-/* Reset y Tipografía estilo Apple */
+/* =======================================================
+   1. RESET GLOBAL Y VARIABLES (Requisito de rúbrica)
+   ======================================================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,221 +10,426 @@
 
 body {
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    /* Imagen de fondo necesaria para que el Liquid Glass tenga algo que difuminar y reflejar */
     background: url('https://images.unsplash.com/photo-1618220179428-22790b46a0eb?auto=format&fit=crop&q=80&w=1920') no-repeat center center fixed;
     background-size: cover;
+    background-color: #F5F5F7;
+    color: #1C1C1E;
+    -webkit-font-smoothing: antialiased;
 }
 
 .overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.35); 
+    background: rgba(0, 0, 0, 0.25);
     z-index: 0;
 }
 
-/* EFECTO LIQUID GLASS */
+/* =======================================================
+   2. MAQUETACIÓN FLEXBOX: BARRA DE NAVEGACIÓN
+   ======================================================= */
+.nav-container {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    width: 100%;
+    max-width: 1024px;
+    padding: 0 1rem;
+    /* Flexbox extra para asegurar que la píldora se centre en la pantalla */
+    display: flex;
+    justify-content: center;
+}
+
+.nav-glass {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(40px); /* Desenfoque intenso estilo Apple */
+    -webkit-backdrop-filter: blur(40px);
+    border-radius: 9999px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    
+    /* MAQUETACIÓN FLEXBOX (Centrado compacto) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    
+    /* Evita que se estire a todo el ancho de la pantalla */
+    width: max-content;
+}
+
+/* Espacio extra a los lados de los divisores verticales */
+.nav-glass .w-px {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+/* 
+   ESTA CLASE DEBE ESTAR FUERA DEL @media 
+   Alinea y separa los enlaces (Productos, Contáctanos, Ayuda) 
+*/
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; 
+}
+
+/* Ocultar enlaces de texto SOLAMENTE en móviles */
+@media (max-width: 767px) {
+    .nav-links {
+        display: none; 
+    }
+}
+
+/* =======================================================
+   3. MAQUETACIÓN CSS GRID: CATÁLOGO DE PRODUCTOS
+   ======================================================= */
+.catalog-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 7rem 1.5rem 3rem 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.catalog-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.product-card {
+    background: #FFFFFF;
+    border-radius: 2rem;
+    padding: 1.25rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border: 1px solid #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* =======================================================
+   4. EFECTO LIQUID GLASS: FORMULARIO DE REGISTRO
+   ======================================================= */
 .liquid-glass-panel {
     position: relative;
     z-index: 10;
     width: 100%;
     max-width: 500px; 
-    background: #E5E5EA; 
+    margin: 6rem auto;
+    background: rgba(229, 229, 234, 0.65); 
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 36px; 
     padding: 35px 40px;
     box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
 }
 
-.panel-header {
-    text-align: center;
-    margin-bottom: 24px;
-}
+.panel-header { text-align: center; margin-bottom: 24px; }
+.panel-header h2 { font-size: 26px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.5px; }
+.panel-header p { font-size: 13px; color: #333; margin-top: 4px; font-weight: 500; }
 
-.panel-header h2 {
-    font-size: 26px;
-    font-weight: 600;
-    color: #1d1d1f;
-    letter-spacing: -0.5px;
-}
-
-.panel-header p {
-    font-size: 13px;
-    color: #555555;
-    margin-top: 4px;
-}
-
-/* PESTAÑAS / INTERRUPTOR */
+/* PESTAÑAS (CSS Puro) */
 .tab-input { display: none; }
-
 .tab-labels {
-    background: rgba(220, 220, 225, 0.5); 
+    background: rgba(255, 255, 255, 0.3); 
     border-radius: 12px;
     padding: 4px;
     display: flex;
     margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
-
 .tab-labels label {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #424245;
-    cursor: pointer;
-    border-radius: 9px;
-    transition: all 0.3s ease;
+    flex: 1; text-align: center; padding: 10px; font-size: 13px;
+    font-weight: 600; color: #424245; cursor: pointer;
+    border-radius: 9px; transition: all 0.3s ease;
 }
-
 #tab-cliente:checked ~ .tab-labels label[for="tab-cliente"],
 #tab-admin:checked ~ .tab-labels label[for="tab-admin"] {
-    background: #ffffff;
-    color: #1d1d1f;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    background: #ffffff; color: #1d1d1f; box-shadow: 0 2px 5px rgba(0,0,0,0.06);
 }
 
-/* ESTRUCTURA DE FORMULARIOS Y ANIMACIÓN */
-.form-content { 
-    display: none; 
-    animation: fadeIn 0.4s ease-out forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
+/* Formularios - Animación */
+.form-content { display: none; animation: fadeIn 0.4s ease-out forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 #tab-cliente:checked ~ .form-cliente { display: block; }
 #tab-admin:checked ~ .form-admin { display: block; }
 
-/* INPUTS */
+/* Inputs Cristalizados */
 .input-group { margin-bottom: 14px; position: relative; }
 .input-row { display: flex; gap: 12px; }
 .input-row .half { flex: 1; }
-
-label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: #1d1d1f;
-    margin-bottom: 5px;
-    margin-left: 2px;
-}
+label { display: block; font-size: 12px; font-weight: 600; color: #1d1d1f; margin-bottom: 5px; margin-left: 2px; }
 
 input:not([type="checkbox"]):not([type="radio"]) {
-    width: 100%;
-    padding: 13px 15px;
-    background: #fbfbfd; 
-    border: 1px solid transparent; 
-    border-radius: 12px;
-    font-size: 14px;
-    color: #1d1d1f;
-    outline: none;
-    transition: all 0.2s ease;
+    width: 100%; padding: 13px 15px;
+    background: rgba(255, 255, 255, 0.6); 
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+    border-radius: 12px; font-size: 14px; color: #1d1d1f;
+    outline: none; transition: all 0.2s ease;
 }
-
-input:not([type="checkbox"]):not([type="radio"])::placeholder {
-    color: #86868b;
-}
-
+input:not([type="checkbox"]):not([type="radio"])::placeholder { color: #555; }
 input:focus {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.9);
     border-color: #3E2723; 
     box-shadow: 0 0 0 3px rgba(62, 39, 35, 0.15);
 }
 
-/* =========================================
-   VALIDACIONES SEMÁNTICAS ESTRICTAS
-   ========================================= */
-
-/* Campos válidos */
+/* Validaciones Visuales CSS (Para el profesor) */
 input:not([type="checkbox"]):not([type="radio"]):valid:not(:placeholder-shown) {
-    border-color: #34c759; 
-    background: rgba(52, 199, 89, 0.03); 
+    border-color: #34c759; background: rgba(52, 199, 89, 0.05); 
 }
-
-/* Campos inválidos */
 input:not([type="checkbox"]):not([type="radio"]):invalid:not(:placeholder-shown) {
-    border-color: #ff3b30;
-    background-color: rgba(255, 59, 48, 0.05);
+    border-color: #ff3b30; background-color: rgba(255, 59, 48, 0.05);
 }
 
-/* =========================================
-   TEXTOS DE ERROR (Contraseñas y Edad)
-   ========================================= */
+/* Textos de Error Dinámicos */
 .error-text {
-    display: none;
-    color: #ff3b30;
-    font-size: 11px;
-    font-weight: 500;
-    margin-top: 6px;
-    margin-left: 4px;
-    animation: fadeIn 0.3s ease;
+    display: none; color: #ff3b30; font-size: 11px; font-weight: 600;
+    margin-top: 6px; margin-left: 4px; animation: fadeIn 0.3s ease;
 }
-
-/* Muestra texto de error dinámicamente si el campo es inválido y no está vacío */
 input#confirm_password:not(:placeholder-shown):invalid ~ .error-text,
 input#fecha_nacimiento:not(:placeholder-shown):invalid ~ .error-text.age-error {
     display: block;
 }
 
-/* Checkbox y Botones */
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 22px;
-    margin-bottom: 24px;
-}
-
-.checkbox-group label {
-    font-size: 11px;
-    font-weight: 500;
-    color: #424245;
-    margin: 0;
-}
+/* Checkbox & Botones */
+.checkbox-group { display: flex; align-items: center; gap: 8px; margin-top: 22px; margin-bottom: 24px; }
+.checkbox-group label { font-size: 11px; font-weight: 600; color: #1d1d1f; margin: 0; }
 
 button[type="submit"] {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    width: 100%; padding: 16px; border: none; border-radius: 9999px;
+    font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
 }
-
-.btn-primary {
-    background-color: #3E2723; 
-    color: white;
-}
-.btn-primary:hover { 
-    opacity: 0.9; 
-    transform: translateY(-1px); 
-    box-shadow: 0 4px 12px rgba(62, 39, 35, 0.3); 
-}
-
-.btn-secondary {
-    background-color: #1d1d1f;
-    color: white;
-}
+.btn-primary { background-color: #3E2723; color: white; }
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(62, 39, 35, 0.3); }
+.btn-secondary { background-color: #1d1d1f; color: white; }
 .btn-secondary:hover { background-color: #000000; }
 
-/* Panel Admin Info */
 .admin-info-box {
-    text-align: center;
-    margin-bottom: 24px;
-    padding: 18px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 14px;
+    text-align: center; margin-bottom: 24px; padding: 18px;
+    background: rgba(255, 255, 255, 0.4); border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.6);
 }
 .admin-info-box svg { color: #3E2723; margin-bottom: 8px; }
 .admin-info-box h3 { font-size: 15px; color: #1d1d1f; margin-bottom: 4px; }
-.admin-info-box p { font-size: 11px; color: #424245; }
+.admin-info-box p { font-size: 11px; color: #333; font-weight: 500;}
+
+/* =======================================================
+   5. DISEÑO ADAPTATIVO / MEDIA QUERIES (25 pts de rúbrica)
+   ======================================================= */
+
+/* A. MÓVIL (Pantallas pequeñas: hasta 767px) */
+@media (max-width: 767px) {
+    .nav-links { display: none; } /* Oculta textos de la nav, deja solo iconos */
+    
+    .catalog-grid {
+        grid-template-columns: 1fr; /* 1 sola columna en el catálogo */
+    }
+
+    .liquid-glass-panel {
+        padding: 25px 20px;
+        border-radius: 24px;
+        max-width: 92%;
+        margin: 5rem auto;
+    }
+    
+    .input-row {
+        flex-direction: column; /* Apila nombre/correo y fechas hacia abajo */
+        gap: 0px;
+    }
+}
+
+/* B. TABLETA (Pantallas medianas: 768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas de productos */
+    }
+    
+    .liquid-glass-panel {
+        max-width: 80%;
+    }
+}
+
+/* C. ESCRITORIO (Pantallas grandes: 1024px en adelante) */
+@media (min-width: 1024px) {
+    .catalog-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas (Estilo Apple Bento Box) */
+    }
+}
+
+/* =======================================================
+   6. ESTILOS ESPECÍFICOS DEL INDEX (Maquetación y Efectos)
+   ======================================================= */
+/* Cuadrícula Bento Box (Colección Pool) - CSS Grid */
+.hero-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+    .hero-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Ocultar barra de scroll en carrusel pero mantener la función táctil/scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Máscara de desvanecimiento para imágenes (Efecto Apple) */
+.mask-image-bottom {
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%);
+    mask-image: linear-gradient(to top, transparent 0%, black 20%);
+}
+
+/* =======================================================
+   7. ESTILOS ESPECÍFICOS DE AYUDA (Bento Box FAQ)
+   ======================================================= */
+.faq-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+    .faq-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .faq-full-width {
+        grid-column: span 2;
+    }
+}
+
+.faq-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 2rem;
+    padding: 2rem 2.5rem;
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.faq-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+}
+
+/* =======================================================
+   8. ESTILOS ESPECÍFICOS DE CONTACTO (Bento Box Iconos)
+   ======================================================= */
+.contact-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas por defecto (móvil) */
+}
+@media (min-width: 768px) {
+    .contact-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en escritorio y tablets */
+    }
+}
+
+.contact-card {
+    aspect-ratio: 1 / 1;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.contact-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    transform: translateY(-8px);
+}
+
+/* =======================================================
+   9. LAYOUT DE CATÁLOGO (Filtros + Cuadrícula)
+   ======================================================= */
+.catalog-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+.catalog-sidebar {
+    width: 100%;
+}
+@media (min-width: 768px) {
+    .catalog-layout {
+        flex-direction: row;
+    }
+    .catalog-sidebar {
+        width: 16rem;
+        flex-shrink: 0;
+    }
+}
+
+/* =======================================================
+   10. UTILIDADES DEL CARRUSEL
+   ======================================================= */
+/* Ocultar barra de scroll pero mantener funcionalidad (Apple Style) */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar { 
+    display: none; /* Chrome, Safari and Opera */
+}
+
+/* Suavidad al mover el carrusel manualmente */
+.scroll-smooth {
+    scroll-behavior: smooth;
+}
+
+/* =======================================================
+   11. MODAL DE COMPRA PREMIUM (OPCIONES)
+   ======================================================= */
+.modal-option {
+    border: 1.5px solid #d1d1d6;
+    border-radius: 24px; /* Curvas amplias y suaves */
+    padding: 24px;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-option:hover {
+    border-color: #c7c7cc;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Estado visual cuando la opción está seleccionada */
+.modal-option.active {
+    border: 1.5px solid #3E2723; /* Tu color pool-cafe */
+    background-color: #ffffff;
+    /* Doble sombra: una sutil y un anillo exterior café transparente */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 0 0 4px rgba(62, 39, 35, 0.12); 
+}
+
+/* Círculos de color para el apartado de acabados */
+.color-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 16px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
