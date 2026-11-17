@@ -29,6 +29,19 @@
 </head>
 <body class="text-pool-dark">
 
+    <!-- MOTOR ÓPTICO LIQUID GLASS (Refracción de lente estilo Apple) -->
+<svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+    <defs>
+        <filter id="liquid-glass-refraction" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+            <!-- Genera la curvatura orgánica de lente -->
+            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.04" numOctaves="1" seed="3" result="lente" />
+            <!-- Suaviza el mapa para que refracte como cristal pulido -->
+            <feGaussianBlur in="lente" stdDeviation="2" result="lenteSuave" />
+            <!-- Deforma y curva el contenido que pasa por detrás de la barra -->
+            <feDisplacementMap in="SourceGraphic" in2="lenteSuave" scale="18" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </defs>
+</svg>
     <!-- Capa oscura sutil de fondo para el formulario -->
     <div class="overlay"></div>
 
