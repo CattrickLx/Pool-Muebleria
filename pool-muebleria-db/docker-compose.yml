@@ -1,0 +1,31 @@
+# Base de datos de Pool Mueblería para desarrollo.
+#   Levantar:            docker compose up -d
+#   Ver que arrancó:     docker compose logs -f db
+#   Borrar y recrear:    docker compose down -v && docker compose up -d
+services:
+  db:
+    image: postgres:16
+    container_name: pool_muebleria_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+      TZ: America/Mexico_City
+    ports:
+      - "127.0.0.1:${DB_PORT:-5432}:5432"   # solo accesible desde tu propia máquina
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Los archivos de db/ se ejecutan en orden alfabético SOLO la primera vez
+      # (cuando el volumen pgdata está vacío).
+      # La "Z" es para SELinux (Fedora). En Windows o macOS, si da error, quítala.
+      - ./db:/docker-entrypoint-initdb.d:ro,Z
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:

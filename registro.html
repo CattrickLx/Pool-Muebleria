@@ -158,11 +158,9 @@
 
         <!-- PESTAÑAS -->
         <input type="radio" id="tab-cliente" name="tabs" class="tab-input" checked>
-        <input type="radio" id="tab-admin" name="tabs" class="tab-input">
 
         <div class="tab-labels">
             <label for="tab-cliente">Registro Cliente</label>
-            <label for="tab-admin">Administración</label>
         </div>
 
         <!-- FORMULARIO 1: REGISTRO DE CLIENTES -->
@@ -222,27 +220,6 @@
             </div>
 
             <button type="submit" class="btn-primary">Crear cuenta</button>
-        </form>
-
-        <!-- FORMULARIO 2: EXTRACCIÓN DE RESPALDO (ADMIN) -->
-        <form action="extraer_respaldo.php" method="POST" enctype="multipart/form-data" class="form-content form-admin">
-            <div class="admin-info-box">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                <h3>Extracción de Base de Datos</h3>
-                <p>Sube el archivo .sql de respaldo para extraer y poblar la información en el panel.</p>
-            </div>
-            
-            <div class="input-group">
-                <label for="respaldo_db">Seleccionar archivo SQL</label>
-                <input type="file" id="respaldo_db" name="respaldo_db" accept=".sql" required class="file-input">
-            </div>
-
-            <div class="input-group">
-                <label for="clave_admin">Clave de Autorización (Admin)</label>
-                <input type="password" id="clave_admin" name="clave_admin" required placeholder="Clave de seguridad">
-            </div>
-
-            <button type="submit" class="btn-secondary">Procesar e Importar Datos</button>
         </form>
     </main>
 
