@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contáctanos | Pool Mueblería</title>
     
-    <!-- CONEXIÓN AL ARCHIVO CSS EXTERNO (Rúbrica) -->
+    <!-- CONEXIÓN AL ARCHIVO CSS EXTERNO -->
     <link rel="stylesheet" href="estilos.css">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,29 +18,28 @@
                     colors: {
                         'pool-dark': '#1C1C1E',
                         'pool-cafe': '#3E2723',
-                        'pool-bg': '#F5F5F7'
+                        'pool-bg': '#F5F5F7',
+                        'pool-card': '#FFFFFF'
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="text-pool-dark">
+<body class="bg-pool-bg text-pool-dark font-sans antialiased overflow-x-hidden relative min-h-screen flex flex-col">
 
     <!-- MOTOR ÓPTICO LIQUID GLASS (Refracción de lente estilo Apple) -->
-<svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
-    <defs>
-        <filter id="liquid-glass-refraction" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-            <!-- Genera la curvatura orgánica de lente -->
-            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.04" numOctaves="1" seed="3" result="lente" />
-            <!-- Suaviza el mapa para que refracte como cristal pulido -->
-            <feGaussianBlur in="lente" stdDeviation="2" result="lenteSuave" />
-            <!-- Deforma y curva el contenido que pasa por detrás de la barra -->
-            <feDisplacementMap in="SourceGraphic" in2="lenteSuave" scale="18" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-    </defs>
-</svg>
-    <!-- BARRA DE NAVEGACIÓN GLOBAL ESTILO APPLE -->
+    <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+        <defs>
+            <filter id="liquid-glass-refraction" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012 0.04" numOctaves="1" seed="3" result="lente" />
+                <feGaussianBlur in="lente" stdDeviation="2" result="lenteSuave" />
+                <feDisplacementMap in="SourceGraphic" in2="lenteSuave" scale="18" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- BARRA DE NAVEGACIÓN GLOBAL ESTILO APPLE (LIQUID GLASS) -->
     <div class="nav-container">
         <header class="nav-glass">
             <div class="flex items-center space-x-6 md:space-x-8">
@@ -55,7 +54,7 @@
                 <!-- Enlaces Principales -->
                 <nav class="nav-links">
                     <a href="producto.html" class="hover:text-gray-700 transition-colors">Productos</a>
-                    <a href="contacto.html" class="hover:text-gray-700 transition-colors">Contáctanos</a>
+                    <a href="contacto.html" class="text-black font-semibold transition-colors">Contáctanos</a>
                     <a href="ayuda.html" class="hover:text-gray-700 transition-colors">Ayuda</a>
                 </nav>
 
@@ -66,7 +65,7 @@
                     
                     <!-- Buscador (Lupa) -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleMenu('search-dropdown')" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                        <button onclick="toggleMenu('search-dropdown')" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
                         </button>
                         <div id="search-dropdown" class="hidden absolute right-[-120px] md:right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top z-50">
@@ -88,26 +87,51 @@
                         </div>
                     </div>
 
-                    <!-- Carrito (Bolsa) -->
+                    <!-- Carrito (Bolsa Dinámica) -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleMenu('cart-dropdown')" title="Carrito" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                        <button onclick="toggleMenu('cart-dropdown')" title="Carrito" class="relative text-gray-700 hover:text-black transition-colors focus:outline-none cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></path></svg>
+                            <span id="cart-badge" class="hidden absolute -top-2 -right-2 bg-pool-cafe text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
                         </button>
-                        <div id="cart-dropdown" class="hidden absolute right-[-60px] top-full mt-6 w-80 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-8 text-center transition-all origin-top z-50">
-                            <div class="absolute -top-2 right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
-                            <div class="relative z-10 flex flex-col items-center justify-center">
-                                <h3 class="text-lg font-semibold mb-6 tracking-tight text-pool-dark">Tu carrito</h3>
-                                <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"></path></svg>
-                                <p class="text-sm text-gray-500 font-light mb-6">Aún no tienes artículos en tu carrito.</p>
-                                
-                                <a href="producto.html" class="bg-transparent text-pool-cafe border border-pool-cafe px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-50 transition w-full text-center">Ir a comprar</a>
+                        <div id="cart-dropdown" class="hidden absolute right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/85 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 transition-all origin-top z-50 text-pool-dark">
+                            <div class="absolute -top-2 right-[64px] w-4 h-4 bg-white/85 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-300/50">
+                                    <h3 class="text-base font-semibold tracking-tight text-pool-dark">Tu carrito</h3>
+                                    <span id="cart-count-label" class="text-xs text-gray-500 font-medium">0 artículos</span>
+                                </div>
+
+                                <!-- Estado vacío -->
+                                <div id="cart-empty-state" class="flex flex-col items-center justify-center py-4 text-center">
+                                    <svg class="w-14 h-14 text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"></path></svg>
+                                    <p class="text-sm text-gray-500 font-light mb-5">Aún no tienes artículos en tu carrito.</p>
+                                    <a href="producto.html" class="bg-transparent text-pool-cafe border border-pool-cafe px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-50 transition w-full text-center">Ir a comprar</a>
+                                </div>
+
+                                <!-- Lista de productos personalizados -->
+                                <ul id="cart-items-list" class="hidden space-y-3 max-h-64 overflow-y-auto pr-1 mb-4"></ul>
+
+                                <!-- Resumen y Total 80/20 -->
+                                <div id="cart-summary" class="hidden border-t border-gray-300/50 pt-4 space-y-2">
+                                    <div class="flex justify-between text-sm font-semibold text-pool-dark">
+                                        <span>Total estimado</span>
+                                        <span id="cart-total-price">$0 MXN</span>
+                                    </div>
+                                    <div class="flex justify-between text-xs text-gray-500">
+                                        <span>Anticipo hoy (80%)</span>
+                                        <span id="cart-advance-price">$0 MXN</span>
+                                    </div>
+                                    <button onclick="checkoutCart()" class="w-full mt-3 bg-pool-cafe text-white text-xs font-semibold py-3 rounded-full hover:opacity-90 transition shadow-md cursor-pointer">
+                                        Finalizar pedido
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Perfil / Sesión -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleMenu('profile-dropdown')" title="Cuenta" class="text-sm font-medium text-gray-700 hover:text-black transition-colors focus:outline-none flex items-center gap-2">
+                        <button onclick="toggleMenu('profile-dropdown')" title="Cuenta" class="text-sm font-medium text-gray-700 hover:text-black transition-colors focus:outline-none flex items-center gap-2 cursor-pointer">
                             <span id="session-text">Iniciar / Crear sesión</span>
                             <div id="session-icon" class="hidden w-7 h-7 rounded-full bg-gray-200 border border-gray-300 flex items-center justify-center overflow-hidden">
                                 <svg class="w-4 h-4 text-gray-500 mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
@@ -123,7 +147,7 @@
                                         <input type="text" id="nav-username" placeholder="Correo (1234 o admin)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-pool-cafe transition-all" required>
                                         <input type="password" id="nav-password" placeholder="Contraseña (1234 o admin)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-pool-cafe transition-all" required>
                                         <p id="nav-login-error" class="text-xs text-red-500 hidden mt-1">Usuario o contraseña incorrectos</p>
-                                        <button type="submit" class="btn-primary mt-2 shadow-md w-full" style="border-radius: 9999px; padding: 10px; font-size: 0.875rem;">Ingresar</button>
+                                        <button type="submit" class="btn-primary mt-2 shadow-md w-full cursor-pointer" style="border-radius: 9999px; padding: 10px; font-size: 0.875rem;">Ingresar</button>
                                     </form>
                                     <div class="flex items-center my-5">
                                         <div class="flex-grow border-t border-gray-400/20"></div>
@@ -142,13 +166,13 @@
                                         <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 3h-11a2 2 0 00-2 2v16l7.5-3.5L19 21V5a2 2 0 00-2-2z"></path></svg> Tus selecciones</a></li>
                                     </ul>
                                     <ul id="admin-menu-list" class="hidden space-y-1 text-sm font-light">
-                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg> Gestión de inventario</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"></path></svg> Cola de producción</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Control de anticipos</a></li>
+                                        <li><a href="admin.html" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg> Gestión de inventario</a></li>
+                                        <li><a href="admin.html" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"></path></svg> Cola de producción</a></li>
+                                        <li><a href="admin.html" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Control de anticipos</a></li>
                                     </ul>
                                     <div class="border-t border-gray-400/20 my-2"></div>
                                     <ul>
-                                        <li><button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors text-red-600"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path></svg> Cerrar sesión</button></li>
+                                        <li><button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors text-red-600 cursor-pointer"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path></svg> Cerrar sesión</button></li>
                                     </ul>
                                 </div>
                             </div>
@@ -159,166 +183,96 @@
         </header>
     </div>
 
-    <!-- TÍTULO PRINCIPAL -->
-    <section class="pt-32 pb-12 px-6 max-w-5xl mx-auto text-center relative z-10">
-        <h1 class="text-4xl md:text-5xl font-bold text-pool-dark tracking-tight mb-4">Estamos conectados.</h1>
-        <p class="text-gray-500 text-lg max-w-2xl mx-auto">Selecciona tu canal favorito. Nuestro equipo está listo para ayudarte con tus proyectos a medida.</p>
-    </section>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow">
+        <!-- TÍTULO PRINCIPAL -->
+        <section class="pt-32 pb-12 px-6 max-w-5xl mx-auto text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-pool-dark tracking-tight mb-4">Estamos conectados.</h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto">Selecciona tu canal favorito. Nuestro equipo está listo para ayudarte con tus proyectos a medida.</p>
+        </section>
 
-    <!-- CUADRÍCULA DE CONTACTO BENTO BOX (Usando estilos.css) -->
-    <section class="max-w-5xl mx-auto px-6 pb-24 relative z-10">
-        <div class="contact-grid">
+        <!-- CUADRÍCULA DE CONTACTO BENTO BOX (Usando estilos.css) -->
+        <section class="max-w-5xl mx-auto px-6 pb-24 relative z-10">
+            <div class="contact-grid">
 
-            <a href="#" class="contact-card group">
-                <div class="w-16 h-16 rounded-full bg-[#25D366]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <svg class="w-8 h-8 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                    </svg>
-                </div>
-                <h3 class="font-semibold text-pool-dark text-lg mb-1">WhatsApp</h3>
-                <p class="text-sm text-gray-500">Asistencia inmediata</p>
-            </a>
+                <a href="https://wa.me/524421234567" target="_blank" class="contact-card group">
+                    <div class="w-16 h-16 rounded-full bg-[#25D366]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-pool-dark text-lg mb-1">WhatsApp</h3>
+                    <p class="text-sm text-gray-500">Asistencia inmediata</p>
+                </a>
 
-            <a href="#" class="contact-card group">
-                <div class="w-16 h-16 rounded-full bg-[#E1306C]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <svg class="w-8 h-8 text-[#E1306C]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </div>
-                <h3 class="font-semibold text-pool-dark text-lg mb-1">Instagram</h3>
-                <p class="text-sm text-gray-500">Inspiración visual</p>
-            </a>
+                <a href="#" class="contact-card group">
+                    <div class="w-16 h-16 rounded-full bg-[#E1306C]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-[#E1306C]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-pool-dark text-lg mb-1">Instagram</h3>
+                    <p class="text-sm text-gray-500">Inspiración visual</p>
+                </a>
 
-            <a href="#" class="contact-card group">
-                <div class="w-16 h-16 rounded-full bg-black/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <svg class="w-7 h-7 text-black" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 4.15H5.078z"/>
-                    </svg>
-                </div>
-                <h3 class="font-semibold text-pool-dark text-lg mb-1">X</h3>
-                <p class="text-sm text-gray-500">Actualizaciones</p>
-            </a>
+                <a href="#" class="contact-card group">
+                    <div class="w-16 h-16 rounded-full bg-black/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-black" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 4.15H5.078z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-pool-dark text-lg mb-1">X</h3>
+                    <p class="text-sm text-gray-500">Actualizaciones</p>
+                </a>
 
-            <a href="#" class="contact-card group">
-                <div class="w-16 h-16 rounded-full bg-[#1877F2]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <svg class="w-8 h-8 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </div>
-                <h3 class="font-semibold text-pool-dark text-lg mb-1">Facebook</h3>
-                <p class="text-sm text-gray-500">Comunidad</p>
-            </a>
+                <a href="#" class="contact-card group">
+                    <div class="w-16 h-16 rounded-full bg-[#1877F2]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-pool-dark text-lg mb-1">Facebook</h3>
+                    <p class="text-sm text-gray-500">Comunidad</p>
+                </a>
 
-            <a href="#" class="contact-card group">
-                <div class="w-16 h-16 rounded-full bg-pool-cafe/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <svg class="w-8 h-8 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                </div>
-                <h3 class="font-semibold text-pool-dark text-lg mb-1">Correo</h3>
-                <p class="text-sm text-gray-500">hola@poolmuebleria.com</p>
-            </a>
+                <a href="mailto:hola@poolmuebleria.com" class="contact-card group">
+                    <div class="w-16 h-16 rounded-full bg-pool-cafe/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-pool-dark text-lg mb-1">Correo</h3>
+                    <p class="text-sm text-gray-500">hola@poolmuebleria.com</p>
+                </a>
 
-            <a href="#" class="contact-card group">
-                <div class="w-16 h-16 rounded-full bg-pool-dark/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <svg class="w-8 h-8 text-pool-dark" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                </div>
-                <h3 class="font-semibold text-pool-dark text-lg mb-1">Teléfono</h3>
-                <p class="text-sm text-gray-500">442 123 4567</p>
-            </a>
+                <a href="tel:+524421234567" class="contact-card group">
+                    <div class="w-16 h-16 rounded-full bg-pool-dark/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-pool-dark" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-pool-dark text-lg mb-1">Teléfono</h3>
+                    <p class="text-sm text-gray-500">442 123 4567</p>
+                </a>
 
-        </div>
-    </section>
+            </div>
+        </section>
+    </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500 relative z-10">
+    <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500 relative z-10 mt-auto">
         <div class="flex justify-center space-x-6 mb-4">
             <a href="#" class="hover:text-black transition">Acerca de Pool Mueblería</a>
-            <a href="#" class="hover:text-black transition">Soporte</a>
-            <a href="#" class="hover:text-black transition">Cotizaciones</a>
+            <a href="ayuda.html" class="hover:text-black transition">Soporte</a>
+            <a href="contacto.html" class="hover:text-black transition">Cotizaciones</a>
         </div>
         <p>© 2026 Pool Mueblería. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPTS LÓGICA -->
-    <script>
-        // -- Menús Desplegables --
-        function toggleMenu(menuId) {
-            const menus = ['search-dropdown', 'cart-dropdown', 'profile-dropdown'];
-            menus.forEach(id => {
-                const element = document.getElementById(id);
-                if (id === menuId) {
-                    element.classList.toggle('hidden');
-                } else {
-                    element.classList.add('hidden');
-                }
-            });
-        }
-
-        document.addEventListener('click', (event) => {
-            const header = document.querySelector('header');
-            if (!header.contains(event.target)) {
-                document.getElementById('search-dropdown').classList.add('hidden');
-                document.getElementById('cart-dropdown').classList.add('hidden');
-                document.getElementById('profile-dropdown').classList.add('hidden');
-            }
-        });
-
-        // -- Lógica de Sesión Inteligente (Usuario / Admin) --
-        function handleNavLogin(e) {
-            e.preventDefault();
-            const user = document.getElementById('nav-username').value;
-            const pass = document.getElementById('nav-password').value;
-
-            const loginForm = document.getElementById('login-form-nav');
-            const loggedInMenu = document.getElementById('logged-in-menu');
-            const sessionText = document.getElementById('session-text');
-            const sessionIcon = document.getElementById('session-icon');
-            const userGreeting = document.getElementById('user-greeting');
-            const userMenuList = document.getElementById('user-menu-list');
-            const adminMenuList = document.getElementById('admin-menu-list');
-            const errorMsg = document.getElementById('nav-login-error');
-
-            errorMsg.classList.add('hidden');
-
-            if (user === '1234' && pass === '1234') {
-                loginForm.classList.add('hidden');
-                loggedInMenu.classList.remove('hidden');
-                sessionText.classList.add('hidden');
-                sessionIcon.classList.remove('hidden');
-                
-                userGreeting.innerText = 'Hola, Usuario';
-                userMenuList.classList.remove('hidden');
-                adminMenuList.classList.add('hidden');
-            } else if (user === 'admin' && pass === 'admin') {
-                loginForm.classList.add('hidden');
-                loggedInMenu.classList.remove('hidden');
-                sessionText.classList.add('hidden');
-                sessionIcon.classList.remove('hidden');
-                
-                userGreeting.innerText = 'Panel de Control';
-                adminMenuList.classList.remove('hidden');
-                userMenuList.classList.add('hidden');
-            } else {
-                errorMsg.classList.remove('hidden');
-            }
-        }
-
-        function handleLogout() {
-            document.getElementById('login-form-nav').classList.remove('hidden');
-            document.getElementById('logged-in-menu').classList.add('hidden');
-            document.getElementById('session-text').classList.remove('hidden');
-            document.getElementById('session-icon').classList.add('hidden');
-            
-            document.getElementById('nav-username').value = '';
-            document.getElementById('nav-password').value = '';
-            document.getElementById('nav-login-error').classList.add('hidden');
-        }
-    </script>
+    <!-- CEREBRO CENTRAL Y BASE DE DATOS PROVISIONAL -->
+    <script src="app.js"></script>
 </body>
 </html>

@@ -8,6 +8,10 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     min-height: 100vh;
     background-color: #F5F5F7; /* Color base Apple */
@@ -96,9 +100,8 @@ body {
         backdrop-filter 0.35s ease;
 }
 
-/* Reacción .interactive() al pasar el puntero (iluminación especular y expansión fluida) */
+/* Iluminación especular al pasar el puntero (sin mover ni escalar la barra) */
 .nav-glass:hover {
-    transform: scale(1.02);
     background: linear-gradient(
         135deg,
         rgba(255, 255, 255, 0.22) 0%,
@@ -115,14 +118,32 @@ body {
         inset 0 0 22px rgba(255, 255, 255, 0.28);
 }
 
-/* Reacción .interactive() al hacer clic o tocar en pantalla táctil */
-.nav-glass:active {
-    transform: scale(0.985);
-    transition-duration: 0.15s;
-    box-shadow:
-        0 6px 16px -4px rgba(0, 0, 0, 0.12),
-        inset 0 1px 2px rgba(255, 255, 255, 0.9),
-        inset 0 0 26px rgba(255, 255, 255, 0.35);
+/* =======================================================
+   ANIMACIÓN DE EXPANSIÓN ESTILO APPLE PARA MENÚS DESPLEGABLES
+   ======================================================= */
+#search-dropdown,
+#cart-dropdown,
+#profile-dropdown,
+#mobile-menu {
+    opacity: 0;
+    transform: scale(0.84) translateY(-10px);
+    filter: blur(6px);
+    pointer-events: none;
+    transition:
+        transform 0.34s cubic-bezier(0.22, 1.2, 0.36, 1),
+        opacity 0.22s ease,
+        filter 0.22s ease;
+    will-change: transform, opacity;
+}
+
+#search-dropdown.is-open,
+#cart-dropdown.is-open,
+#profile-dropdown.is-open,
+#mobile-menu.is-open {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+    pointer-events: auto;
 }
 
 .nav-links {
@@ -165,14 +186,23 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
     transition: all 0.3s ease;
     text-decoration: none;
 }
 
+.contact-card {
+    min-height: 210px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
 .product-card:hover,
 .contact-card:hover {
-    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 24px -5px rgba(0, 0, 0, 0.09);
     transform: translateY(-4px);
 }
 
@@ -309,6 +339,12 @@ label {
     box-shadow: 0 0 0 3px rgba(62, 39, 35, 0.15);
 }
 
+.file-input {
+    cursor: pointer;
+    font-size: 13px !important;
+    padding: 10px 12px !important;
+}
+
 /* Selector de fecha estilo Apple */
 input[type="date"].apple-date {
     appearance: none;
@@ -317,12 +353,12 @@ input[type="date"].apple-date {
 }
 
 /* Validaciones Semánticas (Verde / Rojo) */
-.liquid-glass-panel input:not([type="checkbox"]):not([type="radio"]):valid:not(:placeholder-shown) {
+.liquid-glass-panel input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):valid:not(:placeholder-shown) {
     border-color: #34c759;
     background: rgba(52, 199, 89, 0.05);
 }
 
-.liquid-glass-panel input:not([type="checkbox"]):not([type="radio"]):invalid:not(:placeholder-shown) {
+.liquid-glass-panel input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):invalid:not(:placeholder-shown) {
     border-color: #ff3b30;
     background-color: rgba(255, 59, 48, 0.05);
 }
@@ -338,6 +374,7 @@ input[type="date"].apple-date {
     animation: fadeIn 0.3s ease;
 }
 
+input#reg-confirm-password:not(:placeholder-shown):invalid ~ .error-text,
 input#confirm_password:not(:placeholder-shown):invalid ~ .error-text,
 input#fecha_nacimiento:not(:placeholder-shown):invalid ~ .error-text.age-error {
     display: block;
@@ -399,9 +436,30 @@ button[type="submit"] {
     border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-.admin-info-box svg { color: #3E2723; margin-bottom: 8px; }
+.admin-info-box svg { color: #3E2723; margin: 0 auto 8px auto; }
 .admin-info-box h3 { font-size: 15px; color: #1d1d1f; margin-bottom: 4px; }
 .admin-info-box p { font-size: 11px; color: #333; font-weight: 500; }
+
+.form-cliente {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.terms-link {
+    color: #3E2723;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+}
+
+.terms-link:hover {
+    opacity: 0.75;
+}
+
+.faq-card:target {
+    border-color: #3E2723;
+    box-shadow: 0 0 0 4px rgba(62, 39, 35, 0.14), 0 12px 24px -5px rgba(0, 0, 0, 0.1);
+}
 
 /* =======================================================
    5. DISEÑO ADAPTATIVO / MEDIA QUERIES (25 pts de rúbrica)
@@ -434,6 +492,11 @@ button[type="submit"] {
         flex-direction: column;
         gap: 0;
     }
+
+    .modal-option {
+        padding: 16px 18px;
+        border-radius: 18px;
+    }
 }
 
 /* B. TABLETA (Pantallas medianas: 768px a 1023px) */
@@ -462,4 +525,316 @@ button[type="submit"] {
     .contact-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+/* =======================================================
+   6. ESTILOS DE AYUDA (Bento Box FAQ)
+   ======================================================= */
+.faq-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .faq-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .faq-full-width {
+        grid-column: span 2;
+    }
+}
+
+.faq-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 2rem;
+    padding: 2rem 2.5rem;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.faq-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+/* Tarjeta inferior de contacto y botón de WhatsApp */
+.faq-contact-card {
+    background: rgba(62, 39, 35, 0.05);
+    border: 1px solid rgba(62, 39, 35, 0.1);
+    border-radius: 2rem;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    transition: all 0.4s ease;
+}
+
+@media (min-width: 768px) {
+    .faq-contact-card {
+        flex-direction: row;
+    }
+}
+
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background-color: #25D366;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    width: auto; /* Evita que se estire de lado a lado */
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background-color: #20b858;
+    transform: translateY(-3px);
+}
+
+/* =======================================================
+   7. EFECTO EMERGENTE EN TARJETAS DE PRODUCTO (Carrusel y Catálogo)
+   ======================================================= */
+.product-card-pop {
+    position: relative;
+    z-index: 1;
+    overflow: visible !important; /* Evita que la tarjeta recorte la imagen al salir */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
+}
+
+.product-card-pop:hover {
+    z-index: 30; /* Coloca la tarjeta activa por encima de las vecinas */
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.product-img-box {
+    position: relative;
+    width: 100%;
+    height: 12rem;
+    margin-bottom: 1.25rem;
+    z-index: 20;
+}
+
+/* Marco gris que queda visible para mostrar de dónde salió la imagen */
+.product-img-slot {
+    position: absolute;
+    inset: 0;
+    background-color: #E8E8ED;
+    border-radius: 1rem;
+    border: 1px solid #f3f4f6;
+    z-index: 0;
+}
+
+/* Contenedor de la imagen que sobresale al poner el cursor encima */
+.product-img-float {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+
+.product-img-float:hover {
+    transform: scale(1.25) translateY(-1.5rem);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+.product-img-float img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =======================================================
+   8. MODAL DE COMPRA PREMIUM (OPCIONES DE PERSONALIZACIÓN)
+   ======================================================= */
+.modal-option {
+    border: 1.5px solid #d1d1d6;
+    border-radius: 24px;
+    padding: 20px 24px;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.modal-option:hover {
+    border-color: #a1a1aa;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.modal-option.active {
+    border: 1.5px solid #3E2723;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 0 0 4px rgba(62, 39, 35, 0.12);
+}
+
+.color-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.12);
+    flex-shrink: 0;
+}
+
+/* =======================================================
+   9. BURBUJA DE ELIMINAR ESTILO APPLE (MODO INVENTARIO)
+   ======================================================= */
+.admin-delete-badge {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    z-index: 40;
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    background: rgba(142, 142, 147, 0.85); /* Gris translúcido estilo iOS */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.75);
+    color: #1d1d1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-delete-badge:hover {
+    background: #ff3b30; /* Rojo de advertencia Apple */
+    color: #ffffff;
+    transform: scale(1.12);
+}
+
+.admin-delete-badge:active {
+    transform: scale(0.94);
+}
+
+/* =======================================================
+   10. TARJETA VACÍA CON BURBUJA "+" (AGREGAR PRODUCTO)
+   ======================================================= */
+.admin-add-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 365px;
+    background: #ffffff;
+    border-radius: 2rem;
+    padding: 1.25rem;
+    border: 1.5px dashed rgba(142, 142, 147, 0.35);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out, background-color 0.3s ease-out;
+}
+
+.admin-add-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(62, 39, 35, 0.45);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+}
+
+.admin-add-bubble {
+    width: 56px;
+    height: 56px;
+    border-radius: 9999px;
+    background: rgba(142, 142, 147, 0.85); /* Mismo gris translúcido estilo iOS */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.75);
+    color: #1d1d1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-add-card:hover .admin-add-bubble {
+    background: #3E2723; /* Café Pool al pasar el cursor */
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+.admin-add-card:active .admin-add-bubble {
+    transform: scale(0.95);
+}
+
+/* =======================================================
+   11. BOTÓN DE EDITAR (LÁPIZ) Y TARJETA "+" EN CARRUSEL
+   ======================================================= */
+.admin-edit-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 40;
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    background: rgba(142, 142, 147, 0.85); /* Mismo gris translúcido estilo iOS */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.75);
+    color: #1d1d1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-edit-badge:hover {
+    background: #3E2723; /* Café Pool al pasar el cursor */
+    color: #ffffff;
+    transform: scale(1.12);
+}
+
+.admin-edit-badge:active {
+    transform: scale(0.94);
+}
+
+/* Ajuste cuando el lápiz va en una tarjeta del carrusel */
+.product-card-pop .admin-edit-badge {
+    top: -10px;
+    right: -10px;
+    width: 32px;
+    height: 32px;
+}
+
+/* Botón "-" deshabilitado cuando el carrusel llega al mínimo de 6 */
+.admin-delete-badge.is-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.admin-delete-badge.is-disabled:hover {
+    background: rgba(142, 142, 147, 0.85);
+    color: #1d1d1f;
+    transform: none;
+}
+
+/* Tarjeta vacía "+" dentro del carrusel */
+.admin-carousel-add-card {
+    flex: none;
+    width: 20rem; /* Igual a w-80 de las tarjetas del carrusel */
+    min-height: 365px;
 }

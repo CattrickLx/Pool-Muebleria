@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pool Mueblería - Diseño Minimalista</title>
 
-    <!-- CONEXIÓN AL ARCHIVO CSS EXTERNO (Rúbrica) -->
+    <!-- CONEXIÓN AL ARCHIVO CSS EXTERNO -->
     <link rel="stylesheet" href="estilos.css">
 
     <!-- Tailwind SOLO para utilería de colores -->
@@ -30,19 +30,17 @@
 <body class="text-pool-dark overflow-x-hidden relative">
 
     <!-- MOTOR ÓPTICO LIQUID GLASS (Refracción de lente estilo Apple) -->
-<svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
-    <defs>
-        <filter id="liquid-glass-refraction" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-            <!-- Genera la curvatura orgánica de lente -->
-            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.04" numOctaves="1" seed="3" result="lente" />
-            <!-- Suaviza el mapa para que refracte como cristal pulido -->
-            <feGaussianBlur in="lente" stdDeviation="2" result="lenteSuave" />
-            <!-- Deforma y curva el contenido que pasa por detrás de la barra -->
-            <feDisplacementMap in="SourceGraphic" in2="lenteSuave" scale="18" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-    </defs>
-</svg>
-    <!-- BARRA DE NAVEGACIÓN GLOBAL ESTILO APPLE -->
+    <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+        <defs>
+            <filter id="liquid-glass-refraction" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012 0.04" numOctaves="1" seed="3" result="lente" />
+                <feGaussianBlur in="lente" stdDeviation="2" result="lenteSuave" />
+                <feDisplacementMap in="SourceGraphic" in2="lenteSuave" scale="18" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- BARRA DE NAVEGACIÓN GLOBAL ESTILO APPLE (LIQUID GLASS) -->
     <div class="nav-container">
         <header class="nav-glass">
             <div class="flex items-center space-x-6 md:space-x-8">
@@ -68,7 +66,7 @@
                     
                     <!-- Buscador (Lupa) -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleMenu('search-dropdown')" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                        <button onclick="toggleMenu('search-dropdown')" title="Buscar" class="text-gray-700 hover:text-black transition-colors focus:outline-none cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
                         </button>
                         <div id="search-dropdown" class="hidden absolute right-[-120px] md:right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 text-pool-dark transition-all origin-top z-50">
@@ -90,26 +88,51 @@
                         </div>
                     </div>
 
-                    <!-- Carrito (Bolsa) -->
+                    <!-- Carrito (Bolsa Dinámica) -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleMenu('cart-dropdown')" title="Carrito" class="text-gray-700 hover:text-black transition-colors focus:outline-none">
+                        <button onclick="toggleMenu('cart-dropdown')" title="Carrito" class="relative text-gray-700 hover:text-black transition-colors focus:outline-none cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></path></svg>
+                            <span id="cart-badge" class="hidden absolute -top-2 -right-2 bg-pool-cafe text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
                         </button>
-                        <div id="cart-dropdown" class="hidden absolute right-[-60px] top-full mt-6 w-80 bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-8 text-center transition-all origin-top z-50">
-                            <div class="absolute -top-2 right-[64px] w-4 h-4 bg-white/80 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
-                            <div class="relative z-10 flex flex-col items-center justify-center">
-                                <h3 class="text-lg font-semibold mb-6 tracking-tight text-pool-dark">Tu carrito</h3>
-                                <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"></path></svg>
-                                <p class="text-sm text-gray-500 font-light mb-6">Aún no tienes artículos en tu carrito.</p>
-                                
-                                <a href="producto.html" class="bg-transparent text-pool-cafe border border-pool-cafe px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-50 transition w-full text-center">Ir a comprar</a>
+                        <div id="cart-dropdown" class="hidden absolute right-[-60px] top-full mt-6 w-80 md:w-96 bg-white/85 backdrop-blur-2xl border border-white/50 rounded-[2rem] shadow-2xl p-6 transition-all origin-top z-50 text-pool-dark">
+                            <div class="absolute -top-2 right-[64px] w-4 h-4 bg-white/85 backdrop-blur-2xl border-t border-l border-white/50 transform rotate-45"></div>
+                            <div class="relative z-10">
+                                <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-300/50">
+                                    <h3 class="text-base font-semibold tracking-tight text-pool-dark">Tu carrito</h3>
+                                    <span id="cart-count-label" class="text-xs text-gray-500 font-medium">0 artículos</span>
+                                </div>
+
+                                <!-- Estado vacío -->
+                                <div id="cart-empty-state" class="flex flex-col items-center justify-center py-4 text-center">
+                                    <svg class="w-14 h-14 text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"></path></svg>
+                                    <p class="text-sm text-gray-500 font-light mb-5">Aún no tienes artículos en tu carrito.</p>
+                                    <a href="producto.html" class="bg-transparent text-pool-cafe border border-pool-cafe px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-50 transition w-full text-center">Ir a comprar</a>
+                                </div>
+
+                                <!-- Lista de productos personalizados -->
+                                <ul id="cart-items-list" class="hidden space-y-3 max-h-64 overflow-y-auto pr-1 mb-4"></ul>
+
+                                <!-- Resumen y Total 80/20 -->
+                                <div id="cart-summary" class="hidden border-t border-gray-300/50 pt-4 space-y-2">
+                                    <div class="flex justify-between text-sm font-semibold text-pool-dark">
+                                        <span>Total estimado</span>
+                                        <span id="cart-total-price">$0 MXN</span>
+                                    </div>
+                                    <div class="flex justify-between text-xs text-gray-500">
+                                        <span>Anticipo hoy (80%)</span>
+                                        <span id="cart-advance-price">$0 MXN</span>
+                                    </div>
+                                    <button onclick="checkoutCart()" class="w-full mt-3 bg-pool-cafe text-white text-xs font-semibold py-3 rounded-full hover:opacity-90 transition shadow-md cursor-pointer">
+                                        Finalizar pedido
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Perfil / Sesión -->
                     <div class="relative flex items-center">
-                        <button onclick="toggleMenu('profile-dropdown')" title="Cuenta" class="text-sm font-medium text-gray-700 hover:text-black transition-colors focus:outline-none flex items-center gap-2">
+                        <button onclick="toggleMenu('profile-dropdown')" title="Cuenta" class="text-sm font-medium text-gray-700 hover:text-black transition-colors focus:outline-none flex items-center gap-2 cursor-pointer">
                             <span id="session-text">Iniciar / Crear sesión</span>
                             <div id="session-icon" class="hidden w-7 h-7 rounded-full bg-gray-200 border border-gray-300 flex items-center justify-center overflow-hidden">
                                 <svg class="w-4 h-4 text-gray-500 mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
@@ -125,7 +148,7 @@
                                         <input type="text" id="nav-username" placeholder="Correo (1234 o admin)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-pool-cafe transition-all" required>
                                         <input type="password" id="nav-password" placeholder="Contraseña (1234 o admin)" class="w-full bg-white/60 border border-gray-300 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-pool-cafe transition-all" required>
                                         <p id="nav-login-error" class="text-xs text-red-500 hidden mt-1">Usuario o contraseña incorrectos</p>
-                                        <button type="submit" class="btn-primary mt-2 shadow-md w-full" style="border-radius: 9999px; padding: 10px; font-size: 0.875rem;">Ingresar</button>
+                                        <button type="submit" class="btn-primary mt-2 shadow-md w-full cursor-pointer" style="border-radius: 9999px; padding: 10px; font-size: 0.875rem;">Ingresar</button>
                                     </form>
                                     <div class="flex items-center my-5">
                                         <div class="flex-grow border-t border-gray-400/20"></div>
@@ -144,13 +167,13 @@
                                         <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 3h-11a2 2 0 00-2 2v16l7.5-3.5L19 21V5a2 2 0 00-2-2z"></path></svg> Tus selecciones</a></li>
                                     </ul>
                                     <ul id="admin-menu-list" class="hidden space-y-1 text-sm font-light">
-                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg> Gestión de inventario</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"></path></svg> Cola de producción</a></li>
-                                        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Control de anticipos</a></li>
+                                        <li><a href="admin.html" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg> Gestión de inventario</a></li>
+                                        <li><a href="admin.html" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"></path></svg> Cola de producción</a></li>
+                                        <li><a href="admin.html" class="flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors"><svg class="w-4 h-4 text-pool-cafe" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Control de anticipos</a></li>
                                     </ul>
                                     <div class="border-t border-gray-400/20 my-2"></div>
                                     <ul>
-                                        <li><button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors text-red-600"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path></svg> Cerrar sesión</button></li>
+                                        <li><button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/60 rounded-xl transition-colors text-red-600 cursor-pointer"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path></svg> Cerrar sesión</button></li>
                                     </ul>
                                 </div>
                             </div>
@@ -170,15 +193,14 @@
 
         <div class="hero-grid relative z-10">
             
-            <!-- TARJETA SOFÁ PREMIUM CORREGIDA -->
+            <!-- TARJETA SOFÁ PREMIUM -->
             <div class="relative bg-pool-cafe text-white h-[500px] md:h-[550px] rounded-[2rem] overflow-hidden flex flex-col items-center text-center pt-14 px-6 hover:shadow-lg transition duration-500 group cursor-pointer" onclick="openPurchaseModal('https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&q=80&w=800', 'Sofá Premium', '22,000')">
                 <h2 class="text-3xl md:text-4xl font-semibold mb-2 tracking-tight z-10">Sofá Premium</h2>
                 <p class="text-base text-gray-300 mb-6 font-light z-10">Elegancia profunda en cada detalle.</p>
                 <div class="flex space-x-3 z-10">
-                    <button class="bg-white text-pool-cafe px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition">Comprar</button>
-                    <button class="border border-white text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition">Agregar al carrito</button>
+                    <button class="bg-white text-pool-cafe px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition cursor-pointer">Comprar</button>
+                    <button class="border border-white text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition cursor-pointer">Agregar al carrito</button>
                 </div>
-                <!-- Imagen sin degradado, ancho completo -->
                 <img src="https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&q=80&w=800" alt="Sofá Oscuro" class="absolute bottom-0 w-full object-cover h-[55%] transform transition duration-500 group-hover:scale-105 origin-bottom">
             </div>
 
@@ -207,8 +229,8 @@
                 <h2 class="text-3xl md:text-4xl font-semibold mb-2 tracking-tight z-10">Sillones Individuales</h2>
                 <p class="text-base text-gray-500 mb-6 font-light z-10">Tu nuevo rincón favorito.</p>
                 <div class="flex space-x-3 z-10">
-                    <button class="bg-pool-cafe text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition">Comprar</button>
-                    <button class="border border-pool-cafe text-pool-cafe px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-50 transition">Agregar al carrito</button>
+                    <button class="bg-pool-cafe text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition cursor-pointer">Comprar</button>
+                    <button class="border border-pool-cafe text-pool-cafe px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-50 transition cursor-pointer">Agregar al carrito</button>
                 </div>
                 <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=800" alt="Sillón Claro" class="absolute bottom-0 w-full object-cover h-[55%] transform transition duration-500 group-hover:scale-105 origin-bottom">
             </div>
@@ -216,85 +238,109 @@
         </div>
     </section>
 
-   <!-- CARRUSEL INFERIOR -->
+    <!-- CARRUSEL INFERIOR (CON EFECTO EMERGENTE EN IMÁGENES) -->
     <section class="max-w-[1400px] mx-auto px-4 md:px-6 pb-20 relative z-10">
-        <h2 class="text-2xl font-semibold tracking-tight mb-6 ml-2 text-pool-dark">Más para tu hogar</h2>
+        <h2 class="text-2xl font-semibold tracking-tight mb-2 ml-2 text-pool-dark">Más para tu hogar</h2>
         
-        <button id="btn-left" class="absolute left-2 top-[55%] transform -translate-y-1/2 z-20 bg-white/80 backdrop-blur-md p-3.5 rounded-full shadow-lg border border-gray-200 text-gray-700 hover:bg-white hover:text-black hover:scale-110 transition-all focus:outline-none hidden md:flex items-center justify-center cursor-pointer">
+        <button id="btn-left" class="absolute left-2 top-[58%] transform -translate-y-1/2 z-40 bg-white/80 backdrop-blur-md p-3.5 rounded-full shadow-lg border border-gray-200 text-gray-700 hover:bg-white hover:text-black hover:scale-110 transition-all focus:outline-none hidden md:flex items-center justify-center cursor-pointer">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
         </button>
 
-        <div id="carousel" class="flex overflow-x-auto space-x-4 md:space-x-6 pb-8 snap-x scroll-smooth no-scrollbar" style="scrollbar-width: none;">
+        <div id="carousel" class="flex overflow-x-auto space-x-4 md:space-x-6 pt-10 pb-12 px-2 snap-x scroll-smooth no-scrollbar" style="scrollbar-width: none;">
             
-            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center hover:shadow-md transition group overflow-hidden">
-                <div class="h-48 w-full rounded-2xl mb-5 border border-gray-50 overflow-hidden bg-[#E8E8ED]">
-                    <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=600" alt="Sillón Velvet" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 pointer-events-none mix-blend-multiply">
+            <div class="product-card-pop snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center">
+                <div class="product-img-box">
+                    <div class="product-img-slot"></div>
+                    <div class="product-img-float">
+                        <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=600" alt="Sillón Velvet">
+                    </div>
                 </div>
-                <h3 class="font-semibold text-base">Sillón Velvet</h3>
-                <p class="text-sm text-gray-500 mt-1">Terciopelo Esmeralda • 1 Plaza</p>
-                <p class="text-base font-medium mt-3 mb-5">MXN 5,200</p>
-                <div class="mt-auto flex space-x-3">
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=600', 'Sillón Velvet', '5,200')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition">Comprar</button>
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=600', 'Sillón Velvet', '5,200')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <!-- NUEVO PRODUCTO QUE SUSTITUYE A LA MESA ROTA -->
-            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center hover:shadow-md transition group overflow-hidden">
-                <div class="h-48 w-full rounded-2xl mb-5 border border-gray-50 overflow-hidden bg-[#E8E8ED]">
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600" alt="Sofá Modular Oslo" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 pointer-events-none mix-blend-multiply">
-                </div>
-                <h3 class="font-semibold text-base">Sofá Modular Oslo</h3>
-                <p class="text-sm text-gray-500 mt-1">Lino blanco • 3 Plazas</p>
-                <p class="text-base font-medium mt-3 mb-5">MXN 12,500</p>
-                <div class="mt-auto flex space-x-3">
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600', 'Sofá Modular Oslo', '12,500')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition">Comprar</button>
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600', 'Sofá Modular Oslo', '12,500')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition">Agregar al carrito</button>
+                <div class="relative z-0 flex flex-col flex-grow">
+                    <h3 class="font-semibold text-base">Sillón Velvet</h3>
+                    <p class="text-sm text-gray-500 mt-1">Terciopelo Esmeralda • 1 Plaza</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 5,200</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=600', 'Sillón Velvet', '5,200')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition cursor-pointer">Comprar</button>
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=600', 'Sillón Velvet', '5,200')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition cursor-pointer">Agregar al carrito</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center hover:shadow-md transition group overflow-hidden">
-                <div class="h-48 w-full rounded-2xl mb-5 border border-gray-50 overflow-hidden bg-[#E8E8ED]">
-                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600" alt="Sillón Nórdico" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 pointer-events-none mix-blend-multiply">
+            <div class="product-card-pop snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center">
+                <div class="product-img-box">
+                    <div class="product-img-slot"></div>
+                    <div class="product-img-float">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600" alt="Sofá Modular Oslo">
+                    </div>
                 </div>
-                <h3 class="font-semibold text-base">Sillón Nórdico</h3>
-                <p class="text-sm text-gray-500 mt-1">Terciopelo Café • 1 Plaza</p>
-                <p class="text-base font-medium mt-3 mb-5">MXN 4,200</p>
-                <div class="mt-auto flex space-x-3">
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600', 'Sillón Nórdico', '4,200')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition">Comprar</button>
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600', 'Sillón Nórdico', '4,200')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center hover:shadow-md transition group overflow-hidden">
-                <div class="h-48 w-full rounded-2xl mb-5 border border-gray-50 overflow-hidden bg-[#E8E8ED]">
-                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=600" alt="Sofá Seccional Gris" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 pointer-events-none mix-blend-multiply">
-                </div>
-                <h3 class="font-semibold text-base">Sofá Seccional Gris</h3>
-                <p class="text-sm text-gray-500 mt-1">Tela Antiderrames • L</p>
-                <p class="text-base font-medium mt-3 mb-5">MXN 15,800</p>
-                <div class="mt-auto flex space-x-3">
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=600', 'Sofá Seccional Gris', '15,800')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition">Comprar</button>
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=600', 'Sofá Seccional Gris', '15,800')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition">Agregar al carrito</button>
+                <div class="relative z-0 flex flex-col flex-grow">
+                    <h3 class="font-semibold text-base">Sofá Modular Oslo</h3>
+                    <p class="text-sm text-gray-500 mt-1">Lino blanco • 3 Plazas</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 12,500</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600', 'Sofá Modular Oslo', '12,500')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition cursor-pointer">Comprar</button>
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600', 'Sofá Modular Oslo', '12,500')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition cursor-pointer">Agregar al carrito</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center hover:shadow-md transition group overflow-hidden">
-                <div class="h-48 w-full rounded-2xl mb-5 border border-gray-50 overflow-hidden bg-[#E8E8ED]">
-                    <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=600" alt="Sofá Cama Piel" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 pointer-events-none mix-blend-multiply">
+            <div class="product-card-pop snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center">
+                <div class="product-img-box">
+                    <div class="product-img-slot"></div>
+                    <div class="product-img-float">
+                        <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600" alt="Sillón Nórdico">
+                    </div>
                 </div>
-                <h3 class="font-semibold text-base">Sofá Cama Piel</h3>
-                <p class="text-sm text-gray-500 mt-1">Piel Sintética • 2 Plazas</p>
-                <p class="text-base font-medium mt-3 mb-5">MXN 8,700</p>
-                <div class="mt-auto flex space-x-3">
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=600', 'Sofá Cama Piel', '8,700')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition">Comprar</button>
-                    <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=600', 'Sofá Cama Piel', '8,700')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition">Agregar al carrito</button>
+                <div class="relative z-0 flex flex-col flex-grow">
+                    <h3 class="font-semibold text-base">Sillón Nórdico</h3>
+                    <p class="text-sm text-gray-500 mt-1">Terciopelo Café • 1 Plaza</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 4,200</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600', 'Sillón Nórdico', '4,200')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition cursor-pointer">Comprar</button>
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600', 'Sillón Nórdico', '4,200')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition cursor-pointer">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card-pop snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center">
+                <div class="product-img-box">
+                    <div class="product-img-slot"></div>
+                    <div class="product-img-float">
+                        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=600" alt="Sofá Seccional Gris">
+                    </div>
+                </div>
+                <div class="relative z-0 flex flex-col flex-grow">
+                    <h3 class="font-semibold text-base">Sofá Seccional Gris</h3>
+                    <p class="text-sm text-gray-500 mt-1">Tela Antiderrames • L</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 15,800</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=600', 'Sofá Seccional Gris', '15,800')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition cursor-pointer">Comprar</button>
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=600', 'Sofá Seccional Gris', '15,800')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition cursor-pointer">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card-pop snap-start flex-none w-80 bg-pool-card rounded-[2rem] p-5 shadow-sm border border-gray-100 flex flex-col text-center">
+                <div class="product-img-box">
+                    <div class="product-img-slot"></div>
+                    <div class="product-img-float">
+                        <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=600" alt="Sofá Cama Piel">
+                    </div>
+                </div>
+                <div class="relative z-0 flex flex-col flex-grow">
+                    <h3 class="font-semibold text-base">Sofá Cama Piel</h3>
+                    <p class="text-sm text-gray-500 mt-1">Piel Sintética • 2 Plazas</p>
+                    <p class="text-base font-medium mt-3 mb-5">MXN 8,700</p>
+                    <div class="mt-auto flex space-x-3">
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=600', 'Sofá Cama Piel', '8,700')" class="bg-pool-cafe text-white text-xs px-4 py-2 rounded-full flex-1 hover:opacity-90 transition cursor-pointer">Comprar</button>
+                        <button onclick="openPurchaseModal('https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=600', 'Sofá Cama Piel', '8,700')" class="text-pool-cafe border border-pool-cafe text-xs px-4 py-2 rounded-full flex-1 hover:bg-gray-50 transition cursor-pointer">Agregar al carrito</button>
+                    </div>
                 </div>
             </div>
 
         </div>
 
-        <button id="btn-right" class="absolute right-2 top-[55%] transform -translate-y-1/2 z-20 bg-white/80 backdrop-blur-md p-3.5 rounded-full shadow-lg border border-gray-200 text-gray-700 hover:bg-white hover:text-black hover:scale-110 transition-all focus:outline-none hidden md:flex items-center justify-center cursor-pointer">
+        <button id="btn-right" class="absolute right-2 top-[58%] transform -translate-y-1/2 z-40 bg-white/80 backdrop-blur-md p-3.5 rounded-full shadow-lg border border-gray-200 text-gray-700 hover:bg-white hover:text-black hover:scale-110 transition-all focus:outline-none hidden md:flex items-center justify-center cursor-pointer">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
         </button>
     </section>
@@ -303,26 +349,23 @@
     <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500 relative z-10">
         <div class="flex justify-center space-x-6 mb-4">
             <a href="#" class="hover:text-black transition">Acerca de Pool Mueblería</a>
-            <a href="#" class="hover:text-black transition">Soporte</a>
-            <a href="#" class="hover:text-black transition">Cotizaciones</a>
+            <a href="ayuda.html" class="hover:text-black transition">Soporte</a>
+            <a href="contacto.html" class="hover:text-black transition">Cotizaciones</a>
         </div>
         <p>© 2026 Pool Mueblería. Todos los derechos reservados.</p>
     </footer>
 
     <!-- MODAL DE COMPRA REDISEÑADO (ESTILO APPLE PREMIUM) -->
     <div id="purchase-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
-        <!-- Fondo oscuro desenfocado -->
         <div class="absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity opacity-0" id="purchase-backdrop" onclick="closePurchaseModal()"></div>
         
-        <!-- Contenedor Principal Flotante -->
         <div class="relative w-[95vw] md:w-[90vw] max-w-5xl h-[90vh] md:h-[80vh] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row transform scale-95 transition-all duration-300 opacity-0" id="purchase-content">
             
-            <!-- Botón de Cerrar -->
-            <button onclick="closePurchaseModal()" class="absolute top-6 right-6 z-50 bg-white/80 hover:bg-gray-100 text-gray-600 p-2.5 rounded-full transition shadow-sm focus:outline-none backdrop-blur-md">
+            <button onclick="closePurchaseModal()" class="absolute top-6 right-6 z-50 bg-white/80 hover:bg-gray-100 text-gray-600 p-2.5 rounded-full transition shadow-sm focus:outline-none backdrop-blur-md cursor-pointer">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
-            <!-- COLUMNA IZQUIERDA: Imagen Fija al 100% (Sin bordes grises) -->
+            <!-- COLUMNA IZQUIERDA: Imagen Fija al 100% -->
             <div class="w-full md:w-1/2 h-[40%] md:h-full relative flex-shrink-0 bg-gray-100">
                 <img id="modal-image" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800" alt="Sofá Premium" class="absolute inset-0 w-full h-full object-cover">
             </div>
@@ -330,7 +373,6 @@
             <!-- COLUMNA DERECHA: Opciones y Barra Fija -->
             <div class="w-full md:w-1/2 h-[60%] md:h-full bg-white flex flex-col relative">
                 
-                <!-- Opciones (Área con scroll) -->
                 <div class="flex-1 overflow-y-auto p-8 md:p-12 no-scrollbar pb-6">
                     <div class="mb-10">
                         <p class="text-xs text-pool-cafe font-bold tracking-widest uppercase mb-2">Nuevo</p>
@@ -339,17 +381,17 @@
                     </div>
 
                     <!-- Selector de Tamaño -->
-                    <div class="mb-10">
+                    <div class="mb-10" id="size-options">
                         <h3 class="text-lg font-semibold mb-4 text-pool-dark">Tamaño</h3>
                         <div class="space-y-4">
-                            <div class="modal-option active" onclick="selectOption(this, 'size')">
+                            <div class="modal-option active" data-label="3 Plazas (Estándar)" data-extra="0" onclick="selectOption(this, 'size')">
                                 <div class="flex justify-between items-center mb-1">
                                     <h4 class="font-semibold text-pool-dark">3 Plazas (Estándar)</h4>
                                     <span class="text-sm font-medium text-pool-dark">Incluido</span>
                                 </div>
                                 <p class="text-sm text-gray-500">2.10m de largo. Ideal para salas medianas.</p>
                             </div>
-                            <div class="modal-option" onclick="selectOption(this, 'size')">
+                            <div class="modal-option" data-label="Modular en L (4 Plazas)" data-extra="4500" onclick="selectOption(this, 'size')">
                                 <div class="flex justify-between items-center mb-1">
                                     <h4 class="font-semibold text-pool-dark">Modular en L (4 Plazas)</h4>
                                     <span class="text-sm font-medium text-gray-500">+ $4,500</span>
@@ -360,17 +402,17 @@
                     </div>
 
                     <!-- Selector de Acabado -->
-                    <div class="mb-10">
+                    <div class="mb-10" id="material-options">
                         <h3 class="text-lg font-semibold mb-4 text-pool-dark">Acabado</h3>
                         <div class="space-y-4">
-                            <div class="modal-option active flex items-center" onclick="selectOption(this, 'material')">
+                            <div class="modal-option active flex items-center" data-label="Lino Blanco" data-extra="0" onclick="selectOption(this, 'material')">
                                 <div class="color-circle bg-gray-100 border border-gray-300"></div>
                                 <div>
                                     <h4 class="font-semibold text-pool-dark">Lino Blanco</h4>
                                     <p class="text-sm text-gray-500 mt-1">Fresco, transpirable y elegante.</p>
                                 </div>
                             </div>
-                            <div class="modal-option flex items-center" onclick="selectOption(this, 'material')">
+                            <div class="modal-option flex items-center" data-label="Terciopelo Esmeralda" data-extra="800" onclick="selectOption(this, 'material')">
                                 <div class="color-circle bg-emerald-800 border border-emerald-900"></div>
                                 <div>
                                     <h4 class="font-semibold text-pool-dark">Terciopelo Esmeralda</h4>
@@ -381,18 +423,18 @@
                     </div>
                 </div>
 
-                <!-- BARRA INFERIOR FIJA (Anclada solo a la mitad derecha) -->
+                <!-- BARRA INFERIOR FIJA -->
                 <div class="w-full border-t border-gray-100 p-6 md:px-10 bg-white/95 backdrop-blur-md flex-shrink-0 z-20">
                     <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
                         <div class="w-full sm:w-auto text-left">
-                            <p id="modal-total" class="text-xl font-semibold tracking-tight text-pool-dark">Total: $22,000</p>
-                            <p class="text-xs text-gray-500 mt-1">Con Plan 80/20 asegura tu producto.</p>
+                            <p id="modal-total" class="text-xl font-semibold tracking-tight text-pool-dark">Total: $22,000 MXN</p>
+                            <p id="modal-advance" class="text-xs text-gray-500 mt-1">Anticipo 80%: $17,600 MXN</p>
                         </div>
                         <div class="w-full sm:w-auto flex flex-col xl:flex-row gap-3">
-                            <button class="w-full xl:w-auto bg-white text-pool-cafe px-6 py-3 rounded-full text-sm font-semibold border-[1.5px] border-pool-cafe hover:bg-gray-50 transition focus:outline-none">
+                            <button type="button" onclick="confirmAddToCart()" class="w-full xl:w-auto bg-white text-pool-cafe px-6 py-3 rounded-full text-sm font-semibold border-[1.5px] border-pool-cafe hover:bg-gray-50 transition focus:outline-none cursor-pointer">
                                 Agregar a la bolsa
                             </button>
-                            <button class="w-full xl:w-auto bg-pool-cafe text-white px-6 py-3 rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md focus:outline-none">
+                            <button type="button" onclick="buyNow()" class="w-full xl:w-auto bg-pool-cafe text-white px-6 py-3 rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md focus:outline-none cursor-pointer">
                                 Comprar ahora
                             </button>
                         </div>
@@ -403,192 +445,7 @@
         </div>
     </div>
 
-    <!-- SCRIPTS LÓGICA -->
-    <script>
-        // -- Carrusel Automático y Manual --
-        const carousel = document.getElementById('carousel');
-        const btnLeft = document.getElementById('btn-left');
-        const btnRight = document.getElementById('btn-right');
-        
-        let autoScrollInterval;
-        const scrollAmount = 344; // El ancho de tu tarjeta + margen
-
-        // Función para mover solito el carrusel
-        function startAutoScroll() {
-            autoScrollInterval = setInterval(() => {
-                // Si llegó al final, regresa al inicio
-                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5) {
-                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                }
-            }, 3000); // 3 segundos
-        }
-
-        function stopAutoScroll() {
-            clearInterval(autoScrollInterval);
-        }
-
-        function manualScroll(direction) {
-            stopAutoScroll(); 
-            if (direction === 'prev') {
-                carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            } else {
-                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5) {
-                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                }
-            }
-            startAutoScroll(); // Reinicia el tiempo al soltar
-        }
-
-        // Eventos de las flechas
-        btnLeft.addEventListener('click', () => manualScroll('prev'));
-        btnRight.addEventListener('click', () => manualScroll('next'));
-
-        // Se detiene si el usuario pone el mouse encima para leer o hacer clic
-        carousel.addEventListener('mouseenter', stopAutoScroll);
-        carousel.addEventListener('mouseleave', startAutoScroll);
-        carousel.addEventListener('touchstart', stopAutoScroll);
-        carousel.addEventListener('touchend', startAutoScroll);
-
-        // Arranca el motor al cargar
-        startAutoScroll();
-
-        // -- Menús Desplegables --
-        function toggleMenu(menuId) {
-            const menus = ['search-dropdown', 'cart-dropdown', 'profile-dropdown'];
-            menus.forEach(id => {
-                const element = document.getElementById(id);
-                if (id === menuId) {
-                    element.classList.toggle('hidden');
-                } else {
-                    element.classList.add('hidden');
-                }
-            });
-        }
-
-        document.addEventListener('click', (event) => {
-            const header = document.querySelector('header');
-            if (!header.contains(event.target)) {
-                document.getElementById('search-dropdown').classList.add('hidden');
-                document.getElementById('cart-dropdown').classList.add('hidden');
-                document.getElementById('profile-dropdown').classList.add('hidden');
-            }
-        });
-
-        // -- Lógica de Sesión Inteligente (Usuario / Admin) --
-        function handleNavLogin(e) {
-            e.preventDefault();
-            const user = document.getElementById('nav-username').value;
-            const pass = document.getElementById('nav-password').value;
-
-            const loginForm = document.getElementById('login-form-nav');
-            const loggedInMenu = document.getElementById('logged-in-menu');
-            const sessionText = document.getElementById('session-text');
-            const sessionIcon = document.getElementById('session-icon');
-            const userGreeting = document.getElementById('user-greeting');
-            const userMenuList = document.getElementById('user-menu-list');
-            const adminMenuList = document.getElementById('admin-menu-list');
-            const errorMsg = document.getElementById('nav-login-error');
-
-            errorMsg.classList.add('hidden');
-
-            if (user === '1234' && pass === '1234') {
-                loginForm.classList.add('hidden');
-                loggedInMenu.classList.remove('hidden');
-                sessionText.classList.add('hidden');
-                sessionIcon.classList.remove('hidden');
-                
-                userGreeting.innerText = 'Hola, Usuario';
-                userMenuList.classList.remove('hidden');
-                adminMenuList.classList.add('hidden');
-            } else if (user === 'admin' && pass === 'admin') {
-                loginForm.classList.add('hidden');
-                loggedInMenu.classList.remove('hidden');
-                sessionText.classList.add('hidden');
-                sessionIcon.classList.remove('hidden');
-                
-                userGreeting.innerText = 'Panel de Control';
-                adminMenuList.classList.remove('hidden');
-                userMenuList.classList.add('hidden');
-            } else {
-                errorMsg.classList.remove('hidden');
-            }
-        }
-
-        function handleLogout() {
-            document.getElementById('login-form-nav').classList.remove('hidden');
-            document.getElementById('logged-in-menu').classList.add('hidden');
-            document.getElementById('session-text').classList.remove('hidden');
-            document.getElementById('session-icon').classList.add('hidden');
-            
-            document.getElementById('nav-username').value = '';
-            document.getElementById('nav-password').value = '';
-            document.getElementById('nav-login-error').classList.add('hidden');
-        }
-
-        // -- Lógica del Modal de Compra Premium --
-        const modal = document.getElementById('purchase-modal');
-        const backdrop = document.getElementById('purchase-backdrop');
-        const content = document.getElementById('purchase-content');
-
-        function openPurchaseModal(imgSrc, title, price) {
-            if(imgSrc) document.getElementById('modal-image').src = imgSrc;
-            if(title) document.getElementById('modal-title').innerText = title;
-            if(price) {
-                document.getElementById('modal-price').innerText = `Desde $${price} MXN`;
-                document.getElementById('modal-total').innerText = `Total: $${price} MXN`;
-            }
-
-            // Mostrar el modal
-            modal.classList.remove('hidden');
-            
-            // Animación de entrada
-            setTimeout(() => {
-                backdrop.classList.remove('opacity-0');
-                content.classList.remove('scale-95', 'opacity-0');
-                content.classList.add('scale-100', 'opacity-100');
-            }, 10);
-            
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePurchaseModal() {
-            // Animación de salida
-            backdrop.classList.add('opacity-0');
-            content.classList.remove('scale-100', 'opacity-100');
-            content.classList.add('scale-95', 'opacity-0');
-            
-            setTimeout(() => { 
-                modal.classList.add('hidden'); 
-            }, 300);
-            
-            document.body.style.overflow = 'auto';
-        }
-
-        // Lógica de Selección Visual (Bordes Premium)
-        function selectOption(clickedElement, category) {
-            const siblings = clickedElement.parentElement.children;
-            for (let sibling of siblings) {
-                sibling.classList.remove('active');
-            }
-            clickedElement.classList.add('active');
-        }
-    </script>
+    <!-- CEREBRO CENTRAL Y BASE DE DATOS PROVISIONAL -->
+    <script src="app.js"></script>
 </body>
-<!-- MOTOR ÓPTICO LIQUID GLASS (Refracción de fondo) -->
-<svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
-    <defs>
-        <filter id="liquid-glass-refraction" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-            <!-- Genera la curvatura suave del cristal -->
-            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.04" numOctaves="1" seed="3" result="lente" />
-            <!-- Suaviza el mapa para que parezca vidrio pulido y no agua rugosa -->
-            <feGaussianBlur in="lente" stdDeviation="2" result="lenteSuave" />
-            <!-- Deforma el texto y las imágenes que pasan por detrás de la cápsula -->
-            <feDisplacementMap in="SourceGraphic" in2="lenteSuave" scale="18" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-    </defs>
-</svg>
 </html>
